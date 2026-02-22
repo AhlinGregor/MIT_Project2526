@@ -3,6 +3,7 @@
 **Prepared By: Luka Svenšek (89231433), Matej Kodermac (89221193), Žan Luka Remec (89231391), Gregor Ahlin (89231290)**  
 **Date: 22nd Feb 2026**  
 **Version: 2.0**  
+[GitHub repo](https://github.com/AhlinGregor/MIT_Project2526/)
 
 ## 1. Project name
 Archive System for the Scout Association of Slovenia
