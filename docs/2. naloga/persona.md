@@ -3,7 +3,6 @@
 ### 1. Name
 
 **Samo Primer**
-![Image](persona1.jpg)
 
 ### 2. Function
 
