@@ -1,70 +1,90 @@
-## Univerza na Primorskem, Fakulteta za matematiko, naravoslovje in informacijske tehnologije
-# MIT project charter: Archive System for the Scout Association of Slovenia
-**Prepared By: Luka Svenšek (89231433), Matej Kodermac (89221193), Žan Luka Remec (89231391), Gregor Ahlin (89231290)**  
-**Date: 22nd Feb 2026**  
-**Version: 2.0**  
-[GitHub repo](https://github.com/AhlinGregor/MIT_Project2526/)
+1. name of the persona, 
+Samo Primer
 
-## 1. Project name
-Archive System for the Scout Association of Slovenia
+2. function, 
+Scout Master
 
-## 2. Project client
-The project client is Scout Association of Slovenia
+3. screening question, 
 
-## 3. Purpose and objective of the project
-The purpose of this project is to establish a new and improved archive management system for the Scout Association of Slovenia. The objective is for the whole association to want to use the product.
-
-## 4. Description of the finished product
-
-The proposed solution will be implemented as a web application, accessible via computer and mobile phone.
-The system will be designed in a modular way, so that the database, user interface, backend, and file system will each represent a separate module. This allows easier upgrades and expansion of functionality in the future.
-
-The proposed system has a file structure specifically designed for archiving the scout association’s reports according to their needs. For easier accessibility, it also allows users to fill out reports directly on the platform, enabling standardization and ease of use. It will also allow simple browsing of the archive using category filters and keyword search. Due to a more rigid structure, it ensures greater transparency and organization of archived files.
-
-The solution will provide a unified way of submitting reports that will be accessible to people with different levels of computer skills via a website. It will enable access to the archive with advanced search (by categories, years, keywords, etc.), creation of reports directly within the system via a form, submission of reports by uploading a document, and archive management by an administrator.
+Young active member of society. Age: 22
+Skills: very fammiliar with the use of online platforms and other digital tools.
+Use of the system: frequent
 
 
-**Proposed technical architecture:**
-* **User interface:** A website developed using React; the design will also be adapted for mobile devices.
-* **Backend:** Implemented in Node.js, with a REST API for communication with the database.
-* **Database:** PostgreSQL for structured data (metadata, users).
-* **File system:** For storing the actual documents (e.g. PDFs).
+- Characteristics: Skills, knowledge, familiarity with computers
 
-**Feasibility of the architecture:**
-* **Availability of technology:** The listed development technologies are available and well established in the industry.
-* **Team skills and experience:** The team already has experience and skills in working with the listed technologies.
-* **System compatibility:** The system does not require compatibility with other systems and only allows the submission of reports via an internal form.
-* **Performance and scalability:** The system is designed to be sufficiently powerful for user needs; future scalability would mainly be desirable in terms of additional data storage, which represents a trivial problem.
-* **Security and reliability:** The system will be designed with security and reliability in mind. Users will have accounts to prevent misuse by unauthenticated users. User passwords will be encrypted using Argon2. The system will also include users with administrative privileges for editing and deleting inappropriate content.
-* **Hardware and infrastructure requirements:** In terms of infrastructure, a main server will be required to host the web portal, data storage, a one-to-one instant copy of the system for so-called hot standby / high availability failover server, and a backup at a remote location with less frequent data replication.
-* **Timeline and resources:** The project is divided into several phases, together comprising approximately three months of development.
 
-**Requirements:**
-* a unified system for accessing, submitting, and writing reports,
-* system access provided via a website adapted for different devices,
-* a simple and user-friendly interface,
-* archive hierarchy organized first by years and then by report categories (functions, activities, work plan, patrol work, club report, financial report),
-* ensuring the possibility of data backup for data robustness.
+- Use of the system: Inexperienced or expert, casual, frequent
+- Inexperienced: Step-by-step instructions, constrained, clear information
+- Expert: Flexibility, access to functions, “power”
+- Frequent: Short-cuts
+- Casual: Clear instructions (e.g. menus etc.)
+
+
+4. description, 
+
+
+5. problem scenarios and their alternatives.
 
 
 
+What job are we doing for who? How do we know if it’s working?
+
+‘A certain [Persona(s)] exists......and they have certain [Problem Scenario(s)].
+Currently, they’re [using certain Alternatives], but...
+...if we [offer our target Value Proposition], then...
+...we'll observe [success through Pivotal Metrics- acquisition, onboarding, engagement, retention, etc.] .'
 
 
 
-## 5. Reporting
-Everybody reports directly to team lead - Gregor Ahlin.
+- Who are they?
+- Characteristics: Skills, knowledge, familiarity with computers
+- Use of the system: Inexperienced or expert, casual, frequent
+- Inexperienced: Step-by-step instructions, constrained, clear information
+- Expert: Flexibility, access to functions, “power”
+- Frequent: Short-cuts
+- Casual: Clear instructions (e.g. menus etc.)
 
-## 6. Available funds
-None. (For now.)
 
-## 7. Shipping deadline
-The shipping deadline for the finished project is 22nd Feb 2027.
+Detailed description get out from the generic user concept
+- needs
+- concerns
+- goals
+- age
 
-## 8. Team structure
-The team consists of Lead ideas officer Žan Luka Remec, Lead programmer Luka Svenšek, Chief financial officer Mater Kodermac and the project lead Gregor Ahlin.
 
-## 9. Date of order
-22nd Feb 2026
 
-## 10. Client and signature
-Scout Association of Slovenia
+Experience level in the area of your product or service
+Context for how they would interact with your product: Through choice or required by their job?
+How often would they use it?
+Do they typically use a desktop computer to access it, or their phone or other device?
+Goals and concerns when they perform relevant tasks: speed, accuracy, thoroughness, or any other needs that may factor into their usage
+
+
+
+Functional Requirements
+- Search: The user must be able to search for products using filters such as category, price,
+and rating.
+- Registration: Users must register via email or social media, with the process taking less
+than 2 minutes.
+Usability Requirements
+- Navigation: The system must support navigation through a maximum of 3 clicks to
+access any page.
+- Feedback: After each significant action, real-time feedback must be provided to the user.
+Accessibility Requirements
+- Screen Reader Compatibility: The site must be fully navigable using assistive
+technologies for blind users.
+- Visual Contrast: Text must have sufficient contrast from the background to ensure
+readability for users with visual impairments.
+
+
+Example (cont)
+5. Performance Requirements
+- Load Time: Pages must load in less than 3 seconds on an average connection.
+- Responsiveness: The user interface must respond to user input in less than
+200 milliseconds.
+6. Context Requirements
+- Mobile Usage: The app must work seamlessly on mobile devices, with a
+responsive layout that adapts to different screen sizes.
+- Offline Mode: Users must be able to access saved content even when they are
+not connected to the Internet.
