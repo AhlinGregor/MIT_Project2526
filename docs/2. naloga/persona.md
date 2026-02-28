@@ -12,8 +12,6 @@
 
 *Do you regularly create, submit, or review scout reports and logs using a computer and a mobile device?*
 
----
-
 ### 4. Description
 
 Samo Primer is a young and active member of society, aged 22. He is very familiar with digital tools and online platforms and uses them daily for communication, organization, and documentation. He is a casual but regular user of the archive system, primarily interacting with it when planning and documenting scout missions.
@@ -27,8 +25,6 @@ His primary concerns are the long-term availability of stored data and the ease 
 * An easy and structured way to manage scout reports and logs
 * Reliable and long-term access to archived data
 * A system that works well on both mobile devices and desktop computers
-
----
 
 ## 5. Problem Scenarios and Alternatives
 
@@ -47,8 +43,6 @@ If he doesn't have to use other tools (such as paper documents or personal cloud
 * Samo primarily uses a mobile device to record scout logs during missions.
 * He uses a desktop or laptop computer to manage and write longer reports.
 
----
-
 ## Functional Requirements
 
 * **Search:**
@@ -56,8 +50,6 @@ If he doesn't have to use other tools (such as paper documents or personal cloud
 
 * **Authentication:**
   Users must be able to log in using an email address or username, with the login process taking less than one minutes.
-
----
 
 ## Usability Requirements
 
@@ -67,8 +59,6 @@ If he doesn't have to use other tools (such as paper documents or personal cloud
 * **Feedback:**
   The system must provide real-time feedback after each significant user action.
 
----
-
 ## Accessibility Requirements
 
 * **Screen Reader Compatibility:**
@@ -77,8 +67,6 @@ If he doesn't have to use other tools (such as paper documents or personal cloud
 * **Visual Contrast:**
   Text must have sufficient contrast with the background to ensure readability for users with visual impairments.
 
----
-
 ## Performance Requirements
 
 * **Load Time:**
@@ -86,8 +74,6 @@ If he doesn't have to use other tools (such as paper documents or personal cloud
 
 * **Responsiveness:**
   The user interface must respond to user input in less than 200 milliseconds.
-
----
 
 ## Context Requirements
 
@@ -100,8 +86,6 @@ If he doesn't have to use other tools (such as paper documents or personal cloud
 * **Offline Mode:**
   Users must be able to access previously saved content even when they are not connected to the internet.
 
----
-
 ## Scenario 1: Creating a Mission Plan (Mobile)
 
 Samo is preparing for an upcoming scout mission and needs to create and submit a mission plan. The plan must include a description of the activity, the date, and a list of participants.
@@ -109,8 +93,6 @@ Samo is preparing for an upcoming scout mission and needs to create and submit a
 He opens the application on his mobile phone and logs in. After authentication, he selects the **Create Plan** option, which opens a form. He enters the mission description, date, and other relevant information. Before submitting the plan, he opens the scout member list and selects the participants.
 
 After submitting the plan, the system provides confirmation that the document has been successfully saved.
-
----
 
 ## Scenario 2: Writing a Mission Report (Desktop)
 
