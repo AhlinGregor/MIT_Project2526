@@ -3,6 +3,7 @@
 ### 1. Name
 
 **Matevž Podgornik**
+![Image](persona2.jpg)
 
 ### 2. Function
 
