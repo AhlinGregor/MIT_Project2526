@@ -12,7 +12,7 @@ This role requires mission planning and preparation.
 ### 3. Screening Question
 "In the past year, how many scout mission plans or activity logs have you personally drafted and submitted for approval?"
 
-### 4. Perspective (Think-See-Feel-Do)
+### 4. Think-See-Feel-Do
 
 
 **Think**
