@@ -1,94 +1,47 @@
-## Persona
+## Matjaž the Leader
 
-### 1. Name
+**Screening Question:**  
+Do you regularly create, submit, or review scout activity reports and logs using both a computer and a mobile device?
 
-**Matevž Podgornik**
-![Image](persona2.jpg)
+**Persona Description:**
 
-### 2. Function
+Matevž Podgornik is 20 years old and an active scout leader. He has grown up in the scouting organization and recently took on more responsibility within his group. He prefers being outdoors with his scouts rather than sitting behind a screen, and he uses technology only when necessary.
 
-**Scout Leader**
+He is not particularly enthusiastic about digital systems, but he understands that documentation is part of his role. He uses the archive system mainly to write and store activity reports for missions, excursions, and events his group participates in.
 
-### 3. Screening Question
+Matevž often works on reports shortly after activities, sometimes from his phone while still in the field, and sometimes later at home on his laptop. His biggest concern is making sure reports are stored safely until the annual overview is due. He does not want to worry about losing documents or searching through different devices to find them.
 
-*Do you regularly create, submit, or review scout reports and logs using a computer and a mobile device?*
+He values simplicity. If the system is slow, complicated, or requires too many steps, he becomes frustrated quickly. He wants to complete administrative tasks efficiently so he can focus on leading his scouts.
 
-### 4. Description
+**Thinks**
 
-Matevž Podgornik is an active scout leader. At the young age of 20 he is very familiar with the scouts and its leadership roles. He likes the outdoors better then staying inside and is not a big fan of technology. He uses it as little as possible. Nontheless he does not dislike using the archive system. He uses it to document his group.
+- “I just want to finish this report quickly.”
+- “I hope this saves automatically.”
+- “Everything should be in one place.”
 
-His main goal is to write reports for various activities his group takes part in.
+**Sees**
 
-His primary concern is storage of the reports untill the due date of a yearly report. He wants to have all of his documents in the same place.
+- Different devices (phone and laptop) depending on where he is
+- Deadlines for reports approaching
+- Limited time between studies, scouts, and personal life
 
-**Needs:**
+**Feels**
 
-* A fast and easy way to write his reports
-* Reliable short-term access to reports
-* A system that works well on both mobile devices and desktop computers
+- Responsible for properly documenting activities
+- Slightly impatient with slow or complex systems
+- Relieved when reports are submitted and safely stored
 
-## 5. Problem Scenarios and Alternatives
+**Does**
 
-**What job are we doing and for whom?**
-The system supports Scout Leaders like Matevž in offering an easy way of writing and storing the activity reports.
+- Writes mission and activity reports
+- Takes roll call during excursions using his phone
+- Switches between mobile and desktop devices
+- Submits reports and stores them for later review
+## Problem Scenarios, Current Alternatives, and Value Proposition
 
-**How do we know if it is working?**
-The system is successful if Matevž can spend as little time as possible on it and still write good reports.
-
-## Functional Requirements
-
-* **Search:**
-  The user must be able to write out their report within the system.
-
-* **Authentication:**
-  Users must be able to log in using an email address or username, with the login process taking less than one minutes.
-
-## Usability Requirements
-
-* **Navigation:**
-  The system must allow access to any page within a maximum of three clicks.
-
-* **Feedback:**
-  The system must provide real-time feedback after each significant user action.
-
-## Accessibility Requirements
-
-* **Adherance to standards:**
-  The system adheres to the ISO/IEC 40500:2025 and WCAG 2.2 accessibility standards for websites.
-
-* **Screen Reader Compatibility:**
-  The system must be fully navigable using assistive technologies for visually impaired users.
-
-* **Visual Contrast:**
-  Text must have sufficient contrast with the background to ensure readability for users with visual impairments.
-
-## Performance Requirements
-
-* **Load Time:**
-  Pages must load in less than three seconds on an average internet connection.
-
-* **Responsiveness:**
-  The user interface must respond to user input in less than 200 milliseconds.
-
-## Context Requirements
-
-* **Mobile Usage:**
-  The application must work seamlessly on mobile devices with a responsive layout that adapts to different screen sizes.
-
-* **Desktop Usage:**
-  The web application must load and function correctly on desktop computers and laptops.
-
-* **Offline Mode:**
-  Users must be able to access previously saved content even when they are not connected to the internet.
-
-## Scenario 1: Taking roll call (Mobile)
-
-Matevž is on an excursion with his platoon. Before the start of the excursion he needs to take roll call. For that he uses the application on his mobile phone and logs in. After authentication, he selects the mission he is currently on and presses the **Attendence** button. It shows him a list of scouts within his platoon with checkboxes next to their names. He takes attendene of all the paarticipants and saves the form inside the system.
-
-## Scenario 2: Writing a Mission Report (Desktop)
-
-After returning from a scout mission, Matevž needs to write a report documenting the excursion.
-
-He opens the website on his computer and signs in. Using the navigation menu, he selects **Create Report**. When the form opens, he enters all required information and writes the mission report. After completing the report, he clicks **Submit Report**.
-
-The system responds with a confirmation message indicating that the report has been successfully stored in the archive.
+| Problem Scenarios                                        | Current Alternatives                                 | Your Value Proposition                                  |
+| -------------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------- |
+| Matevž needs to quickly write a report after an activity. | Writes notes in a notebook or separate document and transfers them later. | Provide an integrated report editor accessible from mobile and desktop.    |
+| Matevž worries about losing reports before the annual deadline.   | Saves files locally on his phone or computer.              | Provide centralized cloud storage with automatic saving.         |
+| Matevž needs to take roll call of his platoon.                     | Uses a paper notepad or his phones default notepad.               | Provides an easy to use list of participants and an option to save it securely.             |
+| Matevž wants minimal time spent on administration.      | Uses basic tools that are not optimized for scouting documentation.    | Provide a streamlined interface with clear, simple steps. |
