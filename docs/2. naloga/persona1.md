@@ -1,4 +1,4 @@
-## Persona 1: Amy Boum - Scoutmaster
+## Persona 1: Amy Baum - Scoutmaster
 
 ### 1. Description
 Amy is a 19-year-old university student who has been a scout since the age of seven. She is very familliar with computer tools like Word document editor, email and other tools used for creating and distributing documents. Amy is tech-savvy and expects software to work as intuitively as Instagram or Notion. 
