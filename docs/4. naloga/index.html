@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚜ Skavtski Arhiv</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green-dark:#152D0A; --green:#254D14; --green-mid:#386B1F; --green-light:#4F8A2C; --green-pale:#EBF3E4;
+  --amber:#7D5C0A; --amber-mid:#A87C12; --amber-light:#D4A820; --amber-pale:#FDF6DC;
+  --red:#7A1C00; --red-light:#B52800; --red-pale:#FAEAE4;
+  --blue:#1A4A7A; --blue-pale:#E4EEF8;
+  --parchment:#F3ECD8; --parchment-dark:#E6D9BF; --parchment-mid:#EDE0C8;
+  --cream:#FDFAF3; --brown-dark:#2A1608; --brown-light:#6B4020;
+  --text:#25160A; --text-mid:#4A3020; --text-muted:#7A6040;
+  --border:#C8B48A; --border-light:#DDD0B0;
+  --shadow-sm:0 2px 8px rgba(42,26,10,.10); --shadow:0 4px 20px rgba(42,26,10,.14); --shadow-lg:0 8px 40px rgba(42,26,10,.18);
+  --r:6px; --rl:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Lora',Georgia,serif;background:var(--parchment);color:var(--text);min-height:100vh;line-height:1.6}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:var(--parchment-dark)}
+::-webkit-scrollbar-thumb{background:var(--green-mid);border-radius:4px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.anim{animation:fadeUp .28s ease}
+
+/* ── LAYOUT ── */
+#app-shell{display:flex;flex-direction:column;min-height:100vh}
+#topbar-container{position:sticky;top:0;z-index:200}
+#content{flex:1}
+
+/* ── TOPBAR ── */
+#topbar{background:var(--green-dark);color:#D8EDCC;display:flex;align-items:center;padding:0 28px;height:54px;gap:14px;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.tb-logo{font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;color:#C8DFB8;display:flex;align-items:center;gap:8px;cursor:pointer;white-space:nowrap;flex-shrink:0}
+.tb-breadcrumb{display:flex;align-items:center;gap:5px;font-size:.82rem;color:#7AAA68;overflow:hidden}
+.tb-breadcrumb .crumb{color:#4A6A3A;flex-shrink:0}
+.tb-breadcrumb b{color:#C8DFB8;font-weight:500;font-family:'Lora',serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb-spacer{flex:1}
+.tb-user{display:flex;align-items:center;gap:8px;font-size:.83rem;color:#A8C898;flex-shrink:0}
+.tb-avatar{width:30px;height:30px;border-radius:50%;background:var(--green-mid);border:2px solid #4F8A2C;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#D8EDCC}
+.btn-logout{background:transparent;border:1px solid #3D5A30;color:#8AAA78;padding:4px 12px;border-radius:4px;cursor:pointer;font-size:.78rem;font-family:'Lora',serif;transition:all .18s;flex-shrink:0}
+.btn-logout:hover{background:rgba(255,255,255,.07);color:#C8DFB8}
+
+/* ── MAIN WRAPPER ── */
+.page-wrap{padding:32px 40px;max-width:1360px;margin:0 auto}
+@media(max-width:768px){.page-wrap{padding:18px 14px}}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:var(--r);border:none;cursor:pointer;font-family:'Lora',serif;font-size:.9rem;font-weight:600;transition:all .18s;text-decoration:none;white-space:nowrap}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--green);color:#D8EDCC;box-shadow:0 2px 8px rgba(37,77,20,.28)}
+.btn-primary:hover{background:var(--green-mid);transform:translateY(-1px);box-shadow:0 4px 14px rgba(37,77,20,.33)}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-secondary{background:var(--amber-pale);color:var(--amber);border:1px solid var(--amber-light)}
+.btn-secondary:hover{background:#FAF0C0;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--text-muted);border:1px solid var(--border)}
+.btn-ghost:hover{background:var(--parchment-dark);color:var(--text)}
+.btn-danger{background:var(--red-pale);color:var(--red-light);border:1px solid #D4846A}
+.btn-danger:hover{background:#F5D0C4}
+.btn-sm{padding:5px 12px;font-size:.8rem}
+.btn-lg{padding:11px 26px;font-size:.97rem}
+.btn-icon{padding:6px 8px;font-size:.9rem}
+
+/* ── CARDS ── */
+.card{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);box-shadow:var(--shadow-sm)}
+.section-heading{margin-bottom:26px}
+.section-heading h1{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:700;color:var(--green-dark);line-height:1.2}
+.section-heading p{color:var(--text-muted);font-size:.93rem;margin-top:4px;font-style:italic}
+
+/* ── BADGES ── */
+.badge{display:inline-flex;align-items:center;gap:3px;padding:2px 9px;border-radius:20px;font-size:.73rem;font-weight:600;letter-spacing:.02em}
+.bg{background:var(--green-pale);color:var(--green);border:1px solid #B8D4A8}
+.ba{background:var(--amber-pale);color:var(--amber);border:1px solid #D8C070}
+.br{background:var(--red-pale);color:var(--red-light);border:1px solid #D4946A}
+.bb{background:var(--blue-pale);color:var(--blue);border:1px solid #A8C4E0}
+.bgr{background:#F0EDE4;color:var(--text-muted);border:1px solid var(--border-light)}
+
+/* ── FORM ── */
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:.83rem;font-weight:600;color:var(--text-mid);margin-bottom:5px;letter-spacing:.01em}
+.fc{width:100%;padding:9px 13px;border:1px solid var(--border);border-radius:var(--r);background:var(--cream);font-family:'Lora',serif;font-size:.91rem;color:var(--text);transition:border-color .18s,box-shadow .18s}
+.fc:focus{outline:none;border-color:var(--green-light);box-shadow:0 0 0 3px rgba(79,138,44,.12)}
+textarea.fc{resize:vertical;min-height:110px}
+
+/* ── DIVIDER ── */
+hr.div{border:none;border-top:1px solid var(--border-light);margin:22px 0}
+
+/* ── TOAST ── */
+#toast{position:fixed;bottom:24px;right:24px;background:var(--green-dark);color:#D8EDCC;padding:11px 18px;border-radius:var(--rl);font-size:.86rem;box-shadow:var(--shadow-lg);z-index:9999;display:none;animation:fadeIn .22s ease;max-width:300px;line-height:1.5}
+#toast.show{display:block}
+#toast.err{background:var(--red)}
+#toast.amb{background:var(--amber);color:#FFF9E0}
+
+/* ── MODAL ── */
+.mo{position:fixed;inset:0;background:rgba(21,45,10,.45);z-index:600;display:flex;align-items:center;justify-content:center;animation:fadeIn .18s ease}
+.mo-box{background:var(--cream);border-radius:var(--rl);box-shadow:var(--shadow-lg);padding:30px;max-width:500px;width:92%;animation:fadeUp .22s ease}
+.mo-box h2{font-family:'Playfair Display',serif;font-size:1.28rem;color:var(--green-dark);margin-bottom:12px}
+.mo-actions{display:flex;gap:9px;justify-content:flex-end;margin-top:22px}
+
+/* ── BACK LINK ── */
+.back-link{display:inline-flex;align-items:center;gap:6px;color:var(--green);font-size:.86rem;font-weight:600;cursor:pointer;margin-bottom:18px;background:none;border:none;font-family:'Lora',serif;transition:gap .15s}
+.back-link:hover{gap:10px}
+
+/* ────────────────────────────────────────
+   LOGIN
+──────────────────────────────────────── */
+#login-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--green-dark);position:relative;overflow:hidden}
+#login-page::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(78,130,40,.25) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(168,124,18,.15) 0%,transparent 50%)}
+.login-card{background:var(--cream);border-radius:18px;padding:46px 42px;width:100%;max-width:390px;box-shadow:0 20px 60px rgba(0,0,0,.35);position:relative;z-index:1;animation:fadeUp .38s ease}
+.login-logo{text-align:center;margin-bottom:30px}
+.login-logo .emb{font-size:2.8rem;display:block;margin-bottom:8px}
+.login-logo h1{font-family:'Playfair Display',serif;font-size:1.55rem;color:var(--green-dark);font-weight:700}
+.login-logo p{color:var(--text-muted);font-size:.83rem;margin-top:4px;font-style:italic}
+.login-hint{background:var(--amber-pale);border:1px solid var(--amber-light);border-radius:var(--r);padding:9px 13px;font-size:.78rem;color:var(--amber);margin-bottom:18px;line-height:1.55}
+.login-err{color:var(--red-light);font-size:.82rem;margin-bottom:10px;display:none}
+
+/* ────────────────────────────────────────
+   DASHBOARD
+──────────────────────────────────────── */
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:6px}
+.dash-card{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:30px 26px;cursor:pointer;transition:all .22s;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.dash-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--green);transition:height .2s}
+.dash-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.dash-card:hover::before{height:6px}
+.dash-card.dc-amb::before{background:var(--amber-mid)}
+.dash-card.dc-red::before{background:var(--red-light)}
+.dash-card.dc-blue::before{background:var(--blue)}
+.dc-icon{font-size:2.3rem;margin-bottom:14px;display:block}
+.dash-card h2{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--green-dark);margin-bottom:7px;font-weight:700}
+.dash-card.dc-amb h2{color:var(--amber)}
+.dash-card.dc-red h2{color:var(--red)}
+.dash-card.dc-blue h2{color:var(--blue)}
+.dash-card p{color:var(--text-muted);font-size:.85rem;line-height:1.55;font-style:italic}
+
+/* ────────────────────────────────────────
+   ARCHIVE
+──────────────────────────────────────── */
+.archive-layout{display:grid;grid-template-columns:240px 1fr;gap:22px;align-items:start}
+@media(max-width:768px){.archive-layout{grid-template-columns:1fr}}
+.arch-sidebar{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:18px;box-shadow:var(--shadow-sm);position:sticky;top:70px}
+.sb-section{margin-bottom:20px}
+.sb-section h3{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:9px;padding-bottom:5px;border-bottom:1px solid var(--border-light)}
+.fi{display:flex;align-items:center;gap:7px;padding:5px 7px;border-radius:var(--r);cursor:pointer;font-size:.86rem;color:var(--text-mid);transition:all .13s;margin-bottom:1px;user-select:none}
+.fi:hover{background:var(--green-pale);color:var(--green)}
+.fi.active{background:var(--green-pale);color:var(--green);font-weight:600}
+.fi .fc-count{margin-left:auto;font-size:.7rem;background:var(--parchment-dark);color:var(--text-muted);padding:1px 6px;border-radius:9px}
+
+/* ARCHIVE SEARCH BAR — static wrapper */
+.arch-search-bar{display:flex;gap:9px;margin-bottom:18px}
+.arch-search-bar input{flex:1;padding:9px 14px;border:1px solid var(--border);border-radius:var(--r);background:var(--cream);font-family:'Lora',serif;font-size:.91rem;color:var(--text);transition:border-color .18s,box-shadow .18s}
+.arch-search-bar input:focus{outline:none;border-color:var(--green-light);box-shadow:0 0 0 3px rgba(79,138,44,.12)}
+
+/* TREE VIEW */
+.tree-view{display:flex;flex-direction:column;gap:2px}
+.tree-folder{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--r);cursor:pointer;font-size:.89rem;font-weight:600;color:var(--text-mid);transition:all .14s;user-select:none}
+.tree-folder:hover{background:var(--parchment-mid)}
+.tree-folder .tf-arrow{font-size:.72rem;color:var(--text-muted);transition:transform .18s;width:12px;text-align:center;flex-shrink:0}
+.tree-folder.open .tf-arrow{transform:rotate(90deg)}
+.tree-folder .tf-icon{font-size:1rem;flex-shrink:0}
+.tree-folder .tf-count{margin-left:auto;font-size:.7rem;background:var(--parchment-dark);color:var(--text-muted);padding:1px 6px;border-radius:9px}
+.tree-children{overflow:hidden}
+.tree-indent-1{padding-left:18px}
+.tree-indent-2{padding-left:36px}
+.tree-indent-3{padding-left:54px}
+.tree-report{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:var(--r);cursor:pointer;font-size:.85rem;color:var(--text-mid);transition:all .14s;margin-bottom:1px}
+.tree-report:hover{background:var(--green-pale);color:var(--green)}
+.tree-report .tr-icon{font-size:.9rem;flex-shrink:0}
+.tree-report .tr-title{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tree-report .tr-year{font-size:.72rem;color:var(--text-muted);margin-left:auto;flex-shrink:0}
+
+/* FLAT LIST */
+.flat-list{display:flex;flex-direction:column;gap:10px}
+.report-card{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:16px 20px;cursor:pointer;transition:all .17s;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:16px}
+.report-card:hover{box-shadow:var(--shadow);border-color:var(--green-light);transform:translateX(2px)}
+.rc-ico{font-size:1.5rem;width:42px;height:42px;background:var(--green-pale);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rc-info{flex:1;min-width:0}
+.rc-title{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:600;color:var(--text);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rc-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.76rem;color:var(--text-muted)}
+.rc-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
+
+/* REPORT DETAIL */
+.rdh{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:26px 30px;margin-bottom:18px;box-shadow:var(--shadow-sm)}
+.rdh h1{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--green-dark);margin-bottom:10px}
+.rdh-meta{display:flex;flex-wrap:wrap;gap:18px;margin-top:14px}
+.rdh-meta-item label{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:2px}
+.rdh-meta-item span{font-size:.88rem;font-weight:600;color:var(--text-mid)}
+.report-body{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:30px;box-shadow:var(--shadow-sm);line-height:1.82;font-size:.93rem}
+.report-body h3{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--green-dark);margin:18px 0 7px;padding-bottom:3px;border-bottom:1px solid var(--border-light)}
+.report-body h3:first-child{margin-top:0}
+
+/* ────────────────────────────────────────
+   REPORT SUBMISSION (STEPPER)
+──────────────────────────────────────── */
+.stepper{display:flex;align-items:center;margin-bottom:32px}
+.step{display:flex;align-items:center;flex:1;gap:8px}
+.step:last-child{flex:0}
+.step-circle{width:32px;height:32px;border-radius:50%;border:2px solid var(--border);background:var(--parchment);display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:700;color:var(--text-muted);flex-shrink:0;transition:all .25s}
+.step.active .step-circle{border-color:var(--green);background:var(--green);color:white}
+.step.done .step-circle{border-color:var(--green-mid);background:var(--green-pale);color:var(--green)}
+.step-line{flex:1;height:2px;background:var(--border-light);transition:background .3s}
+.step.done .step-line{background:var(--green-mid)}
+.step-label{font-size:.76rem;color:var(--text-muted);white-space:nowrap;font-weight:500}
+.step.active .step-label{color:var(--green);font-weight:700}
+.step.done .step-label{color:var(--text-mid)}
+
+.sub-section{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:24px 28px;box-shadow:var(--shadow-sm);margin-bottom:18px}
+.sub-section h3{font-family:'Playfair Display',serif;font-size:1.02rem;font-weight:700;color:var(--green-dark);margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid var(--border-light)}
+
+.type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:11px;margin-bottom:14px}
+.type-card{background:var(--cream);border:2px solid var(--border-light);border-radius:var(--rl);padding:18px 15px;cursor:pointer;transition:all .18s;text-align:center}
+.type-card:hover{border-color:var(--green-light);background:var(--green-pale);transform:translateY(-2px)}
+.type-card.sel{border-color:var(--green);background:var(--green-pale);box-shadow:0 0 0 3px rgba(37,77,20,.1)}
+.tc-icon{font-size:1.7rem;margin-bottom:7px;display:block}
+.tc-name{font-size:.87rem;font-weight:600;color:var(--text-mid)}
+
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:8px}
+.chip{padding:6px 15px;border:1px solid var(--border);border-radius:20px;font-size:.83rem;cursor:pointer;background:var(--cream);color:var(--text-mid);transition:all .14s;font-family:'Lora',serif}
+.chip:hover{border-color:var(--green);color:var(--green);background:var(--green-pale)}
+.chip.sel{background:var(--green);color:white;border-color:var(--green)}
+
+.draft-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;padding:10px 16px;background:var(--amber-pale);border:1px solid #D4C070;border-radius:var(--r);font-size:.83rem;color:var(--amber)}
+.as-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;display:inline-block}
+
+.review-field{margin-bottom:12px;padding:11px 14px;background:var(--parchment);border-radius:var(--r);border:1px solid var(--border-light)}
+.review-field label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text-muted);margin-bottom:3px}
+.review-field .rv{font-size:.88rem;color:var(--text-mid)}
+
+.confirm-banner{background:var(--green-pale);border:1px solid var(--green-mid);border-radius:var(--rl);padding:32px;text-align:center}
+.confirm-banner .cb-ico{font-size:2.8rem;margin-bottom:10px;display:block}
+.confirm-banner h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--green-dark);margin-bottom:6px}
+.confirm-banner p{font-size:.86rem;color:var(--text-muted);font-style:italic}
+
+/* ────────────────────────────────────────
+   TEMPLATE MANAGER
+──────────────────────────────────────── */
+.tmpl-section{margin-bottom:28px}
+.tmpl-section-hdr{font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid var(--border-light);display:block}
+.tmpl-card{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:16px 20px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-sm);transition:box-shadow .18s;margin-bottom:10px}
+.tmpl-card:hover{box-shadow:var(--shadow)}
+.tmpl-ico{font-size:1.7rem;width:44px;height:44px;background:var(--parchment);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tmpl-info{flex:1;min-width:0}
+.tmpl-info h3{font-family:'Playfair Display',serif;font-size:.97rem;font-weight:600;color:var(--text);margin-bottom:3px}
+.tmpl-info p{font-size:.78rem;color:var(--text-muted);font-style:italic}
+.tmpl-actions{display:flex;gap:7px;flex-shrink:0}
+.field-list{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.field-item{display:flex;align-items:center;gap:10px;padding:9px 13px;background:var(--parchment);border:1px solid var(--border-light);border-radius:var(--r);font-size:.86rem}
+.fi-drag{color:var(--border);font-size:.95rem}
+.fi-name{flex:1;font-weight:600;color:var(--text-mid)}
+.fi-type{font-size:.72rem;background:var(--border-light);padding:2px 8px;border-radius:9px;color:var(--text-muted)}
+.icon-picker{display:flex;gap:7px;flex-wrap:wrap}
+.ip-opt{width:42px;height:42px;border:2px solid var(--border-light);background:var(--parchment);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;transition:all .15s}
+.ip-opt:hover{border-color:var(--green)}
+.ip-opt.sel{border-color:var(--green);background:var(--green-pale)}
+.create-specific{background:var(--blue-pale);border:1px solid #A8C4E0;border-radius:var(--rl);padding:18px 20px;display:flex;align-items:center;gap:14px;margin-top:16px}
+
+/* ────────────────────────────────────────
+   GROUP PAGE
+──────────────────────────────────────── */
+.group-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:13px;margin-bottom:26px}
+.stat-card{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:16px 18px;box-shadow:var(--shadow-sm);text-align:center}
+.sc-num{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--green-dark);line-height:1.1}
+.sc-lbl{font-size:.76rem;color:var(--text-muted);font-style:italic;margin-top:3px}
+
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--border-light);margin-bottom:24px}
+.tab{padding:9px 20px;font-size:.85rem;font-weight:600;color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s;font-family:'Lora',serif;white-space:nowrap}
+.tab:hover{color:var(--green)}
+.tab.active{color:var(--green);border-bottom-color:var(--green)}
+
+/* ATTENDANCE MATRIX */
+.matrix-wrap{overflow-x:auto;border:1px solid var(--border-light);border-radius:var(--rl);background:var(--cream);box-shadow:var(--shadow-sm)}
+.matrix-table{border-collapse:collapse;min-width:100%;font-size:.82rem}
+.matrix-table th{padding:9px 10px;background:var(--green-dark);color:#C8DFB8;font-weight:600;font-size:.76rem;text-align:center;white-space:nowrap;position:sticky;top:0;z-index:2}
+.matrix-table th.col-member{text-align:left;min-width:150px;position:sticky;left:0;z-index:3;background:var(--green-dark)}
+.matrix-table td{padding:7px 8px;border-bottom:1px solid var(--border-light);text-align:center;white-space:nowrap;transition:background .12s}
+.matrix-table td.col-member{text-align:left;position:sticky;left:0;background:var(--cream);z-index:1;border-right:1px solid var(--border-light);font-weight:600;font-size:.84rem;padding:7px 12px}
+.matrix-table tr:nth-child(even) td.col-member{background:#FAF7EF}
+.matrix-table tr:hover td{background:var(--green-pale)!important}
+.att-cell{width:34px;height:32px;cursor:pointer;border-radius:4px;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:.85rem;transition:all .13s;border:1px solid transparent}
+.att-cell.present{background:var(--green-pale);border-color:var(--green-mid);color:var(--green)}
+.att-cell.absent{background:var(--red-pale);border-color:#D48080;color:var(--red-light)}
+.att-cell.unknown{background:var(--parchment);border-color:var(--border-light);color:var(--border)}
+.att-cell:hover{transform:scale(1.15)}
+.att-pct{font-size:.76rem;color:var(--text-muted);text-align:right;padding:5px 12px;background:var(--parchment);border-top:1px solid var(--border-light);border-radius:0 0 var(--rl) var(--rl)}
+
+/* SKILLS */
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px}
+.skill-card{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:18px 16px;cursor:pointer;transition:all .18s;box-shadow:var(--shadow-sm);text-align:center}
+.skill-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);border-color:var(--green-light)}
+.skill-card .sk-icon{font-size:2rem;margin-bottom:8px;display:block}
+.skill-card .sk-name{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:6px}
+.skill-card .sk-prog{font-size:.75rem;color:var(--text-muted);margin-bottom:8px}
+.skill-pbar{height:4px;background:var(--parchment-dark);border-radius:2px;overflow:hidden;margin-top:4px}
+.skill-pbar-fill{height:100%;background:var(--green);border-radius:2px;transition:width .4s}
+
+.req-table-wrap{overflow-x:auto;border:1px solid var(--border-light);border-radius:var(--rl);background:var(--cream);box-shadow:var(--shadow-sm)}
+.req-table{border-collapse:collapse;min-width:100%;font-size:.82rem}
+.req-table th{padding:9px 10px;background:var(--green-dark);color:#C8DFB8;font-weight:600;font-size:.74rem;white-space:nowrap;text-align:center;position:sticky;top:0;z-index:2}
+.req-table th.col-member{text-align:left;min-width:150px;position:sticky;left:0;z-index:3;background:var(--green-dark)}
+.req-table td{padding:7px 8px;border-bottom:1px solid var(--border-light);text-align:center;transition:background .12s}
+.req-table td.col-member{text-align:left;position:sticky;left:0;background:var(--cream);z-index:1;border-right:1px solid var(--border-light);font-weight:600;font-size:.84rem;padding:7px 12px;white-space:nowrap}
+.req-table tr:nth-child(even) td.col-member{background:#FAF7EF}
+.req-table tr:hover td{background:var(--green-pale)!important}
+.req-cell{width:32px;height:30px;cursor:pointer;border-radius:4px;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:.82rem;transition:all .13s;border:1px solid transparent}
+.req-cell.done{background:var(--green-pale);border-color:var(--green-mid);color:var(--green)}
+.req-cell.todo{background:var(--parchment);border-color:var(--border-light);color:var(--border)}
+.req-cell:hover{transform:scale(1.15)}
+.earned-cell{font-size:.8rem;font-weight:700;padding:4px 8px;border-radius:10px;white-space:nowrap}
+.earned-cell.yes{background:var(--green-pale);color:var(--green)}
+.earned-cell.no{background:var(--parchment);color:var(--text-muted)}
+
+/* LOG ENTRIES */
+.log-list{display:flex;flex-direction:column;gap:9px}
+.log-item{display:flex;align-items:flex-start;gap:11px;padding:11px 15px;border-radius:var(--r)}
+.log-item.praise{background:var(--green-pale);border-left:3px solid var(--green)}
+.log-item.scold{background:var(--red-pale);border-left:3px solid var(--red-light)}
+.li-who{font-size:.75rem;font-weight:700;color:var(--text-mid);margin-bottom:2px}
+.li-text{font-size:.85rem;color:var(--text-mid);flex:1}
+.li-date{font-size:.73rem;color:var(--text-muted);font-style:italic;flex-shrink:0}
+
+/* MEMBER MANAGEMENT */
+.member-mgmt-list{display:flex;flex-direction:column;gap:10px}
+.mbr-row{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:14px 18px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-sm);transition:box-shadow .18s}
+.mbr-row:hover{box-shadow:var(--shadow)}
+.mbr-row.bday{border-color:var(--amber-light);background:var(--amber-pale)}
+.mbr-avatar{width:40px;height:40px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1rem;color:white;font-weight:700;flex-shrink:0}
+.mbr-row.bday .mbr-avatar{background:var(--amber-mid)}
+.mbr-name{font-family:'Playfair Display',serif;font-size:.97rem;font-weight:600;color:var(--text)}
+.mbr-sub{font-size:.76rem;color:var(--text-muted);font-style:italic}
+.mbr-actions{margin-left:auto;display:flex;gap:7px}
+
+/* INLINE HEADER */
+.inh{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:10px;flex-wrap:wrap}
+.inh h2{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--green-dark)}
+
+/* EMPTY STATE */
+.empty{text-align:center;padding:44px 20px;color:var(--text-muted)}
+.empty .ei{font-size:2.6rem;margin-bottom:10px;display:block}
+.empty p{font-style:italic;font-size:.88rem}
+
+/* SECTION LABEL */
+.slbl{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px;display:block}
+
+/* PBAR */
+.pbar-wrap{height:4px;background:var(--parchment-dark);border-radius:2px;overflow:hidden;margin-top:8px}
+.pbar-fill{height:100%;border-radius:2px;transition:width .4s}
+
+/* FILTER ROW */
+.filter-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.fr-btn{padding:4px 13px;border-radius:14px;border:1px solid var(--border);background:var(--cream);font-family:'Lora',serif;font-size:.79rem;cursor:pointer;color:var(--text-muted);transition:all .13s}
+.fr-btn:hover,.fr-btn.active{background:var(--green);color:white;border-color:var(--green)}
+.fr-btn.amb{background:var(--amber-pale);color:var(--amber);border-color:var(--amber-light)}
+.fr-btn.amb.active{background:var(--amber-mid);color:white;border-color:var(--amber-mid)}
+</style>
+</head>
+<body>
+<div id="app-shell">
+  <div id="topbar-container"></div>
+  <div id="content"></div>
+</div>
+<div id="toast"></div>
+<div id="modal-layer"></div>
+
+<script>
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+const S = {
+  user: null,
+  page: 'login',
+  // archive
+  archFilter: { type: null, year: null, query: '' },
+  archOpenFolders: new Set(),
+  viewReport: null,
+  // report submission
+  rStep: 1,
+  rCat: null,       // 'dejavnost' | 'funkcija' | 'vod'
+  rSubtype: null,   // for dejavnost
+  rRole: null,      // for funkcija
+  rFuncType: null,  // 'letno' | 'nacrt' | 'financno'
+  rTmplId: null,
+  rFields: {},
+  rSubmitted: false,
+  // templates
+  editTmpl: null,
+  // group
+  groupTab: 'prisotnost',
+  selSkill: null,
+  praiseFilter: 'all',
+  groupSearch: '',
+};
+
+// ═══════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════
+const USERS = [
+  { u:'admin', p:'admin',    name:'Administrator',  role:'admin', group:'Vod Srebrna Zvezda' },
+  { u:'petra', p:'tabornik', name:'Petra Novak',    role:'user',  group:'Vod Srebrna Zvezda' },
+  { u:'jan',   p:'tabornik', name:'Jan Kovač',      role:'user',  group:'Vod Planinska Pot'  },
+];
+
+const ACTIVITY_SUBTYPES = ['Začetni zbor','Rodov dan','Čajanka','Zimovanje','Dan tabornikov','Zaključek','Taborjenje'];
+const FUNCTION_ROLES = ['Starešina','Načelnik','RR Načelnik','PP Načelnik','GG Načelnik','MČ Načelnik','PR'];
+const FUNC_TYPES = [
+  { id:'letno',    name:'Letno poročilo', icon:'📋' },
+  { id:'nacrt',    name:'Načrt dela',     icon:'📅' },
+  { id:'financno', name:'Finančno poročilo', icon:'💰' },
+];
+
+// Templates — general (locked) + role-specific (editable)
+const BASE_FIELDS = {
+  dejavnost: [
+    {id:'f1',name:'Naziv dejavnosti',type:'Besedilo'},
+    {id:'f2',name:'Datum in kraj',type:'Besedilo'},
+    {id:'f3',name:'Število udeležencev',type:'Število'},
+    {id:'f4',name:'Opis dejavnosti',type:'Dolgo besedilo'},
+    {id:'f5',name:'Dosežki in opažanja',type:'Dolgo besedilo'},
+    {id:'f6',name:'Predlogi za prihodnost',type:'Dolgo besedilo'},
+  ],
+  letno: [
+    {id:'f1',name:'Funkcija in vod',type:'Besedilo'},
+    {id:'f2',name:'Šolsko leto',type:'Besedilo'},
+    {id:'f3',name:'Pregled dela in dosežki',type:'Dolgo besedilo'},
+    {id:'f4',name:'Izzivi in rešitve',type:'Dolgo besedilo'},
+    {id:'f5',name:'Načrti za naprej',type:'Dolgo besedilo'},
+  ],
+  nacrt: [
+    {id:'f1',name:'Funkcija in vod',type:'Besedilo'},
+    {id:'f2',name:'Šolsko leto',type:'Besedilo'},
+    {id:'f3',name:'Cilji voda',type:'Dolgo besedilo'},
+    {id:'f4',name:'Načrtovane dejavnosti',type:'Dolgo besedilo'},
+    {id:'f5',name:'Finančni okvir',type:'Dolgo besedilo'},
+    {id:'f6',name:'Odgovornosti',type:'Dolgo besedilo'},
+  ],
+  financno: [
+    {id:'f1',name:'Funkcija in vod',type:'Besedilo'},
+    {id:'f2',name:'Obdobje',type:'Besedilo'},
+    {id:'f3',name:'Skupni prihodki (€)',type:'Število'},
+    {id:'f4',name:'Skupni odhodki (€)',type:'Število'},
+    {id:'f5',name:'Razlaga prihodkov',type:'Dolgo besedilo'},
+    {id:'f6',name:'Razlaga odhodkov',type:'Dolgo besedilo'},
+    {id:'f7',name:'Zaključek',type:'Dolgo besedilo'},
+  ],
+  vod: [
+    {id:'f1',name:'Naziv voda',type:'Besedilo'},
+    {id:'f2',name:'Vodnik voda',type:'Besedilo'},
+    {id:'f3',name:'Število članov',type:'Število'},
+    {id:'f4',name:'Napredovanja in dosežki',type:'Dolgo besedilo'},
+    {id:'f5',name:'Izzivi',type:'Dolgo besedilo'},
+    {id:'f6',name:'Priporočila',type:'Dolgo besedilo'},
+  ],
+};
+
+// General templates (cannot delete)
+const GENERAL_TEMPLATES = [
+  { id:'g-dejavnost', name:'Poročilo o dejavnosti', cat:'dejavnost', funcType:null, role:null, icon:'🏕️', general:true, fields: BASE_FIELDS.dejavnost.map(f=>({...f})) },
+  { id:'g-letno',     name:'Splošno letno poročilo', cat:'funkcija', funcType:'letno',    role:null, icon:'📋', general:true, fields: BASE_FIELDS.letno.map(f=>({...f})) },
+  { id:'g-nacrt',     name:'Splošni načrt dela',     cat:'funkcija', funcType:'nacrt',    role:null, icon:'📅', general:true, fields: BASE_FIELDS.nacrt.map(f=>({...f})) },
+  { id:'g-financno',  name:'Splošno finančno poročilo', cat:'funkcija', funcType:'financno', role:null, icon:'💰', general:true, fields: BASE_FIELDS.financno.map(f=>({...f})) },
+  { id:'g-vod',       name:'Poročilo voda',          cat:'vod',      funcType:null, role:null, icon:'👥', general:true, fields: BASE_FIELDS.vod.map(f=>({...f})) },
+];
+
+// Role-specific templates (user-created overrides)
+const ROLE_TEMPLATES = [
+  { id:'r-staresina-letno', name:'Letno poročilo starešine', cat:'funkcija', funcType:'letno', role:'Starešina', icon:'📋', general:false,
+    fields:[
+      {id:'f1',name:'Vod in rodovina',type:'Besedilo'},
+      {id:'f2',name:'Šolsko leto',type:'Besedilo'},
+      {id:'f3',name:'Pregled vodenja rodu',type:'Dolgo besedilo'},
+      {id:'f4',name:'Dejavnosti in udeležba',type:'Dolgo besedilo'},
+      {id:'f5',name:'Dosežki in priznanja',type:'Dolgo besedilo'},
+      {id:'f6',name:'Izzivi in priporočila',type:'Dolgo besedilo'},
+    ]},
+  { id:'r-staresina-nacrt', name:'Načrt dela starešine', cat:'funkcija', funcType:'nacrt', role:'Starešina', icon:'📅', general:false,
+    fields:[
+      {id:'f1',name:'Vod in rodovina',type:'Besedilo'},
+      {id:'f2',name:'Šolsko leto',type:'Besedilo'},
+      {id:'f3',name:'Strateški cilji',type:'Dolgo besedilo'},
+      {id:'f4',name:'Načrtovane dejavnosti',type:'Dolgo besedilo'},
+      {id:'f5',name:'Upravljanje vodnikov',type:'Dolgo besedilo'},
+      {id:'f6',name:'Proračun in viri',type:'Dolgo besedilo'},
+    ]},
+  { id:'r-nacelnik-letno', name:'Letno poročilo načelnika', cat:'funkcija', funcType:'letno', role:'Načelnik', icon:'📋', general:false,
+    fields:[
+      {id:'f1',name:'Naziv funkcije',type:'Besedilo'},
+      {id:'f2',name:'Šolsko leto',type:'Besedilo'},
+      {id:'f3',name:'Pregled programskega dela',type:'Dolgo besedilo'},
+      {id:'f4',name:'Število aktivnosti in udeležencev',type:'Število'},
+      {id:'f5',name:'Dosežki programa',type:'Dolgo besedilo'},
+      {id:'f6',name:'Predlogi za spremembe programa',type:'Dolgo besedilo'},
+    ]},
+];
+// Mutable array — user additions go here
+let allRoleTemplates = ROLE_TEMPLATES.map(t=>JSON.parse(JSON.stringify(t)));
+
+function resolveTmpl(cat, role, funcType) {
+  if (cat === 'dejavnost') return GENERAL_TEMPLATES.find(t=>t.id==='g-dejavnost');
+  if (cat === 'vod')       return GENERAL_TEMPLATES.find(t=>t.id==='g-vod');
+  // funkcija: role-specific first, then general
+  const sp = allRoleTemplates.find(t=>t.role===role && t.funcType===funcType);
+  if (sp) return sp;
+  return GENERAL_TEMPLATES.find(t=>t.funcType===funcType);
+}
+
+// Archive reports
+const REPORTS = [
+  { id:1,  title:'Poletno taborjenje 2023',        cat:'dejavnost', subtype:'Taborjenje',   role:null, funcType:null, author:'Petra Novak', date:'2023-08-20', year:2023,
+    body:`<h3>Splošne informacije</h3><p>Taborjenje je potekalo od 10. do 20. avgusta 2023 na Bovškem. Udeležilo se je 18 tabornikov in 4 vodniki.</p><h3>Aktivnosti</h3><p>Med taborjenjem smo izvajali orientacijo, plezanje, rafting in večerne igre ob ognju. Vsak dan smo imeli jutranjo zbornico in večerno refleksijo.</p><h3>Zaključek</h3><p>Taborjenje je uspelo odlično. Mladi so razvili samozavest, timsko delo in spoštovanje narave. Priporočamo enak format z delavnico prve pomoči.` },
+  { id:2,  title:'Začetni zbor 2023/24',            cat:'dejavnost', subtype:'Začetni zbor', role:null, funcType:null, author:'Jan Kovač',   date:'2023-09-12', year:2023,
+    body:`<h3>Potek zbora</h3><p>Začetni zbor za šolsko leto 2023/24 je potekal 12. septembra 2023. Zbora se je udeležilo 22 članov in 5 vodnikov.</p><h3>Program</h3><p>Pregledan je bil letni program, razdeljene so bile vloge, predstavljeni novi člani.</p>` },
+  { id:3,  title:'Zimovanje 2024',                  cat:'dejavnost', subtype:'Zimovanje',    role:null, funcType:null, author:'Petra Novak', date:'2024-01-28', year:2024,
+    body:`<h3>Opis aktivnosti</h3><p>Zimovanje je potekalo od 25. do 28. januarja 2024 v planinskem domu na Pohorju. Skupaj 16 tabornikov in 3 vodniki.</p><h3>Program</h3><p>Smučanje, pohod z loparji, nočni orientacijski pohod in taborniške igre v snegu.</p>` },
+  { id:4,  title:'Rodov dan 2024',                  cat:'dejavnost', subtype:'Rodov dan',    role:null, funcType:null, author:'Petra Novak', date:'2024-05-18', year:2024,
+    body:`<h3>Organizacija</h3><p>Rodov dan 2024 je potekal 18. maja na taborniškem domu. Udeležilo se je 65 tabornikov, vodnikov in staršev.</p><h3>Program</h3><p>Podelitev značk, nastopi, igre in skupna malica. Slavnostni govor je imel župan.</p>` },
+  { id:5,  title:'Čajanka 2024',                    cat:'dejavnost', subtype:'Čajanka',      role:null, funcType:null, author:'Jan Kovač',   date:'2024-02-15', year:2024,
+    body:`<h3>Namen</h3><p>Čajanka kot zimska prireditev za krepitev skupinskega duha. Okrog ognja, petje pesmi, pripovedovanje zgodb. Udeležba: 24 tabornikov.</p>` },
+  { id:6,  title:'Dan tabornikov 2023',             cat:'dejavnost', subtype:'Dan tabornikov', role:null, funcType:null, author:'Jan Kovač', date:'2023-02-22', year:2023,
+    body:`<h3>Program dneva</h3><p>Dan tabornikov 2023 je bil posvečen ekologiji in skrbi za naravo. Organizirali smo čistilno akcijo v gozdu in predavanje o biodiverziteti.</p>` },
+  { id:7,  title:'Zaključni zbor 2023/24',          cat:'dejavnost', subtype:'Zaključek',    role:null, funcType:null, author:'Petra Novak', date:'2024-06-20', year:2024,
+    body:`<h3>Program</h3><p>Zaključni zbor šolskega leta 2023/24 je potekal 20. junija. Podelili smo 12 značk in pohvalili posebej zaslužne člane.</p>` },
+  { id:8,  title:'Letno poročilo starešine 2022/23', cat:'funkcija', subtype:null, role:'Starešina', funcType:'letno', author:'Petra Novak', date:'2023-07-01', year:2023,
+    body:`<h3>Pregled leta</h3><p>Šolsko leto 2022/23 je bilo izjemno uspešno. Organizirali smo 8 večjih dejavnosti, povečali smo število članov za 15%.</p><h3>Dosežki</h3><p>Rodni dan smo izvedli z rekordno udeležbo. Uspešno smo zaključili projekt obnove taborniškega doma.</p>` },
+  { id:9,  title:'Načrt dela starešine 2023/24',     cat:'funkcija', subtype:null, role:'Starešina', funcType:'nacrt', author:'Petra Novak', date:'2023-09-05', year:2023,
+    body:`<h3>Cilji leta</h3><p>V šolskem letu 2023/24 si postavljamo: organizacija 10 aktivnosti, pridobitev 5 novih članov, zaključek renovacije shrambe za opremo.</p>` },
+  { id:10, title:'Finančno poročilo starešine 2022/23', cat:'funkcija', subtype:null, role:'Starešina', funcType:'financno', author:'Petra Novak', date:'2023-07-15', year:2023,
+    body:`<h3>Prihodki</h3><p>Skupni prihodki: 3.840 €. Vir: članarina (1.200 €), prispevki (1.640 €), občina (1.000 €).</p><h3>Odhodki</h3><p>Skupni odhodki: 3.690 €. Presežek: 150 €.</p>` },
+  { id:11, title:'Letno poročilo načelnika 2023/24', cat:'funkcija', subtype:null, role:'Načelnik', funcType:'letno', author:'Jan Kovač', date:'2024-06-30', year:2024,
+    body:`<h3>Uvod</h3><p>Poročilo zajema vse aktivnosti v šolskem letu 2023/24. Skupno smo organizirali 12 aktivnosti z 340 udeleženci.</p>` },
+  { id:12, title:'Načrt dela načelnika 2024/25',     cat:'funkcija', subtype:null, role:'Načelnik', funcType:'nacrt', author:'Jan Kovač', date:'2024-09-05', year:2024,
+    body:`<h3>Cilji</h3><p>Program 2024/25: 10 aktivnosti, 5 novih članov, organizacija skupnega taborjenja z dvema vodoma.</p>` },
+  { id:13, title:'Poročilo voda 2023/24',            cat:'vod', subtype:null, role:null, funcType:null, author:'Petra Novak', date:'2024-07-01', year:2024,
+    body:`<h3>Pregled voda</h3><p>Vod Srebrna Zvezda šteje 12 aktivnih članov. V letu 2023/24 je 8 članov napredovalo. 3 člani so pridobili značko Gozdnega sledarja.</p>` },
+  { id:14, title:'Poletno taborjenje 2024',          cat:'dejavnost', subtype:'Taborjenje', role:null, funcType:null, author:'Jan Kovač', date:'2024-08-18', year:2024,
+    body:`<h3>Splošno</h3><p>Taborjenje 2024, Dolina Soče, 10.–20. avgust. 20 tabornikov, 5 vodnikov. Obogaten program z novimi dejavnostmi.</p>` },
+  { id:15, title:'Začetni zbor 2024/25',             cat:'dejavnost', subtype:'Začetni zbor', role:null, funcType:null, author:'Petra Novak', date:'2024-09-14', year:2024,
+    body:`<h3>Potek</h3><p>Začetni zbor 2024/25. Udeležba 25 članov. Razdelan letni program, novi vodniki predstavljeni.</p>` },
+];
+
+// Meetings for attendance
+let MEETINGS = [
+  { id:'m1',  date:'2023-09-15', label:'Začetni zbor' },
+  { id:'m2',  date:'2023-09-29', label:'Srečanje #2' },
+  { id:'m3',  date:'2023-10-13', label:'Srečanje #3' },
+  { id:'m4',  date:'2023-10-27', label:'Srečanje #4' },
+  { id:'m5',  date:'2023-11-10', label:'Srečanje #5' },
+  { id:'m6',  date:'2023-11-24', label:'Srečanje #6' },
+  { id:'m7',  date:'2023-12-08', label:'Čajanka' },
+  { id:'m8',  date:'2024-01-12', label:'Srečanje #8' },
+  { id:'m9',  date:'2024-01-26', label:'Zimovanje' },
+  { id:'m10', date:'2024-02-09', label:'Srečanje #10' },
+  { id:'m11', date:'2024-02-23', label:'Srečanje #11' },
+  { id:'m12', date:'2024-03-08', label:'Srečanje #12' },
+];
+
+// Skills
+const SKILLS = [
+  { id:'tabornik', name:'Tabornik', icon:'⛺', reqs:[
+    { id:'r1', text:'Zna zavezati 5 osnovnih vozlov' },
+    { id:'r2', text:'Postavi šotor samostojno' },
+    { id:'r3', text:'Pozna taborniški zakon in obljubo' },
+    { id:'r4', text:'Opravi 3 zbore brez zamude' },
+  ]},
+  { id:'plavalec', name:'Plavalec', icon:'🏊', reqs:[
+    { id:'r1', text:'Preplava 100m brez postanka' },
+    { id:'r2', text:'Pozna pravila varnosti pri vodi' },
+    { id:'r3', text:'Osnove reševanja utapljajočega' },
+  ]},
+  { id:'gozd_sledar', name:'Gozdni sledar', icon:'🌲', reqs:[
+    { id:'r1', text:'Orientacija z busolom' },
+    { id:'r2', text:'Prepozna 10 rastlin in živali' },
+    { id:'r3', text:'Opravi nočni orientacijski pohod' },
+    { id:'r4', text:'Postavi bivak iz naravnih materialov' },
+  ]},
+  { id:'nav_zvezda', name:'Navigacijska zvezda', icon:'⭐', reqs:[
+    { id:'r1', text:'Bere zemljevid 1:25000' },
+    { id:'r2', text:'Navigacija brez kompasa podnevi' },
+    { id:'r3', text:'Navigacija po zvezdah ponoči' },
+    { id:'r4', text:'Vodi skupino na 5km pohodu' },
+  ]},
+  { id:'bolnicar', name:'Bolničar', icon:'🚑', reqs:[
+    { id:'r1', text:'Obveza ran in opornic' },
+    { id:'r2', text:'Reanimacija – osnove CPR' },
+    { id:'r3', text:'Prenašanje ponesrečenca' },
+  ]},
+  { id:'kuhar', name:'Kuhač', icon:'🍳', reqs:[
+    { id:'r1', text:'Pripravi obrok za 6+ oseb' },
+    { id:'r2', text:'Kuha na ognju ali gorilniku' },
+    { id:'r3', text:'Pozna pravila higiene pri kuhanju' },
+  ]},
+  { id:'gasilec', name:'Gasilec', icon:'🔥', reqs:[
+    { id:'r1', text:'Prižge ogenj na 3 načine brez vžigalic' },
+    { id:'r2', text:'Varno ugasi ogenj' },
+    { id:'r3', text:'Pozna pravila požarne varnosti' },
+  ]},
+  { id:'iskra', name:'Vnetljiva iskra', icon:'✨', reqs:[
+    { id:'r1', text:'Organizira samostojno aktivnost' },
+    { id:'r2', text:'Pomaga novemu članu pri uvajanju' },
+    { id:'r3', text:'Prejme pohvalo vodnika' },
+  ]},
+];
+
+// Members
+let MEMBERS = [
+  { id:1, name:'Maja Horvat',   bday:'2013-03-22', notes:'Talentirana za navigacijo in orientacijo.',
+    att:{ m1:true,m2:null,m3:true,m4:null,m5:true,m6:true,m7:null,m8:true,m9:null,m10:true,m11:true,m12:null },
+    skills:{ tabornik:{r1:true,r2:true,r3:true,r4:true}, plavalec:{r1:false,r2:false,r3:false}, gozd_sledar:{r1:true,r2:true,r3:false,r4:false} },
+    praise:[{text:'Odlično vodenje skupin na taborjenju.',date:'2023-08-15'},{text:'Pomagala novemu članu.',date:'2024-01-10'}],
+    scold:[] },
+  { id:2, name:'Luka Novak',    bday:'2012-11-08', notes:'Talent za kuhanje in plovbo.',
+    att:{ m1:true,m2:true,m3:null,m4:true,m5:null,m6:true,m7:true,m8:null,m9:true,m10:true,m11:null,m12:true },
+    skills:{ tabornik:{r1:true,r2:true,r3:true,r4:false}, kuhar:{r1:true,r2:true,r3:true}, plavalec:{r1:true,r2:true,r3:false} },
+    praise:[{text:'Primer medsebojne pomoči na zimovanju.',date:'2024-01-27'}],
+    scold:[{text:'Pozna prisotnost brez opravičila.',date:'2023-10-14'}] },
+  { id:3, name:'Eva Kovač',     bday:'2013-07-14', notes:'Interes za prvo pomoč – potencialna inštruktorica.',
+    att:{ m1:null,m2:true,m3:true,m4:null,m5:true,m6:null,m7:true,m8:true,m9:null,m10:null,m11:true,m12:true },
+    skills:{ tabornik:{r1:true,r2:true,r3:true,r4:true}, bolnicar:{r1:true,r2:true,r3:false}, iskra:{r1:false,r2:true,r3:true} },
+    praise:[{text:'Izvrstno pomagala pri bolniški vaji.',date:'2024-02-20'}],
+    scold:[] },
+  { id:4, name:'Nik Krajnc',    bday:'2012-05-30', notes:'Energičen, potrebuje strukturirane naloge. V napredku.',
+    att:{ m1:true,m2:null,m3:null,m4:true,m5:true,m6:null,m7:null,m8:true,m9:null,m10:false,m11:false,m12:true },
+    skills:{ tabornik:{r1:true,r2:false,r3:false,r4:false} },
+    praise:[],
+    scold:[{text:'Neprimerno vedenje do mlajšega člana.',date:'2023-11-08'},{text:'Odmik od območja na pohodu.',date:'2024-01-15'}] },
+  { id:5, name:'Sara Zupan',    bday:'2013-01-18', notes:'Naravni talent za orientacijo.',
+    att:{ m1:true,m2:true,m3:null,m4:null,m5:true,m6:true,m7:true,m8:null,m9:true,m10:true,m11:null,m12:true },
+    skills:{ tabornik:{r1:true,r2:true,r3:true,r4:true}, nav_zvezda:{r1:true,r2:true,r3:false,r4:false}, gozd_sledar:{r1:true,r2:true,r3:true,r4:true} },
+    praise:[{text:'Odlična orientacija na nočnem pohodu.',date:'2024-01-28'}],
+    scold:[] },
+  { id:6, name:'Tim Potočnik',  bday:'2012-09-05', notes:'Vodja male skupinice – dober kandidat za pomočnika.',
+    att:{ m1:null,m2:true,m3:true,m4:null,m5:true,m6:null,m7:true,m8:true,m9:null,m10:true,m11:null,m12:null },
+    skills:{ tabornik:{r1:true,r2:true,r3:true,r4:true}, gasilec:{r1:true,r2:true,r3:true}, gozd_sledar:{r1:true,r2:true,r3:true,r4:false} },
+    praise:[{text:'Izvrstno obvladanje gasilnih tehnik.',date:'2023-12-10'}],
+    scold:[] },
+  { id:7, name:'Ana Božič',     bday:'2013-04-25', notes:'Na začetku poti. Motivacija je rastoča.',
+    att:{ m1:true,m2:null,m3:true,m4:true,m5:null,m6:null,m7:true,m8:null,m9:false,m10:null,m11:true,m12:null },
+    skills:{ tabornik:{r1:false,r2:false,r3:false,r4:false}, plavalec:{r1:true,r2:false,r3:false} },
+    praise:[],
+    scold:[{text:'Zamujanje na zbor brez sporočila.',date:'2023-09-25'}] },
+  { id:8, name:'Rok Vidmar',    bday:'2012-12-15', notes:'Zelo aktiven, vedno ponudi pomoč.',
+    att:{ m1:true,m2:true,m3:true,m4:null,m5:true,m6:true,m7:null,m8:null,m9:true,m10:null,m11:true,m12:true },
+    skills:{ tabornik:{r1:true,r2:true,r3:true,r4:true}, kuhar:{r1:true,r2:true,r3:true}, plavalec:{r1:true,r2:true,r3:true} },
+    praise:[{text:'Najboljši kuhar na taborjenju 2023.',date:'2023-08-18'},{text:'Iniciativen pri organizaciji čajanke.',date:'2024-02-15'}],
+    scold:[] },
+];
+
+// ═══════════════════════════════════════════════
+// UTILITIES
+// ═══════════════════════════════════════════════
+function toast(msg, type='') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show' + (type ? ' '+type : '');
+  clearTimeout(window._tt);
+  window._tt = setTimeout(() => el.className='', 3200);
+}
+function initials(name) { return name.split(' ').map(p=>p[0]).join('').toUpperCase().slice(0,2); }
+function fmtDate(d) { if(!d) return ''; const dd=new Date(d); return dd.toLocaleDateString('sl-SI',{day:'numeric',month:'long',year:'numeric'}); }
+function fmtDateShort(d) { if(!d) return ''; const dd=new Date(d); return dd.toLocaleDateString('sl-SI',{day:'numeric',month:'short'}); }
+function isBdaySoon(bday) {
+  const today=new Date(), bd=new Date(bday);
+  const next=new Date(today.getFullYear(), bd.getMonth(), bd.getDate());
+  if(next<today) next.setFullYear(today.getFullYear()+1);
+  return (next-today)/(1000*60*60*24) <= 14;
+}
+function getAge(bday) {
+  const t=new Date(), b=new Date(bday);
+  let a=t.getFullYear()-b.getFullYear();
+  if(t < new Date(t.getFullYear(),b.getMonth(),b.getDate())) a--;
+  return a;
+}
+function attPct(m) {
+  const vals = MEETINGS.map(mt=>m.att[mt.id]).filter(v=>v!==null&&v!==undefined);
+  const pres = vals.filter(v=>v===true);
+  return vals.length ? Math.round(pres.length/vals.length*100) : 0;
+}
+function skillEarned(m, skillId) {
+  const skill=SKILLS.find(s=>s.id===skillId); if(!skill) return false;
+  const prog=m.skills[skillId]||{};
+  return skill.reqs.every(r=>prog[r.id]===true);
+}
+function skillPct(m, skillId) {
+  const skill=SKILLS.find(s=>s.id===skillId); if(!skill) return 0;
+  const prog=m.skills[skillId]||{};
+  const done=skill.reqs.filter(r=>prog[r.id]===true).length;
+  return Math.round(done/skill.reqs.length*100);
+}
+function catLabel(cat) { return {dejavnost:'Dejavnost',funkcija:'Funkcija',vod:'Poročilo voda'}[cat]||cat; }
+function catIcon(cat) { return {dejavnost:'🏕️',funkcija:'📋',vod:'👥'}[cat]||'📄'; }
+
+// ═══════════════════════════════════════════════
+// RENDER ENGINE — partial updates
+// ═══════════════════════════════════════════════
+function navigate(page, extra={}) {
+  Object.assign(S, extra);
+  S.page = page;
+  renderPage();
+  window.scrollTo(0,0);
+}
+
+function setHTML(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
+
+function renderPage() {
+  const tc = document.getElementById('topbar-container');
+  const ct = document.getElementById('content');
+  if (S.page === 'login') {
+    tc.innerHTML = '';
+    ct.innerHTML = buildLogin();
+    return;
+  }
+  tc.innerHTML = buildTopbar();
+  switch(S.page) {
+    case 'dashboard':  ct.innerHTML = `<div class="page-wrap anim">${buildDashboard()}</div>`; break;
+    case 'archive':    ct.innerHTML = `<div class="page-wrap anim">${buildArchivePage()}</div>`; break;
+    case 'arch-view':  ct.innerHTML = `<div class="page-wrap anim">${buildReportDetail()}</div>`; break;
+    case 'report-new': ct.innerHTML = `<div class="page-wrap anim">${buildReportNew()}</div>`; break;
+    case 'templates':  ct.innerHTML = `<div class="page-wrap anim">${buildTemplates()}</div>`; break;
+    case 'tmpl-edit':  ct.innerHTML = `<div class="page-wrap anim">${buildTmplEditor()}</div>`; break;
+    case 'group':      ct.innerHTML = `<div class="page-wrap anim">${buildGroupPage()}</div>`; break;
+    default: ct.innerHTML = buildLogin();
+  }
+}
+
+// Partial: archive results only
+function updateArchResults() {
+  const el = document.getElementById('arch-results');
+  if (el) el.innerHTML = buildArchResults();
+  const sb = document.getElementById('arch-sidebar-inner');
+  if (sb) sb.innerHTML = buildArchSidebar();
+}
+
+// Partial: group tab content only
+function updateGroupTab() {
+  const el = document.getElementById('group-tab-content');
+  if (el) {
+    el.innerHTML = buildGroupTabContent();
+    el.classList.remove('anim');
+    void el.offsetWidth;
+    el.classList.add('anim');
+  }
+}
+
+// ═══════════════════════════════════════════════
+// TOPBAR
+// ═══════════════════════════════════════════════
+function buildTopbar() {
+  const bc = {
+    dashboard:'', archive:'Arhiv', 'arch-view':'Arhiv',
+    'report-new':'Oddaja poročila', templates:'Upravljanje predlog',
+    'tmpl-edit':'Upravljanje predlog', group:'Moj vod'
+  }[S.page]||'';
+  const isAdmin = S.user&&S.user.role==='admin';
+  return `<div id="topbar">
+    <div class="tb-logo" onclick="navigate('dashboard')"><span>⚜</span> Skavtski Arhiv</div>
+    ${bc?`<div class="tb-breadcrumb"><span class="crumb">›</span><b>${bc}</b></div>`:''}
+    <div class="tb-spacer"></div>
+    <div class="tb-user">
+      <div class="tb-avatar">${initials(S.user.name)}</div>
+      <span>${S.user.name}${isAdmin?' <small style="opacity:.55">(Admin)</small>':''}</span>
+    </div>
+    <button class="btn-logout" onclick="doLogout()">Odjava</button>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════
+// LOGIN
+// ═══════════════════════════════════════════════
+function buildLogin() {
+  return `<div id="login-page">
+    <div class="login-card">
+      <div class="login-logo">
+        <span class="emb">⚜</span>
+        <h1>Skavtski Arhiv</h1>
+        <p>Sistem za arhiviranje in upravljanje vodov</p>
+      </div>
+      <div class="login-hint">
+        <strong>Demo dostop:</strong><br>
+        Vodnik: <b>petra</b> / <b>tabornik</b><br>
+        Administrator: <b>admin</b> / <b>admin</b>
+      </div>
+      <div class="fg"><label>Uporabniško ime</label>
+        <input class="fc" id="li-u" type="text" placeholder="Vnesite uporabniško ime" autocomplete="username"></div>
+      <div class="fg"><label>Geslo</label>
+        <input class="fc" id="li-p" type="password" placeholder="Vnesite geslo" autocomplete="current-password"></div>
+      <div class="login-err" id="li-err">❌ Napačno uporabniško ime ali geslo.</div>
+      <button class="btn btn-primary btn-lg" style="width:100%;justify-content:center" onclick="doLogin()">Prijava →</button>
+    </div>
+  </div>`;
+}
+function doLogin() {
+  const u = document.getElementById('li-u').value.trim().toLowerCase();
+  const p = document.getElementById('li-p').value;
+  const user = USERS.find(x=>x.u===u && x.p===p);
+  if (user) { S.user=user; navigate('dashboard'); }
+  else { document.getElementById('li-err').style.display='block'; }
+}
+function doLogout() { S.user=null; S.page='login'; renderPage(); }
+
+// ═══════════════════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════════════════
+function buildDashboard() {
+  const isAdmin = S.user.role==='admin';
+  const recent = REPORTS.slice(-4).reverse();
+  return `
+  <div class="section-heading">
+    <h1>Dobrodošli, ${S.user.name.split(' ')[0]}!</h1>
+    <p>${S.user.group} · Izberite razdelek za nadaljevanje</p>
+  </div>
+  <div class="dash-grid">
+    <div class="dash-card" onclick="navigate('archive')">
+      <span class="dc-icon">📁</span><h2>Arhiv</h2>
+      <p>Pregledujte pretekla poročila in iščite po kategorijah, vlogah in letnicah.</p>
+    </div>
+    <div class="dash-card dc-amb" onclick="navigate('report-new')">
+      <span class="dc-icon">📝</span><h2>Oddaja poročila</h2>
+      <p>Ustvarite novo poročilo iz predloge, shranite osnutek in ga oddajte v arhiv.</p>
+    </div>
+    <div class="dash-card dc-red" onclick="navigate('group')">
+      <span class="dc-icon">👥</span><h2>Moj vod</h2>
+      <p>Upravljajte prisotnost, veščine in pohvale članov ter izvozite podatke v poročilo.</p>
+    </div>
+    ${isAdmin?`<div class="dash-card dc-blue" onclick="navigate('templates')">
+      <span class="dc-icon">⚙️</span><h2>Upravljanje predlog</h2>
+      <p>Ustvarjajte in urejajte predloge za poročila. Dostopno le administratorjem.</p>
+    </div>`:''}
+  </div>
+  <hr class="div" style="margin-top:36px">
+  <div class="inh" style="margin-top:22px"><h2>Zadnje oddano</h2></div>
+  <div class="flat-list">
+    ${recent.map(r=>`
+    <div class="report-card" onclick="navigate('arch-view',{viewReport:${r.id}})">
+      <div class="rc-ico">${catIcon(r.cat)}</div>
+      <div class="rc-info">
+        <div class="rc-title">${r.title}</div>
+        <div class="rc-meta">
+          <span class="badge bgr">${catLabel(r.cat)}</span>
+          ${r.subtype?`<span class="badge ba">${r.subtype}</span>`:''}
+          ${r.role?`<span class="badge bb">${r.role}</span>`:''}
+          <span>· ✍️ ${r.author}</span>
+        </div>
+      </div>
+      <div class="rc-right"><span class="badge bg">✓ Oddano</span><span style="font-size:.73rem;color:var(--text-muted)">${r.year}</span></div>
+    </div>`).join('')}
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════
+// ARCHIVE
+// ═══════════════════════════════════════════════
+function buildArchivePage() {
+  return `
+  <div class="section-heading">
+    <h1>Arhiv poročil</h1>
+    <p>Brskanje in iskanje po arhiviranih poročilih</p>
+  </div>
+  <div class="arch-search-bar">
+    <input type="text" placeholder="🔍 Iskanje po naslovu, avtorju, vrsti..." value="${S.archFilter.query||''}"
+      id="arch-search-input" oninput="archSearchInput(this.value)">
+    <button class="btn btn-secondary" onclick="navigate('report-new')">+ Novo poročilo</button>
+  </div>
+  <div class="archive-layout">
+    <div class="arch-sidebar" id="arch-sidebar-inner">${buildArchSidebar()}</div>
+    <div id="arch-results">${buildArchResults()}</div>
+  </div>`;
+}
+
+function archSearchInput(val) {
+  S.archFilter.query = val;
+  updateArchResults();
+}
+
+function buildArchSidebar() {
+  const f = S.archFilter;
+  const years = [...new Set(REPORTS.map(r=>r.year))].sort((a,b)=>b-a);
+  const cats = ['dejavnost','funkcija','vod'];
+  return `
+  <div class="sb-section">
+    <h3>Vrsta poročila</h3>
+    <div class="fi${!f.type?' active':''}" onclick="archSetFilter('type',null)">
+      📄 Vsa poročila <span class="fc-count">${REPORTS.length}</span>
+    </div>
+    ${cats.map(c=>{
+      const cnt = REPORTS.filter(r=>r.cat===c).length;
+      return `<div class="fi${f.type===c?' active':''}" onclick="archSetFilter('type','${c}')">
+        ${catIcon(c)} ${catLabel(c)} <span class="fc-count">${cnt}</span>
+      </div>`;
+    }).join('')}
+  </div>
+  <div class="sb-section">
+    <h3>Leto</h3>
+    ${years.map(y=>`
+    <div class="fi${f.year===y?' active':''}" onclick="archSetFilter('year',${y})">
+      ${y} <span class="fc-count">${REPORTS.filter(r=>r.year===y).length}</span>
+    </div>`).join('')}
+    ${f.year?`<div class="fi" onclick="archSetFilter('year',null)">✕ Ponastavi leto</div>`:''}
+  </div>
+  ${f.type||f.year||S.archFilter.query?`
+  <button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center" onclick="archClearFilters()">
+    ✕ Ponastavi vse
+  </button>`:''}`;
+}
+
+function archSetFilter(key, val) {
+  S.archFilter[key] = val;
+  updateArchResults();
+  const sb = document.getElementById('arch-sidebar-inner');
+  if (sb) sb.innerHTML = buildArchSidebar();
+}
+
+function archClearFilters() {
+  S.archFilter = { type:null, year:null, query:'' };
+  const inp = document.getElementById('arch-search-input');
+  if (inp) inp.value = '';
+  updateArchResults();
+  const sb = document.getElementById('arch-sidebar-inner');
+  if (sb) sb.innerHTML = buildArchSidebar();
+}
+
+function buildArchResults() {
+  const f = S.archFilter;
+  const hasFilter = f.type || f.year || f.query;
+  if (hasFilter) return buildArchFlat();
+  return buildArchTree();
+}
+
+function filteredReports() {
+  const f = S.archFilter;
+  let reps = [...REPORTS];
+  if (f.type) reps = reps.filter(r=>r.cat===f.type);
+  if (f.year) reps = reps.filter(r=>r.year===f.year);
+  if (f.query) {
+    const q = f.query.toLowerCase();
+    reps = reps.filter(r=>r.title.toLowerCase().includes(q)||r.author.toLowerCase().includes(q)||(r.subtype||'').toLowerCase().includes(q)||(r.role||'').toLowerCase().includes(q));
+  }
+  return reps;
+}
+
+function buildArchFlat() {
+  const reps = filteredReports();
+  if (!reps.length) return `<div class="empty"><span class="ei">🗂️</span><p>Ni poročil, ki ustrezajo filtrom.</p></div>`;
+  return `
+  <div style="font-size:.81rem;color:var(--text-muted);margin-bottom:12px">
+    Najdeno: <b>${reps.length}</b> ${reps.length===1?'poročilo':'poročil'}
+  </div>
+  <div class="flat-list">
+    ${reps.map(r=>`
+    <div class="report-card" onclick="navigate('arch-view',{viewReport:${r.id}})">
+      <div class="rc-ico">${catIcon(r.cat)}</div>
+      <div class="rc-info">
+        <div class="rc-title">${r.title}</div>
+        <div class="rc-meta">
+          <span class="badge bgr">${catLabel(r.cat)}</span>
+          ${r.subtype?`<span class="badge ba">${r.subtype}</span>`:''}
+          ${r.role?`<span class="badge bb">${r.role}</span>`:''}
+          ${r.funcType?`<span class="badge bb">${FUNC_TYPES.find(ft=>ft.id===r.funcType)?.name||r.funcType}</span>`:''}
+          <span>· ✍️ ${r.author}</span>
+        </div>
+      </div>
+      <div class="rc-right"><span class="badge bg">✓ Oddano</span><span style="font-size:.72rem;color:var(--text-muted)">${r.year}</span></div>
+    </div>`).join('')}
+  </div>`;
+}
+
+function buildArchTree() {
+  const years = [...new Set(REPORTS.map(r=>r.year))].sort((a,b)=>b-a);
+  const op = S.archOpenFolders;
+  let html = '<div class="tree-view">';
+  for (const year of years) {
+    const yId = `y${year}`;
+    const yReps = REPORTS.filter(r=>r.year===year);
+    const yOpen = op.has(yId);
+    html += `
+    <div class="tree-folder${yOpen?' open':''}" onclick="archToggleFolder('${yId}')">
+      <span class="tf-arrow">▶</span>
+      <span class="tf-icon">📁</span>
+      <span>${year}</span>
+      <span class="tf-count">${yReps.length}</span>
+    </div>`;
+    if (yOpen) {
+      html += `<div class="tree-children">`;
+      // Dejavnosti
+      const dReps = yReps.filter(r=>r.cat==='dejavnost');
+      if (dReps.length) {
+        const dId = `${yId}-dejavnost`;
+        const dOpen = op.has(dId);
+        html += `
+        <div class="tree-indent-1">
+          <div class="tree-folder${dOpen?' open':''}" onclick="archToggleFolder('${dId}')">
+            <span class="tf-arrow">▶</span>
+            <span class="tf-icon">🏕️</span>
+            <span>Dejavnosti</span>
+            <span class="tf-count">${dReps.length}</span>
+          </div>`;
+        if (dOpen) {
+          // group by subtype
+          const subtypes = [...new Set(dReps.map(r=>r.subtype||'Ostalo'))];
+          for (const st of subtypes) {
+            const stReps = dReps.filter(r=>(r.subtype||'Ostalo')===st);
+            const stId = `${dId}-${st}`;
+            const stOpen = op.has(stId);
+            if (stReps.length === 1) {
+              // show directly
+              const r = stReps[0];
+              html += `<div class="tree-indent-2">
+                <div class="tree-report" onclick="navigate('arch-view',{viewReport:${r.id}})">
+                  <span class="tr-icon">📄</span>
+                  <span class="tr-title">${r.title}</span>
+                  <span class="tr-year">${fmtDateShort(r.date)}</span>
+                </div></div>`;
+            } else {
+              html += `
+              <div class="tree-indent-2">
+                <div class="tree-folder${stOpen?' open':''}" onclick="archToggleFolder('${stId}')">
+                  <span class="tf-arrow">▶</span><span class="tf-icon">📂</span>
+                  <span>${st}</span><span class="tf-count">${stReps.length}</span>
+                </div>`;
+              if (stOpen) {
+                html += `<div class="tree-children">`;
+                for (const r of stReps) {
+                  html += `<div class="tree-indent-3">
+                    <div class="tree-report" onclick="navigate('arch-view',{viewReport:${r.id}})">
+                      <span class="tr-icon">📄</span>
+                      <span class="tr-title">${r.title}</span>
+                      <span class="tr-year">${fmtDateShort(r.date)}</span>
+                    </div></div>`;
+                }
+                html += `</div>`;
+              }
+              html += `</div>`;
+            }
+          }
+        }
+        html += `</div>`;
+      }
+      // Funkcija
+      const fReps = yReps.filter(r=>r.cat==='funkcija');
+      if (fReps.length) {
+        const fId = `${yId}-funkcija`;
+        const fOpen = op.has(fId);
+        html += `
+        <div class="tree-indent-1">
+          <div class="tree-folder${fOpen?' open':''}" onclick="archToggleFolder('${fId}')">
+            <span class="tf-arrow">▶</span>
+            <span class="tf-icon">📋</span>
+            <span>Funkcija</span>
+            <span class="tf-count">${fReps.length}</span>
+          </div>`;
+        if (fOpen) {
+          const roles = [...new Set(fReps.map(r=>r.role||'Splošno'))];
+          for (const role of roles) {
+            const roleReps = fReps.filter(r=>(r.role||'Splošno')===role);
+            const roleId = `${fId}-${role}`;
+            const roleOpen = op.has(roleId);
+            html += `
+            <div class="tree-indent-2">
+              <div class="tree-folder${roleOpen?' open':''}" onclick="archToggleFolder('${roleId}')">
+                <span class="tf-arrow">▶</span><span class="tf-icon">👤</span>
+                <span>${role}</span><span class="tf-count">${roleReps.length}</span>
+              </div>`;
+            if (roleOpen) {
+              html += `<div class="tree-children">`;
+              for (const r of roleReps) {
+                const ftName = FUNC_TYPES.find(ft=>ft.id===r.funcType)?.name||r.funcType||'';
+                html += `<div class="tree-indent-3">
+                  <div class="tree-report" onclick="navigate('arch-view',{viewReport:${r.id}})">
+                    <span class="tr-icon">${FUNC_TYPES.find(ft=>ft.id===r.funcType)?.icon||'📄'}</span>
+                    <span class="tr-title">${r.title}</span>
+                    <span class="tr-year">${fmtDateShort(r.date)}</span>
+                  </div></div>`;
+              }
+              html += `</div>`;
+            }
+            html += `</div>`;
+          }
+        }
+        html += `</div>`;
+      }
+      // Poročilo voda
+      const vReps = yReps.filter(r=>r.cat==='vod');
+      if (vReps.length) {
+        const vId = `${yId}-vod`;
+        const vOpen = op.has(vId);
+        html += `
+        <div class="tree-indent-1">
+          <div class="tree-folder${vOpen?' open':''}" onclick="archToggleFolder('${vId}')">
+            <span class="tf-arrow">▶</span>
+            <span class="tf-icon">👥</span>
+            <span>Poročilo voda</span>
+            <span class="tf-count">${vReps.length}</span>
+          </div>`;
+        if (vOpen) {
+          for (const r of vReps) {
+            html += `<div class="tree-indent-2">
+              <div class="tree-report" onclick="navigate('arch-view',{viewReport:${r.id}})">
+                <span class="tr-icon">📄</span>
+                <span class="tr-title">${r.title}</span>
+                <span class="tr-year">${fmtDateShort(r.date)}</span>
+              </div></div>`;
+          }
+        }
+        html += `</div>`;
+      }
+      html += `</div>`;
+    }
+  }
+  html += '</div>';
+  return html;
+}
+
+function archToggleFolder(id) {
+  if (S.archOpenFolders.has(id)) S.archOpenFolders.delete(id);
+  else S.archOpenFolders.add(id);
+  const el = document.getElementById('arch-results');
+  if (el) el.innerHTML = buildArchResults();
+}
+
+// ─── REPORT DETAIL ───
+function buildReportDetail() {
+  const r = REPORTS.find(x=>x.id===S.viewReport);
+  if (!r) return `<button class="back-link" onclick="navigate('archive')">← Nazaj na arhiv</button><p>Poročilo ni najdeno.</p>`;
+  const ftObj = FUNC_TYPES.find(ft=>ft.id===r.funcType);
+  return `
+  <button class="back-link" onclick="navigate('archive')">← Nazaj na arhiv</button>
+  <div class="rdh">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+      <span style="font-size:1.9rem">${catIcon(r.cat)}</span>
+      <h1>${r.title}</h1>
+    </div>
+    <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px">
+      <span class="badge bgr">${catLabel(r.cat)}</span>
+      ${r.subtype?`<span class="badge ba">${r.subtype}</span>`:''}
+      ${r.role?`<span class="badge bb">${r.role}</span>`:''}
+      ${ftObj?`<span class="badge bb">${ftObj.icon} ${ftObj.name}</span>`:''}
+      <span class="badge bg">✓ Oddano</span>
+    </div>
+    <div class="rdh-meta">
+      <div class="rdh-meta-item"><label>Avtor</label><span>✍️ ${r.author}</span></div>
+      <div class="rdh-meta-item"><label>Datum oddaje</label><span>📅 ${fmtDate(r.date)}</span></div>
+      <div class="rdh-meta-item"><label>Leto</label><span>${r.year}</span></div>
+      <div class="rdh-meta-item"><label>ID</label><span style="font-family:monospace;font-size:.78rem">#${String(r.id).padStart(4,'0')}</span></div>
+    </div>
+  </div>
+  <div class="report-body">${r.body}</div>
+  <div style="display:flex;gap:9px;margin-top:18px">
+    <button class="btn btn-primary" onclick="toast('📥 Prenos v PDF je simuliran.','amb')">↓ Prenesi PDF</button>
+    <button class="btn btn-ghost" onclick="navigate('archive')">← Nazaj</button>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════
+// REPORT SUBMISSION
+// ═══════════════════════════════════════════════
+function buildReportNew() {
+  if (S.rSubmitted) return buildSubmitSuccess();
+  const steps = ['Kategorija','Vrsta','Vsebina','Pregled'];
+  const st = S.rStep;
+  const stepperHtml = steps.map((s,i)=>{
+    const n=i+1, isDone=n<st, isAct=n===st;
+    return `<div class="step${isDone?' done':''}${isAct?' active':''}">
+      <div class="step-circle">${isDone?'✓':n}</div>
+      <div class="step-label">${s}</div>
+      ${n<steps.length?`<div class="step-line"></div>`:''}
+    </div>`;
+  }).join('');
+  let body='';
+  if(st===1) body=buildRStep1();
+  else if(st===2) body=buildRStep2();
+  else if(st===3) body=buildRStep3();
+  else if(st===4) body=buildRStep4();
+  return `
+  <button class="back-link" onclick="navigate('dashboard')">← Nazaj</button>
+  <div class="section-heading"><h1>Novo poročilo</h1><p>Sledite korakom za ustvarjanje in oddajo</p></div>
+  <div class="stepper">${stepperHtml}</div>
+  ${body}`;
+}
+
+function buildRStep1() {
+  const cats = [
+    { id:'dejavnost', icon:'🏕️', name:'Dejavnost', desc:'Zbori, taborjenje, izleti, prireditve…' },
+    { id:'funkcija',  icon:'📋', name:'Funkcija',  desc:'Letno poročilo, načrt dela ali finančno poročilo po vlogi.' },
+    { id:'vod',       icon:'👥', name:'Poročilo voda', desc:'Pregled napredka in dosežkov voda.' },
+  ];
+  return `<div class="sub-section">
+    <h3>1. Izberite kategorijo</h3>
+    <div class="type-grid">
+      ${cats.map(c=>`
+      <div class="type-card${S.rCat===c.id?' sel':''}" onclick="rSelectCat('${c.id}')">
+        <span class="tc-icon">${c.icon}</span>
+        <div class="tc-name">${c.name}</div>
+        <div style="font-size:.74rem;color:var(--text-muted);margin-top:4px;font-style:italic">${c.desc}</div>
+      </div>`).join('')}
+    </div>
+    <div style="display:flex;justify-content:flex-end;margin-top:18px">
+      <button class="btn btn-primary btn-lg" ${!S.rCat?'disabled':''}onclick="rGoStep(2)">Naprej →</button>
+    </div>
+  </div>`;
+}
+
+function buildRStep2() {
+  let inner = '';
+  if (S.rCat === 'dejavnost') {
+    inner = `
+    <span class="slbl">Podvrsta dejavnosti</span>
+    <div class="chips">
+      ${ACTIVITY_SUBTYPES.map(s=>`
+      <div class="chip${S.rSubtype===s?' sel':''}" onclick="rSelectSubtype('${s}')">${s}</div>`).join('')}
+    </div>`;
+  } else if (S.rCat === 'funkcija') {
+    inner = `
+    <span class="slbl">Vaša vloga</span>
+    <div class="chips" style="margin-bottom:18px">
+      ${FUNCTION_ROLES.map(r=>`
+      <div class="chip${S.rRole===r?' sel':''}" onclick="rSelectRole('${r}')">${r}</div>`).join('')}
+    </div>
+    <span class="slbl">Vrsta poročila</span>
+    <div class="chips">
+      ${FUNC_TYPES.map(ft=>`
+      <div class="chip${S.rFuncType===ft.id?' sel':''}" onclick="rSelectFuncType('${ft.id}')">${ft.icon} ${ft.name}</div>`).join('')}
+    </div>`;
+  } else if (S.rCat === 'vod') {
+    inner = `<div style="background:var(--green-pale);border:1px solid var(--green-mid);border-radius:var(--r);padding:16px 18px;font-size:.88rem;color:var(--green-dark)">
+      ✅ Predloga za poročilo voda bo samodejno izbrana. Kliknite <b>Naprej</b> za izpolnjevanje.
+    </div>`;
+  }
+  const canNext = S.rCat==='vod' || (S.rCat==='dejavnost'&&S.rSubtype) || (S.rCat==='funkcija'&&S.rRole&&S.rFuncType);
+  const tmpl = S.rCat==='vod' ? resolveTmpl('vod') : (canNext ? resolveTmpl(S.rCat, S.rRole, S.rFuncType) : null);
+  return `<div class="sub-section">
+    <h3>2. Specificiranje</h3>
+    ${inner}
+    ${tmpl&&canNext?`<div style="margin-top:16px;padding:10px 14px;background:var(--blue-pale);border:1px solid #A8C4E0;border-radius:var(--r);font-size:.82rem;color:var(--blue)">
+      📋 Predloga: <b>${tmpl.name}</b>${!tmpl.general?` <span class="badge bb" style="margin-left:6px">Posamična</span>`:''}</div>`:''}
+    <div style="display:flex;justify-content:space-between;margin-top:20px">
+      <button class="btn btn-ghost" onclick="rGoStep(1)">← Nazaj</button>
+      <button class="btn btn-primary btn-lg" ${!canNext?'disabled':''}onclick="rGoStep(3)">Naprej →</button>
+    </div>
+  </div>`;
+}
+
+function buildRStep3() {
+  const tmpl = resolveTmpl(S.rCat, S.rRole, S.rFuncType);
+  if (!tmpl) return `<div class="sub-section"><p style="color:var(--red-light)">Napaka: predloga ni najdena.</p></div>`;
+  return `
+  <div class="draft-toolbar">
+    <div style="display:flex;align-items:center;gap:7px"><span class="as-dot"></span> Osnutek se samodejno shranjuje</div>
+    <span id="save-lbl" style="font-size:.78rem;opacity:.7">Shranjeno ✓</span>
+  </div>
+  <div class="sub-section">
+    <h3>3. Izpolnite vsebino</h3>
+    <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px">
+      ${S.rSubtype?`<span class="badge ba">${S.rSubtype}</span>`:''}
+      ${S.rRole?`<span class="badge bb">${S.rRole}</span>`:''}
+      ${S.rFuncType?`<span class="badge bb">${FUNC_TYPES.find(ft=>ft.id===S.rFuncType)?.name}</span>`:''}
+      <span class="badge bgr">📋 ${tmpl.name}</span>
+    </div>
+    ${tmpl.fields.map(f=>`
+    <div class="fg">
+      <label>${f.name}</label>
+      ${f.type==='Dolgo besedilo'
+        ?`<textarea class="fc" rows="4" placeholder="Vnesite ${f.name.toLowerCase()}…" onchange="rSaveField('${f.id}',this.value)" oninput="rTriggerAutosave()">${S.rFields[f.id]||''}</textarea>`
+        :f.type==='Število'
+        ?`<input type="number" class="fc" placeholder="0" value="${S.rFields[f.id]||''}" onchange="rSaveField('${f.id}',this.value)">`
+        :f.type==='Datum'
+        ?`<input type="date" class="fc" value="${S.rFields[f.id]||''}" onchange="rSaveField('${f.id}',this.value)">`
+        :`<input type="text" class="fc" placeholder="Vnesite ${f.name.toLowerCase()}…" value="${S.rFields[f.id]||''}" onchange="rSaveField('${f.id}',this.value)" oninput="rTriggerAutosave()">`
+      }
+    </div>`).join('')}
+    <div style="display:flex;justify-content:space-between;margin-top:10px">
+      <button class="btn btn-ghost" onclick="rGoStep(2)">← Nazaj</button>
+      <div style="display:flex;gap:9px">
+        <button class="btn btn-secondary" onclick="toast('💾 Osnutek shranjen.')">💾 Shrani osnutek</button>
+        <button class="btn btn-primary btn-lg" onclick="rGoStep(4)">Pregled →</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function buildRStep4() {
+  const tmpl = resolveTmpl(S.rCat, S.rRole, S.rFuncType);
+  return `<div class="sub-section">
+    <h3>4. Pregled in oddaja</h3>
+    <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px">
+      ${S.rSubtype?`<span class="badge ba">${S.rSubtype}</span>`:''}
+      ${S.rRole?`<span class="badge bb">${S.rRole}</span>`:''}
+      ${S.rFuncType?`<span class="badge bb">${FUNC_TYPES.find(ft=>ft.id===S.rFuncType)?.name}</span>`:''}
+    </div>
+    ${tmpl?tmpl.fields.map(f=>`
+    <div class="review-field">
+      <label>${f.name}</label>
+      <div class="rv">${S.rFields[f.id]||`<em style="color:var(--border)">— ni izpolnjeno —</em>`}</div>
+    </div>`).join(''):''}
+    <div style="background:var(--amber-pale);border:1px solid #D4C070;border-radius:var(--r);padding:11px 15px;margin-top:14px;font-size:.83rem;color:var(--amber)">
+      ⚠️ Po oddaji poročila ga ne bo mogoče urejati. Preverite vsebino.
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:18px">
+      <button class="btn btn-ghost" onclick="rGoStep(3)">← Nazaj na urejanje</button>
+      <button class="btn btn-primary btn-lg" onclick="rSubmit()">✓ Oddaj poročilo</button>
+    </div>
+  </div>`;
+}
+
+function buildSubmitSuccess() {
+  return `<div class="confirm-banner">
+    <span class="cb-ico">🎉</span>
+    <h3>Poročilo uspešno oddano!</h3>
+    <p>Vaše poročilo je bilo arhivirano in je vidno v arhivu.</p>
+    <div style="display:flex;justify-content:center;gap:10px;margin-top:20px">
+      <button class="btn btn-primary" onclick="rReset();navigate('archive')">Pojdi na arhiv</button>
+      <button class="btn btn-ghost" onclick="rReset();navigate('dashboard')">Na začetek</button>
+    </div>
+  </div>`;
+}
+
+function rSelectCat(c) { S.rCat=c; S.rSubtype=null; S.rRole=null; S.rFuncType=null;
+  if(c==='vod') S.rTmplId='g-vod';
+  setHTML('content',`<div class="page-wrap anim">${buildReportNew()}</div>`);
+}
+function rSelectSubtype(s) { S.rSubtype=s; setHTML('content',`<div class="page-wrap anim">${buildReportNew()}</div>`); }
+function rSelectRole(r) { S.rRole=r; setHTML('content',`<div class="page-wrap anim">${buildReportNew()}</div>`); }
+function rSelectFuncType(t) { S.rFuncType=t; setHTML('content',`<div class="page-wrap anim">${buildReportNew()}</div>`); }
+function rGoStep(n) { S.rStep=n; setHTML('content',`<div class="page-wrap anim">${buildReportNew()}</div>`); }
+function rSaveField(id,val) { S.rFields[id]=val; }
+function rTriggerAutosave() {
+  const el=document.getElementById('save-lbl'); if(el) el.textContent='Shranjuje…';
+  clearTimeout(window._as);
+  window._as=setTimeout(()=>{ const e=document.getElementById('save-lbl'); if(e) e.textContent='Shranjeno ✓'; },1200);
+}
+function rSubmit() { S.rSubmitted=true; setHTML('content',`<div class="page-wrap anim">${buildReportNew()}</div>`); }
+function rReset() { S.rStep=1; S.rCat=null; S.rSubtype=null; S.rRole=null; S.rFuncType=null; S.rTmplId=null; S.rFields={}; S.rSubmitted=false; }
+
+// ═══════════════════════════════════════════════
+// TEMPLATE MANAGER
+// ═══════════════════════════════════════════════
+function buildTemplates() {
+  return `
+  <button class="back-link" onclick="navigate('dashboard')">← Nazaj</button>
+  <div class="section-heading">
+    <h1>Upravljanje predlog</h1>
+    <p>Splošne predloge in posamične predloge po vlogi · Samo za administratorje</p>
+  </div>
+  <div class="tmpl-section">
+    <span class="tmpl-section-hdr">Splošne predloge (osnova — ni mogoče izbrisati)</span>
+    ${GENERAL_TEMPLATES.map(t=>`
+    <div class="tmpl-card">
+      <div class="tmpl-ico">${t.icon}</div>
+      <div class="tmpl-info">
+        <h3>${t.name}</h3>
+        <p>${t.fields.length} polj · ${catLabel(t.cat)}${t.funcType?` · ${FUNC_TYPES.find(ft=>ft.id===t.funcType)?.name}`:''}</p>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:5px">
+          ${t.fields.slice(0,4).map(f=>`<span class="badge bgr">${f.name}</span>`).join('')}
+          ${t.fields.length>4?`<span class="badge bgr">+${t.fields.length-4}</span>`:''}
+        </div>
+      </div>
+      <div class="tmpl-actions">
+        <button class="btn btn-secondary btn-sm" onclick="navigate('tmpl-edit',{editTmpl:JSON.parse(JSON.stringify(${JSON.stringify(t)}))})">✏️ Uredi</button>
+        <span class="badge bgr" style="font-size:.7rem;padding:4px 8px">Splošna</span>
+      </div>
+    </div>`).join('')}
+  </div>
+  <div class="tmpl-section">
+    <span class="tmpl-section-hdr">Posamične predloge funkcij (preglasijo splošno za dano vlogo)</span>
+    ${allRoleTemplates.map(t=>`
+    <div class="tmpl-card">
+      <div class="tmpl-ico">${t.icon}</div>
+      <div class="tmpl-info">
+        <h3>${t.name}</h3>
+        <p>${t.fields.length} polj · ${t.role} · ${FUNC_TYPES.find(ft=>ft.id===t.funcType)?.name}</p>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:5px">
+          ${t.fields.slice(0,4).map(f=>`<span class="badge bgr">${f.name}</span>`).join('')}
+          ${t.fields.length>4?`<span class="badge bgr">+${t.fields.length-4}</span>`:''}
+        </div>
+      </div>
+      <div class="tmpl-actions">
+        <button class="btn btn-secondary btn-sm" onclick="navigate('tmpl-edit',{editTmpl:JSON.parse(JSON.stringify(${JSON.stringify(t)}))})">✏️ Uredi</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteTmpl('${t.id}')">🗑</button>
+      </div>
+    </div>`).join('')}
+    ${allRoleTemplates.length===0?`<div class="empty"><span class="ei">📋</span><p>Ni posamičnih predlog. Ustvarite prvo spodaj.</p></div>`:''}
+    <div class="create-specific">
+      <span style="font-size:1.6rem">➕</span>
+      <div style="flex:1">
+        <div style="font-weight:600;color:var(--blue);margin-bottom:4px">Ustvari novo posamično predlogo</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+          <select class="fc" id="new-role" style="width:auto">
+            ${FUNCTION_ROLES.map(r=>`<option value="${r}">${r}</option>`).join('')}
+          </select>
+          <select class="fc" id="new-ftype" style="width:auto">
+            ${FUNC_TYPES.map(ft=>`<option value="${ft.id}">${ft.name}</option>`).join('')}
+          </select>
+          <button class="btn btn-primary btn-sm" onclick="createRoleTmpl()">Ustvari</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function deleteTmpl(id) {
+  if(confirm('Res želite izbrisati to predlogo?')) {
+    allRoleTemplates = allRoleTemplates.filter(t=>t.id!==id);
+    setHTML('content',`<div class="page-wrap anim">${buildTemplates()}</div>`);
+    toast('🗑️ Predloga izbrisana.');
+  }
+}
+
+function createRoleTmpl() {
+  const role = document.getElementById('new-role').value;
+  const funcType = document.getElementById('new-ftype').value;
+  const existing = allRoleTemplates.find(t=>t.role===role&&t.funcType===funcType);
+  if(existing) { toast('Ta kombinacija že obstaja. Uredite obstoječo predlogo.','amb'); return; }
+  const baseTmpl = GENERAL_TEMPLATES.find(t=>t.funcType===funcType);
+  const ftObj = FUNC_TYPES.find(ft=>ft.id===funcType);
+  const newT = {
+    id: `r-${role.replace(/\s/g,'-').toLowerCase()}-${funcType}-${Date.now()}`,
+    name: `${ftObj?.name||funcType} – ${role}`,
+    cat:'funkcija', funcType, role,
+    icon: ftObj?.icon||'📋', general:false,
+    fields: baseTmpl ? baseTmpl.fields.map(f=>({...f})) : [],
+  };
+  allRoleTemplates.push(newT);
+  navigate('tmpl-edit', { editTmpl: JSON.parse(JSON.stringify(newT)) });
+}
+
+function buildTmplEditor() {
+  const t = S.editTmpl;
+  if(!t) return `<button class="back-link" onclick="navigate('templates')">← Nazaj</button><p>Napaka.</p>`;
+  const icons = ['📄','🏕️','📋','📅','👥','💰','🌲','🏆','📊','📎','🎯','📌'];
+  return `
+  <button class="back-link" onclick="navigate('templates')">← Nazaj na predloge</button>
+  <div class="section-heading">
+    <h1>${t.general?'Uredi splošno predlogo':'Uredi predlogo'}</h1>
+    <p>${t.name}${t.role?` · ${t.role}`:''}</p>
+  </div>
+  <div style="background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:26px 28px;box-shadow:var(--shadow-sm)">
+    <div class="fg"><label>Naziv predloge</label>
+      <input class="fc" id="te-name" value="${t.name}" placeholder="Naziv predloge"></div>
+    <div class="fg"><label>Ikona</label>
+      <div class="icon-picker" id="te-icons">
+        ${icons.map(ic=>`<div class="ip-opt${t.icon===ic?' sel':''}" onclick="tSelIcon('${ic}')">${ic}</div>`).join('')}
+      </div>
+    </div>
+    ${t.role?`<div style="display:flex;gap:7px;margin-bottom:18px">
+      <span class="badge bb">👤 ${t.role}</span>
+      <span class="badge bb">${FUNC_TYPES.find(ft=>ft.id===t.funcType)?.name||t.funcType}</span>
+    </div>`:''}
+    <hr class="div">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <h3 style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--green-dark)">Polja predloge</h3>
+    </div>
+    <div class="field-list" id="te-fields">
+      ${(t.fields||[]).map(f=>`
+      <div class="field-item">
+        <span class="fi-drag">⠿</span>
+        <span class="fi-name">${f.name}</span>
+        <span class="fi-type">${f.type}</span>
+        <button class="btn btn-danger btn-sm btn-icon" onclick="teRemoveField('${f.id}')">✕</button>
+      </div>`).join('')}
+    </div>
+    <div style="display:flex;gap:9px;align-items:flex-end;margin-bottom:18px;flex-wrap:wrap">
+      <div class="fg" style="flex:2;margin:0"><label>Novo polje</label>
+        <input class="fc" id="te-fn" placeholder="Naziv polja"></div>
+      <div class="fg" style="flex:1;margin:0"><label>Tip</label>
+        <select class="fc" id="te-ft">
+          <option>Besedilo</option><option>Dolgo besedilo</option><option>Število</option><option>Datum</option>
+        </select>
+      </div>
+      <button class="btn btn-secondary" onclick="teAddField()">+ Dodaj</button>
+    </div>
+    <div style="display:flex;justify-content:space-between">
+      <button class="btn btn-ghost" onclick="navigate('templates')">Prekliči</button>
+      <button class="btn btn-primary btn-lg" onclick="teSave()">💾 Shrani predlogo</button>
+    </div>
+  </div>`;
+}
+
+function tSelIcon(ic) {
+  S.editTmpl.icon=ic;
+  document.querySelectorAll('.ip-opt').forEach(el=>el.classList.remove('sel'));
+  event.target.classList.add('sel');
+}
+function teRemoveField(fid) {
+  S.editTmpl.fields = S.editTmpl.fields.filter(f=>f.id!==fid);
+  setHTML('content',`<div class="page-wrap anim">${buildTmplEditor()}</div>`);
+}
+function teAddField() {
+  const name = document.getElementById('te-fn').value.trim();
+  const type = document.getElementById('te-ft').value;
+  if(!name) return;
+  S.editTmpl.fields.push({id:'f'+Date.now(), name, type});
+  setHTML('content',`<div class="page-wrap anim">${buildTmplEditor()}</div>`);
+}
+function teSave() {
+  const name = document.getElementById('te-name').value.trim();
+  if(!name) { toast('Vnesite naziv predloge.','err'); return; }
+  S.editTmpl.name = name;
+  // update in appropriate list
+  if (S.editTmpl.general) {
+    const idx = GENERAL_TEMPLATES.findIndex(t=>t.id===S.editTmpl.id);
+    if(idx>=0) Object.assign(GENERAL_TEMPLATES[idx], S.editTmpl);
+  } else {
+    const idx = allRoleTemplates.findIndex(t=>t.id===S.editTmpl.id);
+    if(idx>=0) Object.assign(allRoleTemplates[idx], S.editTmpl);
+    else allRoleTemplates.push(S.editTmpl);
+  }
+  toast('✅ Predloga shranjena.');
+  navigate('templates');
+}
+
+// ═══════════════════════════════════════════════
+// GROUP PAGE
+// ═══════════════════════════════════════════════
+function buildGroupPage() {
+  const allPraise = MEMBERS.reduce((a,m)=>a+m.praise.length,0);
+  const allScold  = MEMBERS.reduce((a,m)=>a+m.scold.length,0);
+  const avgAtt    = Math.round(MEMBERS.reduce((s,m)=>s+attPct(m),0)/MEMBERS.length);
+  const bdaySoon  = MEMBERS.filter(m=>isBdaySoon(m.bday)).length;
+  const totalEarned = MEMBERS.reduce((s,m)=>s+SKILLS.filter(sk=>skillEarned(m,sk.id)).length,0);
+
+  return `
+  <button class="back-link" onclick="navigate('dashboard')">← Nazaj</button>
+  <div class="section-heading">
+    <h1>${S.user.group}</h1>
+    <p>Upravljanje prisotnosti, veščin in pohval</p>
+  </div>
+  <div class="group-stats">
+    <div class="stat-card"><div class="sc-num">${MEMBERS.length}</div><div class="sc-lbl">Članov skupaj</div></div>
+    <div class="stat-card"><div class="sc-num">${avgAtt}%</div><div class="sc-lbl">Povprečna prisotnost</div></div>
+    <div class="stat-card"><div class="sc-num" style="color:var(--amber)">${bdaySoon}</div><div class="sc-lbl">Bližnji rojstni dnevi 🎂</div></div>
+    <div class="stat-card"><div class="sc-num" style="color:var(--green)">${allPraise}</div><div class="sc-lbl">Pohval skupaj 👍</div></div>
+    <div class="stat-card"><div class="sc-num" style="color:var(--red-light)">${allScold}</div><div class="sc-lbl">Graje skupaj 👎</div></div>
+    <div class="stat-card"><div class="sc-num">${totalEarned}</div><div class="sc-lbl">Pridobljenih veščin</div></div>
+  </div>
+  <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
+    <button class="btn btn-secondary" onclick="grpExportReport()">📤 Izvozi v poročilo voda</button>
+  </div>
+  <div class="tabs">
+    <div class="tab${S.groupTab==='prisotnost'?' active':''}" onclick="grpTab('prisotnost')">📅 Prisotnost</div>
+    <div class="tab${S.groupTab==='vescine'?' active':''}" onclick="grpTab('vescine')">⭐ Veščine</div>
+    <div class="tab${S.groupTab==='pohvale'?' active':''}" onclick="grpTab('pohvale')">📋 Pohvale in graje</div>
+    <div class="tab${S.groupTab==='upravljanje'?' active':''}" onclick="grpTab('upravljanje')">👤 Upravljanje voda</div>
+  </div>
+  <div id="group-tab-content" class="anim">${buildGroupTabContent()}</div>`;
+}
+
+function grpTab(tab) {
+  S.groupTab = tab;
+  if(tab !== 'vescine') S.selSkill = null;
+  // update tab nav active state
+  document.querySelectorAll('.tab').forEach(el=>{
+    el.classList.toggle('active', el.textContent.trim().includes({prisotnost:'Prisotnost',vescine:'Veščine',pohvale:'Pohvale',upravljanje:'Upravljanje'}[tab]||'__'));
+  });
+  updateGroupTab();
+}
+
+function buildGroupTabContent() {
+  switch(S.groupTab) {
+    case 'prisotnost': return buildTabPrisotnost();
+    case 'vescine':    return buildTabVescine();
+    case 'pohvale':    return buildTabPohvale();
+    case 'upravljanje':return buildTabUpravljanje();
+    default: return '';
+  }
+}
+
+// ─── TAB: PRISOTNOST ───
+function buildTabPrisotnost() {
+  const memberHeader = `<th class="col-member">Tabornik</th>`;
+  const meetingHeaders = MEETINGS.map(m=>`
+    <th title="${fmtDate(m.date)}" style="min-width:52px;max-width:64px">
+      <div style="font-size:.7rem">${fmtDateShort(m.date)}</div>
+      <div style="font-size:.65rem;opacity:.75;font-weight:400">${m.label.length>8?m.label.slice(0,8)+'…':m.label}</div>
+    </th>`).join('');
+  const pctHeader = `<th style="min-width:50px">%</th>`;
+
+  const rows = MEMBERS.map(m=>{
+    const cells = MEETINGS.map(mt=>{
+      const v = m.att[mt.id];
+      const cls = v===true?'present':v===false?'absent':'unknown';
+      const sym = v===true?'✓':v===false?'✕':'·';
+      return `<td><div class="att-cell ${cls}" id="att-${m.id}-${mt.id}" onclick="grpToggleAtt(${m.id},'${mt.id}')">${sym}</div></td>`;
+    }).join('');
+    const pct = attPct(m);
+    const color = pct>=80?'var(--green)':pct>=50?'var(--amber-light)':'var(--red-light)';
+    return `<tr>
+      <td class="col-member">${m.name}</td>
+      ${cells}
+      <td><span style="font-size:.78rem;font-weight:700;color:${color}">${pct}%</span></td>
+    </tr>`;
+  }).join('');
+
+  // attendance summary row
+  const summaryRow = `<tr style="background:var(--parchment)">
+    <td class="col-member" style="font-size:.75rem;color:var(--text-muted);font-style:italic">Prisotnih</td>
+    ${MEETINGS.map(mt=>{
+      const cnt = MEMBERS.filter(m=>m.att[mt.id]===true).length;
+      return `<td style="font-size:.75rem;font-weight:600;color:var(--text-muted)">${cnt}/${MEMBERS.length}</td>`;
+    }).join('')}
+    <td></td>
+  </tr>`;
+
+  return `
+  <div class="inh">
+    <h2>Evidenca prisotnosti</h2>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-secondary btn-sm" onclick="grpMarkToday()">📅 Označi današnjo prisotnost</button>
+      <button class="btn btn-primary btn-sm" onclick="grpAddMeeting()">+ Dodaj srečanje</button>
+    </div>
+  </div>
+  <div style="font-size:.78rem;color:var(--text-muted);margin-bottom:12px;display:flex;gap:14px;flex-wrap:wrap">
+    <span style="display:flex;align-items:center;gap:5px"><span class="att-cell present" style="width:20px;height:20px;font-size:.72rem">✓</span> Prisoten/na</span>
+    <span style="display:flex;align-items:center;gap:5px"><span class="att-cell absent" style="width:20px;height:20px;font-size:.72rem">✕</span> Odsoten/na</span>
+    <span style="display:flex;align-items:center;gap:5px"><span class="att-cell unknown" style="width:20px;height:20px;font-size:.72rem">·</span> Neznano</span>
+    <span style="margin-left:auto;font-style:italic">Kliknite celico za preklop stanja</span>
+  </div>
+  <div class="matrix-wrap">
+    <table class="matrix-table">
+      <thead><tr>${memberHeader}${meetingHeaders}${pctHeader}</tr></thead>
+      <tbody>${rows}${summaryRow}</tbody>
+    </table>
+  </div>`;
+}
+
+function grpToggleAtt(memberId, meetingId) {
+  const m = MEMBERS.find(x=>x.id===memberId); if(!m) return;
+  const cur = m.att[meetingId];
+  const next = cur===null||cur===undefined ? true : cur===true ? false : null;
+  m.att[meetingId] = next;
+  const cell = document.getElementById(`att-${memberId}-${meetingId}`);
+  if(cell) {
+    cell.className = 'att-cell '+(next===true?'present':next===false?'absent':'unknown');
+    cell.textContent = next===true?'✓':next===false?'✕':'·';
+  }
+  // update pct cell in same row
+  const pct = attPct(m);
+  const color = pct>=80?'var(--green)':pct>=50?'var(--amber-light)':'var(--red-light)';
+  const allCells = document.querySelectorAll(`#att-${memberId}-${meetingId}`);
+  // update summary row
+  const summaryTds = document.querySelectorAll('.matrix-table tbody tr:last-child td');
+  MEETINGS.forEach((mt,i) => {
+    const cnt = MEMBERS.filter(x=>x.att[mt.id]===true).length;
+    if(summaryTds[i+1]) summaryTds[i+1].textContent = `${cnt}/${MEMBERS.length}`;
+  });
+}
+
+function grpMarkToday() {
+  const today = new Date().toISOString().split('T')[0];
+  const existing = MEETINGS.find(m=>m.date===today);
+  if (existing) {
+    showModal(`
+    <h2>📅 Označi prisotnost</h2>
+    <p style="color:var(--text-muted);font-style:italic;margin-bottom:16px">Srečanje: <b>${existing.label}</b> (${fmtDate(today)})</p>
+    <div class="member-mgmt-list" style="max-height:320px;overflow-y:auto">
+      ${MEMBERS.map(m=>{
+        const v=m.att[existing.id];
+        return `<div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-light)">
+          <div class="mbr-avatar">${initials(m.name)}</div>
+          <span style="flex:1;font-size:.9rem;font-weight:600">${m.name}</span>
+          <button class="btn btn-sm ${v===true?'btn-primary':'btn-ghost'}" onclick="grpSetAtt(${m.id},'${existing.id}',true,this)">${v===true?'✓ Prisoten/na':'Prisoten/na'}</button>
+          <button class="btn btn-sm ${v===false?'btn-danger':'btn-ghost'}" onclick="grpSetAtt(${m.id},'${existing.id}',false,this)">${v===false?'✕ Odsoten/na':'Odsoten/na'}</button>
+        </div>`;
+      }).join('')}
+    </div>
+    <div class="mo-actions"><button class="btn btn-primary" onclick="closeModal();updateGroupTab()">Shrani in zapri</button></div>`);
+  } else {
+    const label = prompt('Naziv današnjega srečanja:','Srečanje');
+    if(!label) return;
+    const newId = 'm'+Date.now();
+    MEETINGS.push({id:newId, date:today, label});
+    MEMBERS.forEach(m=>{ m.att[newId]=null; });
+    toast('✅ Srečanje dodano. Označite prisotnost v tabeli.');
+    updateGroupTab();
+  }
+}
+
+function grpSetAtt(memberId, meetingId, val, btn) {
+  const m = MEMBERS.find(x=>x.id===memberId); if(!m) return;
+  m.att[meetingId] = m.att[meetingId]===val ? null : val;
+}
+
+function grpAddMeeting() {
+  showModal(`
+  <h2>📅 Dodaj srečanje</h2>
+  <div class="fg"><label>Datum</label><input type="date" class="fc" id="nm-date" value="${new Date().toISOString().split('T')[0]}"></div>
+  <div class="fg"><label>Naziv</label><input type="text" class="fc" id="nm-label" placeholder="npr. Srečanje #13, Izlet…"></div>
+  <div class="mo-actions">
+    <button class="btn btn-ghost" onclick="closeModal()">Prekliči</button>
+    <button class="btn btn-primary" onclick="grpDoAddMeeting()">Dodaj</button>
+  </div>`);
+}
+function grpDoAddMeeting() {
+  const date=document.getElementById('nm-date').value, label=document.getElementById('nm-label').value.trim();
+  if(!date||!label){toast('Izpolnite datum in naziv.','err');return;}
+  const newId='m'+Date.now();
+  MEETINGS.push({id:newId,date,label});
+  MEMBERS.forEach(m=>{m.att[newId]=null;});
+  closeModal(); updateGroupTab(); toast('✅ Srečanje dodano.');
+}
+
+// ─── TAB: VEŠČINE ───
+function buildTabVescine() {
+  if (S.selSkill) return buildSkillMatrix(S.selSkill);
+  return buildSkillGrid();
+}
+
+function buildSkillGrid() {
+  return `
+  <div class="inh"><h2>Pregled veščin</h2><span style="font-size:.82rem;color:var(--text-muted);font-style:italic">Kliknite veščino za upravljanje zahtev po članih</span></div>
+  <div class="skill-grid">
+    ${SKILLS.map(sk=>{
+      const earned = MEMBERS.filter(m=>skillEarned(m,sk.id)).length;
+      const avgP = Math.round(MEMBERS.reduce((s,m)=>s+skillPct(m,sk.id),0)/MEMBERS.length);
+      return `
+      <div class="skill-card" onclick="grpSelSkill('${sk.id}')">
+        <span class="sk-icon">${sk.icon}</span>
+        <div class="sk-name">${sk.name}</div>
+        <div class="sk-prog">${earned}/${MEMBERS.length} pridobilo · ${sk.reqs.length} zahtev</div>
+        <div class="skill-pbar"><div class="skill-pbar-fill" style="width:${avgP}%"></div></div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+function buildSkillMatrix(skillId) {
+  const sk = SKILLS.find(s=>s.id===skillId); if(!sk) return buildSkillGrid();
+  const earned = MEMBERS.filter(m=>skillEarned(m,sk.id)).length;
+  const reqHeaders = sk.reqs.map(r=>`<th title="${r.text}" style="min-width:42px;max-width:56px;font-size:.68rem;line-height:1.25">${r.text.length>22?r.text.slice(0,22)+'…':r.text}</th>`).join('');
+  const rows = MEMBERS.map(m=>{
+    const cells = sk.reqs.map(r=>{
+      const done = (m.skills[skillId]||{})[r.id]===true;
+      return `<td><div class="req-cell ${done?'done':'todo'}" id="req-${m.id}-${skillId}-${r.id}" onclick="grpToggleReq(${m.id},'${skillId}','${r.id}')">${done?'✓':'·'}</div></td>`;
+    }).join('');
+    const isEarned = skillEarned(m,skillId);
+    const pct = skillPct(m,skillId);
+    return `<tr>
+      <td class="col-member">${m.name}</td>
+      ${cells}
+      <td><span class="earned-cell ${isEarned?'yes':'no'}">${isEarned?'✓ Pridobljena':`${Math.round(pct/100*sk.reqs.length)}/${sk.reqs.length}`}</span></td>
+    </tr>`;
+  }).join('');
+  return `
+  <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap">
+    <button class="back-link" style="margin:0" onclick="grpSelSkill(null)">← Vse veščine</button>
+    <span style="font-size:1.4rem">${sk.icon}</span>
+    <div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--green-dark)">${sk.name}</div>
+      <div style="font-size:.78rem;color:var(--text-muted)">${earned}/${MEMBERS.length} članov jo je pridobilo · ${sk.reqs.length} zahtev</div>
+    </div>
+  </div>
+  <div style="font-size:.78rem;color:var(--text-muted);margin-bottom:10px;display:flex;gap:14px;flex-wrap:wrap">
+    <span><span class="req-cell done" style="width:18px;height:17px;font-size:.7rem;display:inline-flex">✓</span> Opravljeno</span>
+    <span><span class="req-cell todo" style="width:18px;height:17px;font-size:.7rem;display:inline-flex">·</span> Ni opravljeno</span>
+    <span style="margin-left:auto;font-style:italic">Kliknite celico za preklop</span>
+  </div>
+  <div class="req-table-wrap">
+    <table class="req-table">
+      <thead><tr><th class="col-member">Tabornik</th>${reqHeaders}<th style="min-width:110px">Status</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  </div>`;
+}
+
+function grpSelSkill(id) { S.selSkill=id; updateGroupTab(); }
+
+function grpToggleReq(memberId, skillId, reqId) {
+  const m = MEMBERS.find(x=>x.id===memberId); if(!m) return;
+  if(!m.skills[skillId]) m.skills[skillId]={};
+  m.skills[skillId][reqId] = !m.skills[skillId][reqId];
+  const cell = document.getElementById(`req-${memberId}-${skillId}-${reqId}`);
+  const done = m.skills[skillId][reqId];
+  if(cell) { cell.className='req-cell '+(done?'done':'todo'); cell.textContent=done?'✓':'·'; }
+  // update earned cell in same row
+  const isEarned = skillEarned(m,skillId);
+  const sk = SKILLS.find(s=>s.id===skillId);
+  const pct = skillPct(m,skillId);
+  // find row's earned cell (last td)
+  if(cell) {
+    const row = cell.closest('tr');
+    if(row) {
+      const lastTd = row.querySelector('td:last-child .earned-cell');
+      if(lastTd) {
+        lastTd.className='earned-cell '+(isEarned?'yes':'no');
+        lastTd.textContent=isEarned?'✓ Pridobljena':`${Math.round(pct/100*sk.reqs.length)}/${sk.reqs.length}`;
+      }
+    }
+  }
+  if(isEarned) toast(`✅ ${m.name} je pridobil/a veščino ${sk.name}!`);
+}
+
+// ─── TAB: POHVALE & GRAJE ───
+function buildTabPohvale() {
+  const pf = S.praiseFilter;
+  let entries = [];
+  MEMBERS.forEach(m=>{
+    m.praise.forEach(p=>entries.push({...p, type:'praise', who:m.name, memberId:m.id}));
+    m.scold.forEach(s=>entries.push({...s, type:'scold', who:s.who||m.name, memberId:m.id}));
+  });
+  entries.sort((a,b)=>new Date(b.date)-new Date(a.date));
+  if(pf==='praise') entries=entries.filter(e=>e.type==='praise');
+  if(pf==='scold')  entries=entries.filter(e=>e.type==='scold');
+
+  return `
+  <div class="inh">
+    <h2>Pohvale in graje</h2>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-secondary btn-sm" onclick="grpAddLog('praise')">👍 Dodaj pohvalo</button>
+      <button class="btn btn-danger btn-sm" onclick="grpAddLog('scold')">👎 Dodaj grajo</button>
+    </div>
+  </div>
+  <div class="filter-row">
+    <button class="fr-btn${pf==='all'?' active':''}" onclick="grpPraiseFilter('all')">Vse (${MEMBERS.reduce((s,m)=>s+m.praise.length+m.scold.length,0)})</button>
+    <button class="fr-btn${pf==='praise'?' active':''}" onclick="grpPraiseFilter('praise')">👍 Pohvale (${MEMBERS.reduce((s,m)=>s+m.praise.length,0)})</button>
+    <button class="fr-btn${pf==='scold'?' active':''}" onclick="grpPraiseFilter('scold')">👎 Graje (${MEMBERS.reduce((s,m)=>s+m.scold.length,0)})</button>
+  </div>
+  ${entries.length===0?`<div class="empty"><span class="ei">📋</span><p>Ni vnosov za ta filter.</p></div>`:`
+  <div class="log-list">
+    ${entries.map(e=>`
+    <div class="log-item ${e.type}">
+      <span style="font-size:1.1rem">${e.type==='praise'?'👍':'👎'}</span>
+      <div style="flex:1">
+        <div class="li-who">${e.who}</div>
+        <div class="li-text">${e.text}</div>
+      </div>
+      <span class="li-date">${fmtDate(e.date)}</span>
+    </div>`).join('')}
+  </div>`}`;
+}
+
+function grpPraiseFilter(f) { S.praiseFilter=f; updateGroupTab(); }
+
+function grpAddLog(type) {
+  showModal(`
+  <h2>${type==='praise'?'👍 Dodaj pohvalo':'👎 Dodaj grajo'}</h2>
+  <div class="fg"><label>Tabornik</label>
+    <select class="fc" id="al-who">
+      ${MEMBERS.map(m=>`<option value="${m.id}">${m.name}</option>`).join('')}
+    </select>
+  </div>
+  <div class="fg"><label>Vsebina</label>
+    <textarea class="fc" id="al-text" rows="3" placeholder="${type==='praise'?'Razlog za pohvalo…':'Razlog za grajo…'}"></textarea>
+  </div>
+  <div class="mo-actions">
+    <button class="btn btn-ghost" onclick="closeModal()">Prekliči</button>
+    <button class="btn btn-primary" onclick="grpDoAddLog('${type}')">Shrani</button>
+  </div>`);
+}
+function grpDoAddLog(type) {
+  const mid=parseInt(document.getElementById('al-who').value);
+  const text=document.getElementById('al-text').value.trim();
+  if(!text){toast('Vnesite vsebino.','err');return;}
+  const m=MEMBERS.find(x=>x.id===mid); if(!m) return;
+  const entry={text, date:new Date().toISOString().split('T')[0]};
+  if(type==='praise') m.praise.push(entry); else m.scold.push(entry);
+  closeModal(); updateGroupTab(); toast(type==='praise'?'👍 Pohvala zabeležena.':'👎 Graja zabeležena.');
+}
+
+// ─── TAB: UPRAVLJANJE VODA ───
+function buildTabUpravljanje() {
+  const q = (S.groupSearch||'').toLowerCase();
+  const mems = MEMBERS.filter(m=>!q||m.name.toLowerCase().includes(q));
+  return `
+  <div class="inh">
+    <h2>Upravljanje voda</h2>
+    <button class="btn btn-primary btn-sm" onclick="grpAddMember()">+ Dodaj člana</button>
+  </div>
+  <div style="display:flex;gap:10px;margin-bottom:16px">
+    <input class="fc" style="max-width:260px" type="text" placeholder="🔍 Iskanje…" value="${S.groupSearch||''}"
+      oninput="S.groupSearch=this.value;updateGroupTab()">
+  </div>
+  <div class="member-mgmt-list">
+    ${mems.map(m=>{
+      const bd=isBdaySoon(m.bday), pct=attPct(m), earned=SKILLS.filter(sk=>skillEarned(m,sk.id)).length;
+      return `
+      <div class="mbr-row${bd?' bday':''}">
+        <div class="mbr-avatar">${initials(m.name)}</div>
+        <div style="flex:1;min-width:0">
+          <div class="mbr-name">${m.name} ${bd?'🎂':''}</div>
+          <div class="mbr-sub">Roj. ${fmtDate(m.bday)} · ${getAge(m.bday)} let · Prisotnost: ${pct}% · Veščine: ${earned}/${SKILLS.length}</div>
+          <div style="margin-top:5px">
+            <div class="pbar-wrap"><div class="pbar-fill" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--amber-light)':'var(--red-light)'}"></div></div>
+          </div>
+          ${m.notes?`<div style="font-size:.74rem;color:var(--text-muted);font-style:italic;margin-top:4px">${m.notes}</div>`:''}
+        </div>
+        <div class="mbr-actions">
+          <button class="btn btn-ghost btn-sm" onclick="grpEditMember(${m.id})">✏️ Uredi</button>
+          <button class="btn btn-danger btn-sm" onclick="grpDelMember(${m.id})">🗑</button>
+        </div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+function grpAddMember() {
+  showModal(`
+  <h2>+ Dodaj člana</h2>
+  <div class="fg"><label>Ime in priimek</label><input class="fc" id="am-name" placeholder="Npr. Anja Potočnik"></div>
+  <div class="fg"><label>Datum rojstva</label><input type="date" class="fc" id="am-bday"></div>
+  <div class="fg"><label>Opombe (neobvezno)</label><input class="fc" id="am-notes" placeholder="Kratka opomba…"></div>
+  <div class="mo-actions">
+    <button class="btn btn-ghost" onclick="closeModal()">Prekliči</button>
+    <button class="btn btn-primary" onclick="grpDoAddMember()">Dodaj</button>
+  </div>`);
+}
+function grpDoAddMember() {
+  const name=document.getElementById('am-name').value.trim();
+  const bday=document.getElementById('am-bday').value;
+  const notes=document.getElementById('am-notes').value.trim();
+  if(!name||!bday){toast('Vnesite ime in datum.','err');return;}
+  const newId=Math.max(...MEMBERS.map(m=>m.id))+1;
+  const attObj={};
+  MEETINGS.forEach(mt=>{attObj[mt.id]=null;});
+  MEMBERS.push({id:newId,name,bday,notes,att:attObj,skills:{},praise:[],scold:[]});
+  closeModal(); updateGroupTab(); toast(`✅ Član "${name}" dodan.`);
+}
+function grpEditMember(id) {
+  const m=MEMBERS.find(x=>x.id===id); if(!m) return;
+  showModal(`
+  <h2>✏️ Uredi člana</h2>
+  <div class="fg"><label>Ime in priimek</label><input class="fc" id="em-name" value="${m.name}"></div>
+  <div class="fg"><label>Datum rojstva</label><input type="date" class="fc" id="em-bday" value="${m.bday}"></div>
+  <div class="fg"><label>Opombe</label><textarea class="fc" rows="2" id="em-notes">${m.notes||''}</textarea></div>
+  <div class="mo-actions">
+    <button class="btn btn-ghost" onclick="closeModal()">Prekliči</button>
+    <button class="btn btn-primary" onclick="grpDoEditMember(${id})">Shrani</button>
+  </div>`);
+}
+function grpDoEditMember(id) {
+  const m=MEMBERS.find(x=>x.id===id); if(!m) return;
+  const name=document.getElementById('em-name').value.trim();
+  const bday=document.getElementById('em-bday').value;
+  if(!name||!bday){toast('Vnesite ime in datum.','err');return;}
+  m.name=name; m.bday=bday; m.notes=document.getElementById('em-notes').value.trim();
+  closeModal(); updateGroupTab(); toast('✅ Podatki shranjeni.');
+}
+function grpDelMember(id) {
+  const m=MEMBERS.find(x=>x.id===id); if(!m) return;
+  if(confirm(`Res želite odstraniti "${m.name}" iz voda?`)) {
+    MEMBERS=MEMBERS.filter(x=>x.id!==id);
+    updateGroupTab(); toast(`🗑️ Član "${m.name}" odstranjen.`);
+  }
+}
+
+function grpExportReport() {
+  toast('📤 Pripravlja se osnutek poročila voda…','amb');
+  setTimeout(()=>{
+    rReset();
+    S.rCat='vod'; S.rStep=3;
+    S.rFields={
+      f1: S.user.group,
+      f2: S.user.name,
+      f3: String(MEMBERS.length),
+      f4: `${MEMBERS.filter(m=>SKILLS.filter(sk=>skillEarned(m,sk.id)).length>0).length} članov je pridobilo vsaj eno veščino v tekočem letu.`,
+      f5: `Povprečna prisotnost voda: ${Math.round(MEMBERS.reduce((s,m)=>s+attPct(m),0)/MEMBERS.length)}%. Skupaj srečanj: ${MEETINGS.length}.`,
+      f6: '',
+    };
+    navigate('report-new');
+    toast('✅ Podatki uvoženi v osnutek poročila.');
+  },1400);
+}
+
+// ═══════════════════════════════════════════════
+// MODAL
+// ═══════════════════════════════════════════════
+function showModal(html) {
+  const layer = document.getElementById('modal-layer');
+  layer.innerHTML = `<div class="mo" onclick="if(event.target===this)closeModal()"><div class="mo-box">${html}</div></div>`;
+}
+function closeModal() { document.getElementById('modal-layer').innerHTML=''; }
+
+// ═══════════════════════════════════════════════
+// KEYBOARD
+// ═══════════════════════════════════════════════
+document.addEventListener('keydown', e=>{
+  if(e.key==='Enter' && S.page==='login') doLogin();
+  if(e.key==='Escape') closeModal();
+});
+
+// ═══════════════════════════════════════════════
+// BOOT
+// ═══════════════════════════════════════════════
+renderPage();
+</script>
+</body>
+</html>
