@@ -8,6 +8,8 @@
 - P6: Ella Stamsnijder, Načelnica roda puntarjev tolmin
 - P7: Žan Luka Remec, RR načelnik
 
+<img src="./survey_plots/1_data_management_methods.png" height="300">
+
 
 **2.) If you have one, how do you currently manage the data of your scouts group? (badge progress, attendance, scolding and praise, ...)**
 - P1: Po spominu
@@ -17,6 +19,8 @@
 - P5: Ponavad na notes na telefonu oziroma na whatsapp skupini z sovodniki
 - P6: Na telefon v beležko
 - P7: Trenutno nimam, drgač pa sm to delu večinoma po spominu
+
+<img src="./survey_plots/2_check_previous_reports.png" height="300">
 
 
 **3.) Do you find managing your scouts group data, the way you do now in any way difficult, tedious or confusing?**
@@ -28,6 +32,9 @@
 - P6: Ne, bl je to da ne rabmo oddajat razn za občni zbor, kadar pa ne veš. Ne daja se sproti
 - P7: Niti ne
 
+<!-- <img src="./survey_plots/3_archive_access_sources.png" height="300"> -->
+
+<img src="./survey_plots/4_perceived_difficulties.png" height="300">
 
 **4.) When creating an activity, do you ever check the reports of previous activities of the same type?**
 - P1: Ne
@@ -37,6 +44,7 @@
 - P5: Delam manjše akcije, tko da ne
 - P6: Samo če mam js sama to poročilo.
 - P7: Samo, če sem jih delal jaz v preteklosti
+
 
 
 **4.1) If yes, what is your process?**
@@ -89,6 +97,10 @@
 - P7: Ko poročilo voda, se morem spomnit vse iz glave in ga oddam prek google obrazca. Ko delam poročilo funkcije, ga napišem na urejevalnik besedil na računalniku, nato sprintam in fizično prinesem na občni zbor.
 
 
+<img src="./survey_plots/5a_report_writing.png" height="300">
+<img src="./survey_plots/5b_report_submission.png" height="300">
+
+
 **8.) Has the process of writing and submitting end-of-year reports changed in any way in your time as a scout leader?**
 - P1: Včasih smo mel word obrazce, ki so sedaj ankete
 - P2: Na bujš, zej je bl u uzi dobit stvari kod so in kam jih oddat
@@ -107,6 +119,9 @@
 - P5: Nevem če
 - P6: Drugačna vprašanja
 - P7: Da, druga vprašanja.
+
+
+<img src="./survey_plots/6_process_change_over_time.png" height="300">
 
 
 **10.) Do you find the current workflow of creating and submitting different types of reports in any way difficult, tedious or confusing?**

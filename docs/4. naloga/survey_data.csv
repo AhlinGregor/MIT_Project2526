@@ -1,0 +1,8 @@
+Participant,Function,Manages_by_Memory,Manages_by_Phone,Manages_by_Paper,Current_Difficulty,Check_Previous_Reports,Archive_Difficulty,Workflow_Difficulty
+P1,"Vodnik, PP načelnica",Yes,No,No,Yes,No,Yes,Yes
+P2,"Vodnica, disciplinska komisija",No,No,Yes,No,No,No,Yes
+P3,Vodnik,Yes,Yes,No,No,Yes,Yes,Yes
+P4,"Vodnik, MČ Načelnik",Yes,Yes,Yes,No,Yes,No,Yes
+P5,Vodnica GG,No,Yes,No,No,No,No,No
+P6,Načelnica roda,No,Yes,No,No,Yes,No,Yes
+P7,RR načelnik,Yes,No,No,No,Yes,Yes,Yes
