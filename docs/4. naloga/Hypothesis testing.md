@@ -1,5 +1,5 @@
 ## Questions
-1.) Who are you and what is your function within your scouts organization?
+**1.) Who are you and what is your function within your scouts organization?**
 - P1: Tamara MF Manfreda, Vodnik, PP načelnica
 - P2: Jutra Vukušič, vodnica 8 razreda, disciplinska komisija
 - P3: Žiga Kranjc, vodnik voda
@@ -7,7 +7,9 @@
 - P5: Tinkara Kavčič, vodnica GG voda
 - P6: Ella Stamsnijder, Načelnica roda puntarjev tolmin
 - P7: Žan Luka Remec, RR načelnik
-2.) If you have one, how do you currently manage the data of your scouts group? (badge progress, attendance, scolding and praise, ...)
+
+
+**2.) If you have one, how do you currently manage the data of your scouts group? (badge progress, attendance, scolding and praise, ...)**
 - P1: Po spominu
 - P2: Veščine si napiše v fizično beležko, vse ostalo ni važno
 - P3: Po spominu. Neki na telefon
@@ -15,7 +17,9 @@
 - P5: Ponavad na notes na telefonu oziroma na whatsapp skupini z sovodniki
 - P6: Na telefon v beležko
 - P7: Trenutno nimam, drgač pa sm to delu večinoma po spominu
-3.) Do you find managing your scouts group data, the way you do now in any way difficult, tedious or confusing?
+
+
+**3.) Do you find managing your scouts group data, the way you do now in any way difficult, tedious or confusing?**
 - P1: Ne zapomnem si vseh imen veščin, kdo je naredu katero stvar
 - P2: Ne
 - P3: Ne
@@ -23,7 +27,9 @@
 - P5: Ni težko, ampak nimam vsehga na enem mestu
 - P6: Ne, bl je to da ne rabmo oddajat razn za občni zbor, kadar pa ne veš. Ne daja se sproti
 - P7: Niti ne
-4.) When creating an activity, do you ever check the reports of previous activities of the same type? 
+
+
+**4.) When creating an activity, do you ever check the reports of previous activities of the same type?**
 - P1: Ne
 - P2: Ne
 - P3: Ja za taborjenje evalvacijo
@@ -31,6 +37,8 @@
 - P5: Delam manjše akcije, tko da ne
 - P6: Samo če mam js sama to poročilo.
 - P7: Samo, če sem jih delal jaz v preteklosti
+
+
 4.1) If yes, what is your process?
 - P1: 
 - P2:
@@ -39,6 +47,8 @@
 - P5:
 - P6: Pogledam svoje zapiske, če je tam je, če ni ni
 - P7: Pogleda svoje datoteke na računalniku
+
+
 4.2) If no, why not?
 - P1: Za posamezne aktivnosti ne, za akcije pa bolj za strukturo akcije
 - P2: Nevem, se zmislem ki bi delala in proba uno najboljš speljat
@@ -47,7 +57,9 @@
 - P5: Ker so manjše akcije
 - P6:
 - P7: Ne vem kje jih najt
-5.) If you wanted to check different types of reports from previous years, how would you do that?
+
+
+**5.) If you wanted to check different types of reports from previous years, how would you do that?**
 - P1: Pogleda v svoj osebni arhiv na računalniku ozoroma praša posameznike
 - P2: Uporabne povezave na discordu in poskušala poiskat prave povezave
 - P3: Na drive bi šu, ampak tam ni vseh
@@ -55,7 +67,9 @@
 - P5: RPT zakladnik, če je ta je, če ni ni. Če ne mogoče na kšnem discord kanalu
 - P6: na google drive. Če je tam je, če ni ni. Mogoče pogledam na discord.
 - P7: Večina teh poročil je nedostopna, predvsem ker ni skupnega arhiva, ampak so razpršeni med posamezniki.
-6.) Do you find accessing and searching through the current archive in any way difficult, tedious or confusing?
+
+
+**6.) Do you find accessing and searching through the current archive in any way difficult, tedious or confusing?**
 - P1: Nima dostopa do arhiva
 - P2: Ne
 - P3: Razpršene poročila
@@ -63,7 +77,9 @@
 - P5: ne
 - P6: Nevem če, drive je kr ok
 - P7: Kater arhiv? Drive je pomanjkljiv, edino kar najdem na svojem računalniku.
-7.) Do you personally have to write any end-of-year reports? If yes, what is your process for writing and submitting each of them? 
+
+
+**7.) Do you personally have to write any end-of-year reports? If yes, what is your process for writing and submitting each of them?**
 - P1: Napišeš po spominnu in oddaš na anketo. Za načelnico na word in sprinta in odda fizično
 - P2: Dobim se z sovodnikom, dobiva file in napiševa kar se spomneva.
 - P3: Preberem evalvacijo akcije, napišem word poročilo in izpolnem obrazec za akcijo, za vod pa samo obrazec
@@ -71,7 +87,9 @@
 - P5: Pogledam poročilo od enga leta prej, z sovodniki, direktno v google forms in screenamo
 - P6: Pogledam kar je od lani (moje + prejšnje funkcije). Ne vem kako more zgledat. Osnovam na prejšnja poročila.
 - P7: Ko poročilo voda, se morem spomnit vse iz glave in ga oddam prek google obrazca. Ko delam poročilo funkcije, ga napišem na urejevalnik besedil na računalniku, nato sprintam in fizično prinesem na občni zbor.
-8.) Has the process of writing and submitting end-of-year reports changed in any way in your time as a scout leader?
+
+
+**8.) Has the process of writing and submitting end-of-year reports changed in any way in your time as a scout leader?**
 - P1: Včasih smo mel word obrazce, ki so sedaj ankete
 - P2: Na bujš, zej je bl u uzi dobit stvari kod so in kam jih oddat
 - P3: Ne
@@ -79,7 +97,9 @@
 - P5: ne
 - P6: Ja, smo šli iz papirja na google form
 - P7: Ja, včasih smo to delal na papir vse, potem google drive, potem prek maila, zej prej google obrazca in del še vedno na papir.
-9.) Have the report templates or requirements changed in any way in your time as a scout leader?
+
+
+**9.) Have the report templates or requirements changed in any way in your time as a scout leader?**
 - P1: Nevem
 - P2: Ja se je.
 - P3: Ne
@@ -87,7 +107,9 @@
 - P5: Nevem če
 - P6: Drugačna vprašanja
 - P7: Da, druga vprašanja.
-10.) Do you find the current workflow of creating and submitting different types of reports in any way difficult, tedious or confusing?
+
+
+**10.) Do you find the current workflow of creating and submitting different types of reports in any way difficult, tedious or confusing?**
 - P1: To da moreš dat v fizični obliki
 - P2: Občasno nadležen, skeptična da dela na telefonu
 - P3: Confusing. Ne vem kako nardit (kaj vse more bit not)
