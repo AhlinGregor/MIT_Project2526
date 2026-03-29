@@ -14,7 +14,7 @@ The purpose of this project is to establish a new and improved archive managemen
 
 | Role | Member |
 |------|--------|
-| Product Owner | ? |
+| Product Owner | Scout Association of Slovenia |
 | Scrum Master | Žan Luka Remec |
 | Developers | Luka Svenšek, Lenart Svetek |
 | Designer | Matej Kodermac |
@@ -35,7 +35,7 @@ A task can be considered done when it passes the following checklist:
 
 ## Product Backlog
 
-The product backlog contains all outstanding work for the project. Each item is estimated using the Fibonacci sequence for complexity, and tasks are managed on a Scrum board with the following columns: **To Do → In Progress → Review → Done**.
+The product backlog contains all outstanding work for the project. Each item is estimated using the Fibonacci sequence for complexity, and tasks are managed on a Scrum board with the following columns: **To Do > In Progress > Review > Done**.
 
 ### Backlog Guidelines
 - Complexity is estimated using the Fibonacci sequence.
