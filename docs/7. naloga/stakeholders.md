@@ -3,7 +3,7 @@
 Project stakeholders are individuals and organizations that are either directly involved in the project or have an interest in its outcome. Stakeholders can be **allies** (those who benefit from the project) or **opponents** (those who may be negatively affected by it).
 
 
-### 1. Scout Association of Slovenia (SAS)
+### 1. Scout Association of Slovenia (ZTS)
 
 | | |
 |---|---|
@@ -25,7 +25,7 @@ Project stakeholders are individuals and organizations that are either directly 
 | **Team Response** | Prioritize simplicity and a clean mobile UI. Conduct user testing with actual scout leaders (as already done) to validate design decisions and address usability issues early. |
 
 
-### 3. Financial Accounting Agent for the SAS
+### 3. Financial Accounting Agent for the ZTS
 
 | | |
 |---|---|
@@ -54,7 +54,7 @@ Project stakeholders are individuals and organizations that are either directly 
 | **Expectations & Interests** | Successfully deliver the project within the academic deadline. Gain practical development experience and build a portfolio piece that demonstrates real-world impact. |
 | **Benefits** | A completed, deployed application serves as a strong CV reference. The team also has direct experience with the problem domain as scouts themselves, which reduces the risk of building the wrong thing. |
 | **Possible Conflicts** | Limited time and no budget. Risk of scope creep if stakeholder expectations are not managed carefully. |
-| **Team Response** | Maintain a clear and prioritized backlog. Use sprints to deliver incrementally and review scope regularly. Communicate openly with the SAS client about what is and is not feasible within the timeline. |
+| **Team Response** | Maintain a clear and prioritized backlog. Use sprints to deliver incrementally and review scope regularly. Communicate openly with the ZTS client about what is and is not feasible within the timeline. |
 
 
 ### 6. Digital Service Providers (Hosting, Infrastructure)
@@ -65,7 +65,7 @@ Project stakeholders are individuals and organizations that are either directly 
 | **Expectations & Interests** | Cloud hosting and infrastructure providers (e.g. server hosts, CDN providers) stand to gain a new client if the application is deployed and maintained long-term. |
 | **Benefits** | New paying client for hosting and storage services. |
 | **Possible Conflicts** | Vendor lock-in could become a concern if the association becomes dependent on a specific provider. Cost may become a factor once the project moves beyond the academic phase. |
-| **Team Response** | Design the architecture to be provider-agnostic where possible. Document infrastructure choices clearly so the SAS can manage or migrate services independently after handover. |
+| **Team Response** | Design the architecture to be provider-agnostic where possible. Document infrastructure choices clearly so the ZTS can manage or migrate services independently after handover. |
 
 
 ### 7. European Union (GDPR Enforcer)
@@ -74,7 +74,7 @@ Project stakeholders are individuals and organizations that are either directly 
 |---|---|
 | **Status** | Negative / Neutral |
 | **Expectations & Interests** | As the enforcer of GDPR, the EU expects all systems handling personal data of EU citizens to comply with data protection regulations. This includes data minimization, user consent, right to erasure, and secure storage. |
-| **Possible Conflicts** | The system will store personal data about scouts (names, attendance, contact information). Non-compliance with GDPR could result in legal consequences for the SAS. |
+| **Possible Conflicts** | The system will store personal data about scouts (names, attendance, contact information). Non-compliance with GDPR could result in legal consequences for the ZTS. |
 | **Team Response** | Implement GDPR-compliant data handling from the start: encrypted passwords (Argon2 as planned), access control, data minimization, and a clear privacy policy. Ensure users can request deletion of their data. Consult GDPR guidelines during the design phase. |
 
 
@@ -85,7 +85,7 @@ Project stakeholders are individuals and organizations that are either directly 
 | **Status** | Negative / Neutral |
 | **Expectations & Interests** | Parents may be concerned about the privacy and security of their children's personal data being stored in a digital system, especially for minor scouts. |
 | **Possible Conflicts** | Objections to data sharing or storage of minors' personal information. Parents may distrust a student-built system with no formal data protection guarantees. |
-| **Team Response** | Be transparent about what data is collected and why. Store only the minimum necessary information. Ensure the system is compliant with GDPR rules regarding minors. Communicate the privacy approach clearly to the SAS, who can then relay it to parents. |
+| **Team Response** | Be transparent about what data is collected and why. Store only the minimum necessary information. Ensure the system is compliant with GDPR rules regarding minors. Communicate the privacy approach clearly to the ZTS, who can then relay it to parents. |
 
 
 ### 9. Existing Service Providers (Google Drive, OneDrive, Discord)
@@ -94,5 +94,5 @@ Project stakeholders are individuals and organizations that are either directly 
 |---|---|
 | **Status** | Negative |
 | **Expectations & Interests** | Currently used informally by scout leaders for storing documents, sharing reports, and communicating. These platforms benefit from continued use by the association. |
-| **Possible Conflicts** | If the new system successfully replaces ad-hoc use of Google Drive and Discord for archiving, these providers stand to lose active users within the SAS ecosystem. |
+| **Possible Conflicts** | If the new system successfully replaces ad-hoc use of Google Drive and Discord for archiving, these providers stand to lose active users within the ZTS ecosystem. |
 | **Team Response** | This is a low-priority conflict as these are large platforms that will not be materially affected. However, the team should ensure the new system offers a clearly superior experience for the specific use case, so scout leaders are motivated to migrate rather than falling back to old habits. |
