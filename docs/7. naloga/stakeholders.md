@@ -25,17 +25,9 @@ Project stakeholders are individuals and organizations that are either directly 
 | **Team Response** | Prioritize simplicity and a clean mobile UI. Conduct user testing with actual scout leaders (as already done) to validate design decisions and address usability issues early. |
 
 
-### 3. Financial Accounting Agent for the ZTS
-
-| | |
-|---|---|
-| **Status** | Negative |
-| **Expectations & Interests** | Currently handles financial reporting for the association, likely billing hours for this work. Expects to continue in this role. |
-| **Possible Conflicts** | If the system includes financial report management (upload, archive, review), the accounting agent may lose clients or bill fewer hours as the association becomes more self-sufficient. |
-| **Team Response** | Position the system as a tool that complements rather than replaces professional accounting. Financial reports can still be prepared externally and simply uploaded to the system for archiving. Engage this stakeholder early to minimize opposition. |
 
 
-### 4. Slovenian Ministry for Digitalisation
+### 3. Slovenian Ministry for Digitalisation
 
 | | |
 |---|---|
@@ -46,7 +38,7 @@ Project stakeholders are individuals and organizations that are either directly 
 | **Team Response** | Monitor relevant digitalisation guidelines and ensure the application meets any applicable public-sector digital standards. A positive relationship with this stakeholder could open doors to funding or official recognition. |
 
 
-### 5. Project Team (Svenšek, Kodermac, Remec, Ahlin)
+### 4. Project Team (Svenšek, Kodermac, Remec, Ahlin)
 
 | | |
 |---|---|
@@ -57,7 +49,7 @@ Project stakeholders are individuals and organizations that are either directly 
 | **Team Response** | Maintain a clear and prioritized backlog. Use sprints to deliver incrementally and review scope regularly. Communicate openly with the ZTS client about what is and is not feasible within the timeline. |
 
 
-### 6. Digital Service Providers (Hosting, Infrastructure)
+### 5. Digital Service Providers (Hosting, Infrastructure)
 
 | | |
 |---|---|
@@ -66,6 +58,15 @@ Project stakeholders are individuals and organizations that are either directly 
 | **Benefits** | New paying client for hosting and storage services. |
 | **Possible Conflicts** | Vendor lock-in could become a concern if the association becomes dependent on a specific provider. Cost may become a factor once the project moves beyond the academic phase. |
 | **Team Response** | Design the architecture to be provider-agnostic where possible. Document infrastructure choices clearly so the ZTS can manage or migrate services independently after handover. |
+
+### 6. Financial Accounting Agent for the ZTS
+
+| | |
+|---|---|
+| **Status** | Negative |
+| **Expectations & Interests** | Currently handles financial reporting for the association, likely billing hours for this work. Expects to continue in this role. |
+| **Possible Conflicts** | If the system includes financial report management (upload, archive, review), the accounting agent may lose clients or bill fewer hours as the association becomes more self-sufficient. |
+| **Team Response** | Position the system as a tool that complements rather than replaces professional accounting. Financial reports can still be prepared externally and simply uploaded to the system for archiving. Engage this stakeholder early to minimize opposition. |
 
 
 ### 7. European Union (GDPR Enforcer)
