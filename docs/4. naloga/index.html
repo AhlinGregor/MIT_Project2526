@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>⚜ Skavtski Arhiv</title>
+<title>Skavtski Arhiv</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
@@ -24,11 +24,11 @@ body{font-family:'Lora',Georgia,serif;background:var(--parchment);color:var(--te
 ::-webkit-scrollbar{width:8px;height:8px}
 ::-webkit-scrollbar-track{background:var(--parchment-dark)}
 ::-webkit-scrollbar-thumb{background:var(--green-mid);border-radius:4px}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeUp{from{opacity:0}to{opacity:1}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.anim{animation:fadeUp .28s ease}
+.anim{animation:none}
 
 /* ── LAYOUT ── */
 #app-shell{display:flex;flex-direction:column;min-height:100vh}
@@ -114,7 +114,7 @@ hr.div{border:none;border-top:1px solid var(--border-light);margin:22px 0}
 #login-page::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(78,130,40,.25) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(168,124,18,.15) 0%,transparent 50%)}
 .login-card{background:var(--cream);border-radius:18px;padding:46px 42px;width:100%;max-width:390px;box-shadow:0 20px 60px rgba(0,0,0,.35);position:relative;z-index:1;animation:fadeUp .38s ease}
 .login-logo{text-align:center;margin-bottom:30px}
-.login-logo .emb{font-size:2.8rem;display:block;margin-bottom:8px}
+.login-logo .emb{display:none}
 .login-logo h1{font-family:'Playfair Display',serif;font-size:1.55rem;color:var(--green-dark);font-weight:700}
 .login-logo p{color:var(--text-muted);font-size:.83rem;margin-top:4px;font-style:italic}
 .login-hint{background:var(--amber-pale);border:1px solid var(--amber-light);border-radius:var(--r);padding:9px 13px;font-size:.78rem;color:var(--amber);margin-bottom:18px;line-height:1.55}
@@ -124,14 +124,14 @@ hr.div{border:none;border-top:1px solid var(--border-light);margin:22px 0}
    DASHBOARD
 ──────────────────────────────────────── */
 .dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:6px}
-.dash-card{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:30px 26px;cursor:pointer;transition:all .22s;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+.dash-card{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:24px 24px;cursor:pointer;transition:all .16s;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
 .dash-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--green);transition:height .2s}
-.dash-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.dash-card:hover{box-shadow:var(--shadow);border-color:var(--green-light)}
 .dash-card:hover::before{height:6px}
 .dash-card.dc-amb::before{background:var(--amber-mid)}
 .dash-card.dc-red::before{background:var(--red-light)}
 .dash-card.dc-blue::before{background:var(--blue)}
-.dc-icon{font-size:2.3rem;margin-bottom:14px;display:block}
+.dc-icon{display:none}
 .dash-card h2{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--green-dark);margin-bottom:7px;font-weight:700}
 .dash-card.dc-amb h2{color:var(--amber)}
 .dash-card.dc-red h2{color:var(--red)}
@@ -162,7 +162,7 @@ hr.div{border:none;border-top:1px solid var(--border-light);margin:22px 0}
 .tree-folder:hover{background:var(--parchment-mid)}
 .tree-folder .tf-arrow{font-size:.72rem;color:var(--text-muted);transition:transform .18s;width:12px;text-align:center;flex-shrink:0}
 .tree-folder.open .tf-arrow{transform:rotate(90deg)}
-.tree-folder .tf-icon{font-size:1rem;flex-shrink:0}
+.tree-folder .tf-icon{display:none}
 .tree-folder .tf-count{margin-left:auto;font-size:.7rem;background:var(--parchment-dark);color:var(--text-muted);padding:1px 6px;border-radius:9px}
 .tree-children{overflow:hidden}
 .tree-indent-1{padding-left:18px}
@@ -170,7 +170,7 @@ hr.div{border:none;border-top:1px solid var(--border-light);margin:22px 0}
 .tree-indent-3{padding-left:54px}
 .tree-report{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:var(--r);cursor:pointer;font-size:.85rem;color:var(--text-mid);transition:all .14s;margin-bottom:1px}
 .tree-report:hover{background:var(--green-pale);color:var(--green)}
-.tree-report .tr-icon{font-size:.9rem;flex-shrink:0}
+.tree-report .tr-icon{display:none}
 .tree-report .tr-title{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tree-report .tr-year{font-size:.72rem;color:var(--text-muted);margin-left:auto;flex-shrink:0}
 
@@ -178,7 +178,7 @@ hr.div{border:none;border-top:1px solid var(--border-light);margin:22px 0}
 .flat-list{display:flex;flex-direction:column;gap:10px}
 .report-card{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:16px 20px;cursor:pointer;transition:all .17s;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:16px}
 .report-card:hover{box-shadow:var(--shadow);border-color:var(--green-light);transform:translateX(2px)}
-.rc-ico{font-size:1.5rem;width:42px;height:42px;background:var(--green-pale);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rc-ico{font-size:.72rem;font-weight:700;letter-spacing:.05em;width:48px;height:28px;background:var(--green-pale);border:1px solid #B8D4A8;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--green)}
 .rc-info{flex:1;min-width:0}
 .rc-title{font-family:'Playfair Display',serif;font-size:.98rem;font-weight:600;color:var(--text);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rc-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:.76rem;color:var(--text-muted)}
@@ -216,7 +216,7 @@ hr.div{border:none;border-top:1px solid var(--border-light);margin:22px 0}
 .type-card{background:var(--cream);border:2px solid var(--border-light);border-radius:var(--rl);padding:18px 15px;cursor:pointer;transition:all .18s;text-align:center}
 .type-card:hover{border-color:var(--green-light);background:var(--green-pale);transform:translateY(-2px)}
 .type-card.sel{border-color:var(--green);background:var(--green-pale);box-shadow:0 0 0 3px rgba(37,77,20,.1)}
-.tc-icon{font-size:1.7rem;margin-bottom:7px;display:block}
+.tc-icon{display:none}
 .tc-name{font-size:.87rem;font-weight:600;color:var(--text-mid)}
 
 .chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:8px}
@@ -232,7 +232,7 @@ hr.div{border:none;border-top:1px solid var(--border-light);margin:22px 0}
 .review-field .rv{font-size:.88rem;color:var(--text-mid)}
 
 .confirm-banner{background:var(--green-pale);border:1px solid var(--green-mid);border-radius:var(--rl);padding:32px;text-align:center}
-.confirm-banner .cb-ico{font-size:2.8rem;margin-bottom:10px;display:block}
+.confirm-banner .cb-ico{display:none}
 .confirm-banner h3{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--green-dark);margin-bottom:6px}
 .confirm-banner p{font-size:.86rem;color:var(--text-muted);font-style:italic}
 
@@ -243,7 +243,7 @@ hr.div{border:none;border-top:1px solid var(--border-light);margin:22px 0}
 .tmpl-section-hdr{font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;padding-bottom:5px;border-bottom:1px solid var(--border-light);display:block}
 .tmpl-card{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:16px 20px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow-sm);transition:box-shadow .18s;margin-bottom:10px}
 .tmpl-card:hover{box-shadow:var(--shadow)}
-.tmpl-ico{font-size:1.7rem;width:44px;height:44px;background:var(--parchment);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.tmpl-ico{font-size:.72rem;font-weight:700;letter-spacing:.05em;width:48px;height:28px;background:var(--parchment);border:1px solid var(--border-light);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--text-muted)}
 .tmpl-info{flex:1;min-width:0}
 .tmpl-info h3{font-family:'Playfair Display',serif;font-size:.97rem;font-weight:600;color:var(--text);margin-bottom:3px}
 .tmpl-info p{font-size:.78rem;color:var(--text-muted);font-style:italic}
@@ -254,7 +254,7 @@ hr.div{border:none;border-top:1px solid var(--border-light);margin:22px 0}
 .fi-name{flex:1;font-weight:600;color:var(--text-mid)}
 .fi-type{font-size:.72rem;background:var(--border-light);padding:2px 8px;border-radius:9px;color:var(--text-muted)}
 .icon-picker{display:flex;gap:7px;flex-wrap:wrap}
-.ip-opt{width:42px;height:42px;border:2px solid var(--border-light);background:var(--parchment);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;cursor:pointer;transition:all .15s}
+.ip-opt{width:46px;height:34px;border:2px solid var(--border-light);background:var(--parchment);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;letter-spacing:.04em;cursor:pointer;transition:all .15s}
 .ip-opt:hover{border-color:var(--green)}
 .ip-opt.sel{border-color:var(--green);background:var(--green-pale)}
 .create-specific{background:var(--blue-pale);border:1px solid #A8C4E0;border-radius:var(--rl);padding:18px 20px;display:flex;align-items:center;gap:14px;margin-top:16px}
@@ -273,6 +273,12 @@ hr.div{border:none;border-top:1px solid var(--border-light);margin:22px 0}
 .tab.active{color:var(--green);border-bottom-color:var(--green)}
 
 /* ATTENDANCE MATRIX */
+.att-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.att-actions{display:flex;gap:8px;flex-wrap:wrap}
+.month-nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.month-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--text);min-width:132px;text-align:center;text-transform:capitalize}
+.month-select{height:34px;border:1px solid var(--border-light);border-radius:var(--r);background:var(--cream);color:var(--text-mid);font-family:'Lora',serif;font-size:.82rem;padding:0 9px;text-transform:capitalize}
+.month-count{font-size:.78rem;color:var(--text-muted);white-space:nowrap}
 .matrix-wrap{overflow-x:auto;border:1px solid var(--border-light);border-radius:var(--rl);background:var(--cream);box-shadow:var(--shadow-sm)}
 .matrix-table{border-collapse:collapse;min-width:100%;font-size:.82rem}
 .matrix-table th{padding:9px 10px;background:var(--green-dark);color:#C8DFB8;font-weight:600;font-size:.76rem;text-align:center;white-space:nowrap;position:sticky;top:0;z-index:2}
@@ -281,18 +287,21 @@ hr.div{border:none;border-top:1px solid var(--border-light);margin:22px 0}
 .matrix-table td.col-member{text-align:left;position:sticky;left:0;background:var(--cream);z-index:1;border-right:1px solid var(--border-light);font-weight:600;font-size:.84rem;padding:7px 12px}
 .matrix-table tr:nth-child(even) td.col-member{background:#FAF7EF}
 .matrix-table tr:hover td{background:var(--green-pale)!important}
-.att-cell{width:34px;height:32px;cursor:pointer;border-radius:4px;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:.85rem;transition:all .13s;border:1px solid transparent}
+.att-cell{width:34px;height:32px;cursor:pointer;border-radius:4px;display:flex;align-items:center;justify-content:center;margin:0 auto;font-size:.85rem;transition:background .13s,border-color .13s,color .13s;border:1px solid transparent}
 .att-cell.present{background:var(--green-pale);border-color:var(--green-mid);color:var(--green)}
-.att-cell.absent{background:var(--red-pale);border-color:#D48080;color:var(--red-light)}
-.att-cell.unknown{background:var(--parchment);border-color:var(--border-light);color:var(--border)}
-.att-cell:hover{transform:scale(1.15)}
+.att-cell.absent{background:#FBE7E2;border-color:var(--red-light);color:var(--red-light);font-weight:700}
+.att-cell:hover{border-color:var(--green-light)}
+.matrix-table th.meeting-new,.matrix-table td.meeting-new{background:var(--amber-pale)!important}
+.matrix-table th.meeting-new{color:var(--amber);box-shadow:inset 0 -3px 0 var(--amber-light)}
+.att-cell.meeting-new{box-shadow:0 0 0 2px rgba(168,124,18,.18)}
+.new-meeting-note{background:var(--amber-pale);border:1px solid var(--amber-light);border-radius:var(--r);padding:8px 12px;margin-bottom:12px;font-size:.82rem;color:var(--amber)}
 .att-pct{font-size:.76rem;color:var(--text-muted);text-align:right;padding:5px 12px;background:var(--parchment);border-top:1px solid var(--border-light);border-radius:0 0 var(--rl) var(--rl)}
 
 /* SKILLS */
 .skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px}
 .skill-card{background:var(--cream);border:1px solid var(--border-light);border-radius:var(--rl);padding:18px 16px;cursor:pointer;transition:all .18s;box-shadow:var(--shadow-sm);text-align:center}
 .skill-card:hover{box-shadow:var(--shadow);transform:translateY(-2px);border-color:var(--green-light)}
-.skill-card .sk-icon{font-size:2rem;margin-bottom:8px;display:block}
+.skill-card .sk-icon{display:none}
 .skill-card .sk-name{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:6px}
 .skill-card .sk-prog{font-size:.75rem;color:var(--text-muted);margin-bottom:8px}
 .skill-pbar{height:4px;background:var(--parchment-dark);border-radius:2px;overflow:hidden;margin-top:4px}
@@ -340,7 +349,7 @@ hr.div{border:none;border-top:1px solid var(--border-light);margin:22px 0}
 
 /* EMPTY STATE */
 .empty{text-align:center;padding:44px 20px;color:var(--text-muted)}
-.empty .ei{font-size:2.6rem;margin-bottom:10px;display:block}
+.empty .ei{display:none}
 .empty p{font-style:italic;font-size:.88rem}
 
 /* SECTION LABEL */
@@ -393,6 +402,8 @@ const S = {
   selSkill: null,
   praiseFilter: 'all',
   groupSearch: '',
+  highlightMeeting: null,
+  attMonth: null,
 };
 
 // ═══════════════════════════════════════════════
@@ -407,9 +418,9 @@ const USERS = [
 const ACTIVITY_SUBTYPES = ['Začetni zbor','Rodov dan','Čajanka','Zimovanje','Dan tabornikov','Zaključek','Taborjenje'];
 const FUNCTION_ROLES = ['Starešina','Načelnik','RR Načelnik','PP Načelnik','GG Načelnik','MČ Načelnik','PR'];
 const FUNC_TYPES = [
-  { id:'letno',    name:'Letno poročilo', icon:'📋' },
-  { id:'nacrt',    name:'Načrt dela',     icon:'📅' },
-  { id:'financno', name:'Finančno poročilo', icon:'💰' },
+  { id:'letno',    name:'Letno poročilo', icon:'LET' },
+  { id:'nacrt',    name:'Načrt dela',     icon:'NAC' },
+  { id:'financno', name:'Finančno poročilo', icon:'FIN' },
 ];
 
 // Templates — general (locked) + role-specific (editable)
@@ -458,16 +469,16 @@ const BASE_FIELDS = {
 
 // General templates (cannot delete)
 const GENERAL_TEMPLATES = [
-  { id:'g-dejavnost', name:'Poročilo o dejavnosti', cat:'dejavnost', funcType:null, role:null, icon:'🏕️', general:true, fields: BASE_FIELDS.dejavnost.map(f=>({...f})) },
-  { id:'g-letno',     name:'Splošno letno poročilo', cat:'funkcija', funcType:'letno',    role:null, icon:'📋', general:true, fields: BASE_FIELDS.letno.map(f=>({...f})) },
-  { id:'g-nacrt',     name:'Splošni načrt dela',     cat:'funkcija', funcType:'nacrt',    role:null, icon:'📅', general:true, fields: BASE_FIELDS.nacrt.map(f=>({...f})) },
-  { id:'g-financno',  name:'Splošno finančno poročilo', cat:'funkcija', funcType:'financno', role:null, icon:'💰', general:true, fields: BASE_FIELDS.financno.map(f=>({...f})) },
-  { id:'g-vod',       name:'Poročilo voda',          cat:'vod',      funcType:null, role:null, icon:'👥', general:true, fields: BASE_FIELDS.vod.map(f=>({...f})) },
+  { id:'g-dejavnost', name:'Poročilo o dejavnosti', cat:'dejavnost', funcType:null, role:null, icon:'DEJ', general:true, fields: BASE_FIELDS.dejavnost.map(f=>({...f})) },
+  { id:'g-letno',     name:'Splošno letno poročilo', cat:'funkcija', funcType:'letno',    role:null, icon:'LET', general:true, fields: BASE_FIELDS.letno.map(f=>({...f})) },
+  { id:'g-nacrt',     name:'Splošni načrt dela',     cat:'funkcija', funcType:'nacrt',    role:null, icon:'NAC', general:true, fields: BASE_FIELDS.nacrt.map(f=>({...f})) },
+  { id:'g-financno',  name:'Splošno finančno poročilo', cat:'funkcija', funcType:'financno', role:null, icon:'FIN', general:true, fields: BASE_FIELDS.financno.map(f=>({...f})) },
+  { id:'g-vod',       name:'Poročilo voda',          cat:'vod',      funcType:null, role:null, icon:'VOD', general:true, fields: BASE_FIELDS.vod.map(f=>({...f})) },
 ];
 
 // Role-specific templates (user-created overrides)
 const ROLE_TEMPLATES = [
-  { id:'r-staresina-letno', name:'Letno poročilo starešine', cat:'funkcija', funcType:'letno', role:'Starešina', icon:'📋', general:false,
+  { id:'r-staresina-letno', name:'Letno poročilo starešine', cat:'funkcija', funcType:'letno', role:'Starešina', icon:'LET', general:false,
     fields:[
       {id:'f1',name:'Vod in rodovina',type:'Besedilo'},
       {id:'f2',name:'Šolsko leto',type:'Besedilo'},
@@ -476,7 +487,7 @@ const ROLE_TEMPLATES = [
       {id:'f5',name:'Dosežki in priznanja',type:'Dolgo besedilo'},
       {id:'f6',name:'Izzivi in priporočila',type:'Dolgo besedilo'},
     ]},
-  { id:'r-staresina-nacrt', name:'Načrt dela starešine', cat:'funkcija', funcType:'nacrt', role:'Starešina', icon:'📅', general:false,
+  { id:'r-staresina-nacrt', name:'Načrt dela starešine', cat:'funkcija', funcType:'nacrt', role:'Starešina', icon:'NAC', general:false,
     fields:[
       {id:'f1',name:'Vod in rodovina',type:'Besedilo'},
       {id:'f2',name:'Šolsko leto',type:'Besedilo'},
@@ -485,7 +496,7 @@ const ROLE_TEMPLATES = [
       {id:'f5',name:'Upravljanje vodnikov',type:'Dolgo besedilo'},
       {id:'f6',name:'Proračun in viri',type:'Dolgo besedilo'},
     ]},
-  { id:'r-nacelnik-letno', name:'Letno poročilo načelnika', cat:'funkcija', funcType:'letno', role:'Načelnik', icon:'📋', general:false,
+  { id:'r-nacelnik-letno', name:'Letno poročilo načelnika', cat:'funkcija', funcType:'letno', role:'Načelnik', icon:'LET', general:false,
     fields:[
       {id:'f1',name:'Naziv funkcije',type:'Besedilo'},
       {id:'f2',name:'Šolsko leto',type:'Besedilo'},
@@ -559,45 +570,45 @@ let MEETINGS = [
 
 // Skills
 const SKILLS = [
-  { id:'tabornik', name:'Tabornik', icon:'⛺', reqs:[
+  { id:'tabornik', name:'Tabornik', icon:'TAB', reqs:[
     { id:'r1', text:'Zna zavezati 5 osnovnih vozlov' },
     { id:'r2', text:'Postavi šotor samostojno' },
     { id:'r3', text:'Pozna taborniški zakon in obljubo' },
     { id:'r4', text:'Opravi 3 zbore brez zamude' },
   ]},
-  { id:'plavalec', name:'Plavalec', icon:'🏊', reqs:[
+  { id:'plavalec', name:'Plavalec', icon:'PLA', reqs:[
     { id:'r1', text:'Preplava 100m brez postanka' },
     { id:'r2', text:'Pozna pravila varnosti pri vodi' },
     { id:'r3', text:'Osnove reševanja utapljajočega' },
   ]},
-  { id:'gozd_sledar', name:'Gozdni sledar', icon:'🌲', reqs:[
+  { id:'gozd_sledar', name:'Gozdni sledar', icon:'GOZ', reqs:[
     { id:'r1', text:'Orientacija z busolom' },
     { id:'r2', text:'Prepozna 10 rastlin in živali' },
     { id:'r3', text:'Opravi nočni orientacijski pohod' },
     { id:'r4', text:'Postavi bivak iz naravnih materialov' },
   ]},
-  { id:'nav_zvezda', name:'Navigacijska zvezda', icon:'⭐', reqs:[
+  { id:'nav_zvezda', name:'Navigacijska zvezda', icon:'NAV', reqs:[
     { id:'r1', text:'Bere zemljevid 1:25000' },
     { id:'r2', text:'Navigacija brez kompasa podnevi' },
     { id:'r3', text:'Navigacija po zvezdah ponoči' },
     { id:'r4', text:'Vodi skupino na 5km pohodu' },
   ]},
-  { id:'bolnicar', name:'Bolničar', icon:'🚑', reqs:[
+  { id:'bolnicar', name:'Bolničar', icon:'BOL', reqs:[
     { id:'r1', text:'Obveza ran in opornic' },
     { id:'r2', text:'Reanimacija – osnove CPR' },
     { id:'r3', text:'Prenašanje ponesrečenca' },
   ]},
-  { id:'kuhar', name:'Kuhač', icon:'🍳', reqs:[
+  { id:'kuhar', name:'Kuhač', icon:'KUH', reqs:[
     { id:'r1', text:'Pripravi obrok za 6+ oseb' },
     { id:'r2', text:'Kuha na ognju ali gorilniku' },
     { id:'r3', text:'Pozna pravila higiene pri kuhanju' },
   ]},
-  { id:'gasilec', name:'Gasilec', icon:'🔥', reqs:[
+  { id:'gasilec', name:'Gasilec', icon:'GAS', reqs:[
     { id:'r1', text:'Prižge ogenj na 3 načine brez vžigalic' },
     { id:'r2', text:'Varno ugasi ogenj' },
     { id:'r3', text:'Pozna pravila požarne varnosti' },
   ]},
-  { id:'iskra', name:'Vnetljiva iskra', icon:'✨', reqs:[
+  { id:'iskra', name:'Vnetljiva iskra', icon:'ISK', reqs:[
     { id:'r1', text:'Organizira samostojno aktivnost' },
     { id:'r2', text:'Pomaga novemu članu pri uvajanju' },
     { id:'r3', text:'Prejme pohvalo vodnika' },
@@ -674,9 +685,37 @@ function getAge(bday) {
   return a;
 }
 function attPct(m) {
-  const vals = MEETINGS.map(mt=>m.att[mt.id]).filter(v=>v!==null&&v!==undefined);
-  const pres = vals.filter(v=>v===true);
-  return vals.length ? Math.round(pres.length/vals.length*100) : 0;
+  const vals = MEETINGS.map(mt=>m.att[mt.id]!==false);
+  const pres = vals.filter(Boolean).length;
+  return vals.length ? Math.round(pres/vals.length*100) : 0;
+}
+function attPctForMeetings(m, meetings) {
+  const vals = meetings.map(mt=>m.att[mt.id]!==false);
+  const pres = vals.filter(Boolean).length;
+  return vals.length ? Math.round(pres/vals.length*100) : 0;
+}
+function monthKey(date) { return String(date || '').slice(0, 7); }
+function monthLabel(key) {
+  if (!key) return '';
+  const [year, month] = key.split('-').map(Number);
+  return new Date(year, month - 1, 1).toLocaleDateString('sl-SI', { month:'long', year:'numeric' });
+}
+function attendanceMonths() {
+  return [...new Set(MEETINGS.map(m=>monthKey(m.date)).filter(Boolean))].sort();
+}
+function activeAttendanceMonth() {
+  const months = attendanceMonths();
+  if (!months.length) return '';
+  const highlighted = MEETINGS.find(m=>m.id===S.highlightMeeting);
+  const preferred = S.attMonth || (highlighted ? monthKey(highlighted.date) : null);
+  S.attMonth = preferred && months.includes(preferred) ? preferred : months[months.length - 1];
+  return S.attMonth;
+}
+function visibleAttendanceMeetings() {
+  const key = activeAttendanceMonth();
+  return MEETINGS
+    .filter(m=>monthKey(m.date)===key)
+    .sort((a,b)=>a.date.localeCompare(b.date));
 }
 function skillEarned(m, skillId) {
   const skill=SKILLS.find(s=>s.id===skillId); if(!skill) return false;
@@ -689,8 +728,44 @@ function skillPct(m, skillId) {
   const done=skill.reqs.filter(r=>prog[r.id]===true).length;
   return Math.round(done/skill.reqs.length*100);
 }
+function cloneData(obj) { return JSON.parse(JSON.stringify(obj)); }
+function escHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, ch=>({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]));
+}
+function pageFrame(html) { return `<div class="page-wrap anim">${html}</div>`; }
+function disabledAttr(isDisabled) { return isDisabled ? 'disabled ' : ''; }
+function pctColor(pct) { return pct>=80?'var(--green)':pct>=50?'var(--amber-light)':'var(--red-light)'; }
+function findTemplateById(id) {
+  return GENERAL_TEMPLATES.find(t=>t.id===id) || allRoleTemplates.find(t=>t.id===id);
+}
+function setContent(html) { setHTML('content', pageFrame(html)); }
+function refreshReportBuilder() { setContent(buildReportNew()); }
+function refreshTemplates() { setContent(buildTemplates()); }
+function refreshTemplateEditor() { setContent(buildTmplEditor()); }
 function catLabel(cat) { return {dejavnost:'Dejavnost',funkcija:'Funkcija',vod:'Poročilo voda'}[cat]||cat; }
-function catIcon(cat) { return {dejavnost:'🏕️',funkcija:'📋',vod:'👥'}[cat]||'📄'; }
+function catIcon(cat) { return {dejavnost:'DEJ',funkcija:'FUN',vod:'VOD'}[cat]||'POR'; }
+function buildTemplatePreview(tmpl, canNext) {
+  if (!tmpl || !canNext) return '';
+  return `Predloga: <b>${tmpl.name}</b>${!tmpl.general?` <span class="badge bb" style="margin-left:6px">Posamična</span>`:''}`;
+}
+function updateReportSelectionUI() {
+  document.querySelectorAll('[data-r-cat]').forEach(el=>el.classList.toggle('sel', el.dataset.rCat===S.rCat));
+  document.querySelectorAll('[data-r-subtype]').forEach(el=>el.classList.toggle('sel', el.dataset.rSubtype===S.rSubtype));
+  document.querySelectorAll('[data-r-role]').forEach(el=>el.classList.toggle('sel', el.dataset.rRole===S.rRole));
+  document.querySelectorAll('[data-r-func-type]').forEach(el=>el.classList.toggle('sel', el.dataset.rFuncType===S.rFuncType));
+  const catNext = document.getElementById('r-next-category');
+  if (catNext) catNext.disabled = !S.rCat;
+  const canNext = S.rCat==='vod' || (S.rCat==='dejavnost'&&S.rSubtype) || (S.rCat==='funkcija'&&S.rRole&&S.rFuncType);
+  const specNext = document.getElementById('r-next-specific');
+  if (specNext) specNext.disabled = !canNext;
+  const preview = document.getElementById('r-template-preview');
+  if (preview) {
+    const tmpl = S.rCat==='vod' ? resolveTmpl('vod') : (canNext ? resolveTmpl(S.rCat, S.rRole, S.rFuncType) : null);
+    const html = buildTemplatePreview(tmpl, canNext);
+    preview.innerHTML = html;
+    preview.style.display = html ? 'block' : 'none';
+  }
+}
 
 // ═══════════════════════════════════════════════
 // RENDER ENGINE — partial updates
@@ -708,6 +783,7 @@ function setHTML(id, html) {
 }
 
 function renderPage() {
+  if (!S.user && S.page !== 'login') S.page = 'login';
   const tc = document.getElementById('topbar-container');
   const ct = document.getElementById('content');
   if (S.page === 'login') {
@@ -716,16 +792,17 @@ function renderPage() {
     return;
   }
   tc.innerHTML = buildTopbar();
-  switch(S.page) {
-    case 'dashboard':  ct.innerHTML = `<div class="page-wrap anim">${buildDashboard()}</div>`; break;
-    case 'archive':    ct.innerHTML = `<div class="page-wrap anim">${buildArchivePage()}</div>`; break;
-    case 'arch-view':  ct.innerHTML = `<div class="page-wrap anim">${buildReportDetail()}</div>`; break;
-    case 'report-new': ct.innerHTML = `<div class="page-wrap anim">${buildReportNew()}</div>`; break;
-    case 'templates':  ct.innerHTML = `<div class="page-wrap anim">${buildTemplates()}</div>`; break;
-    case 'tmpl-edit':  ct.innerHTML = `<div class="page-wrap anim">${buildTmplEditor()}</div>`; break;
-    case 'group':      ct.innerHTML = `<div class="page-wrap anim">${buildGroupPage()}</div>`; break;
-    default: ct.innerHTML = buildLogin();
-  }
+  const pageBuilders = {
+    dashboard: buildDashboard,
+    archive: buildArchivePage,
+    'arch-view': buildReportDetail,
+    'report-new': buildReportNew,
+    templates: buildTemplates,
+    'tmpl-edit': buildTmplEditor,
+    group: buildGroupPage,
+  };
+  const build = pageBuilders[S.page] || buildDashboard;
+  ct.innerHTML = pageFrame(build());
 }
 
 // Partial: archive results only
@@ -737,13 +814,15 @@ function updateArchResults() {
 }
 
 // Partial: group tab content only
-function updateGroupTab() {
+function updateGroupTab({animate=true}={}) {
   const el = document.getElementById('group-tab-content');
   if (el) {
     el.innerHTML = buildGroupTabContent();
-    el.classList.remove('anim');
-    void el.offsetWidth;
-    el.classList.add('anim');
+    if (animate) {
+      el.classList.remove('anim');
+      void el.offsetWidth;
+      el.classList.add('anim');
+    }
   }
 }
 
@@ -758,7 +837,7 @@ function buildTopbar() {
   }[S.page]||'';
   const isAdmin = S.user&&S.user.role==='admin';
   return `<div id="topbar">
-    <div class="tb-logo" onclick="navigate('dashboard')"><span>⚜</span> Skavtski Arhiv</div>
+    <div class="tb-logo" onclick="navigate('dashboard')">Skavtski Arhiv</div>
     ${bc?`<div class="tb-breadcrumb"><span class="crumb">›</span><b>${bc}</b></div>`:''}
     <div class="tb-spacer"></div>
     <div class="tb-user">
@@ -776,7 +855,7 @@ function buildLogin() {
   return `<div id="login-page">
     <div class="login-card">
       <div class="login-logo">
-        <span class="emb">⚜</span>
+        <span class="emb"></span>
         <h1>Skavtski Arhiv</h1>
         <p>Sistem za arhiviranje in upravljanje vodov</p>
       </div>
@@ -785,11 +864,11 @@ function buildLogin() {
         Vodnik: <b>petra</b> / <b>tabornik</b><br>
         Administrator: <b>admin</b> / <b>admin</b>
       </div>
-      <div class="fg"><label>Uporabniško ime</label>
+      <div class="fg"><label for="li-u">Uporabniško ime</label>
         <input class="fc" id="li-u" type="text" placeholder="Vnesite uporabniško ime" autocomplete="username"></div>
-      <div class="fg"><label>Geslo</label>
+      <div class="fg"><label for="li-p">Geslo</label>
         <input class="fc" id="li-p" type="password" placeholder="Vnesite geslo" autocomplete="current-password"></div>
-      <div class="login-err" id="li-err">❌ Napačno uporabniško ime ali geslo.</div>
+      <div class="login-err" id="li-err">Napačno uporabniško ime ali geslo.</div>
       <button class="btn btn-primary btn-lg" style="width:100%;justify-content:center" onclick="doLogin()">Prijava →</button>
     </div>
   </div>`;
@@ -816,19 +895,19 @@ function buildDashboard() {
   </div>
   <div class="dash-grid">
     <div class="dash-card" onclick="navigate('archive')">
-      <span class="dc-icon">📁</span><h2>Arhiv</h2>
+      <span class="dc-icon"></span><h2>Arhiv</h2>
       <p>Pregledujte pretekla poročila in iščite po kategorijah, vlogah in letnicah.</p>
     </div>
     <div class="dash-card dc-amb" onclick="navigate('report-new')">
-      <span class="dc-icon">📝</span><h2>Oddaja poročila</h2>
+      <span class="dc-icon"></span><h2>Oddaja poročila</h2>
       <p>Ustvarite novo poročilo iz predloge, shranite osnutek in ga oddajte v arhiv.</p>
     </div>
     <div class="dash-card dc-red" onclick="navigate('group')">
-      <span class="dc-icon">👥</span><h2>Moj vod</h2>
+      <span class="dc-icon"></span><h2>Moj vod</h2>
       <p>Upravljajte prisotnost, veščine in pohvale članov ter izvozite podatke v poročilo.</p>
     </div>
     ${isAdmin?`<div class="dash-card dc-blue" onclick="navigate('templates')">
-      <span class="dc-icon">⚙️</span><h2>Upravljanje predlog</h2>
+      <span class="dc-icon"></span><h2>Upravljanje predlog</h2>
       <p>Ustvarjajte in urejajte predloge za poročila. Dostopno le administratorjem.</p>
     </div>`:''}
   </div>
@@ -844,10 +923,10 @@ function buildDashboard() {
           <span class="badge bgr">${catLabel(r.cat)}</span>
           ${r.subtype?`<span class="badge ba">${r.subtype}</span>`:''}
           ${r.role?`<span class="badge bb">${r.role}</span>`:''}
-          <span>· ✍️ ${r.author}</span>
+          <span>Avtor: ${r.author}</span>
         </div>
       </div>
-      <div class="rc-right"><span class="badge bg">✓ Oddano</span><span style="font-size:.73rem;color:var(--text-muted)">${r.year}</span></div>
+      <div class="rc-right"><span class="badge bg">Oddano</span><span style="font-size:.73rem;color:var(--text-muted)">${r.year}</span></div>
     </div>`).join('')}
   </div>`;
 }
@@ -862,7 +941,7 @@ function buildArchivePage() {
     <p>Brskanje in iskanje po arhiviranih poročilih</p>
   </div>
   <div class="arch-search-bar">
-    <input type="text" placeholder="🔍 Iskanje po naslovu, avtorju, vrsti..." value="${S.archFilter.query||''}"
+    <input type="text" placeholder="Iskanje po naslovu, avtorju, vrsti..." value="${S.archFilter.query||''}"
       id="arch-search-input" oninput="archSearchInput(this.value)">
     <button class="btn btn-secondary" onclick="navigate('report-new')">+ Novo poročilo</button>
   </div>
@@ -885,12 +964,12 @@ function buildArchSidebar() {
   <div class="sb-section">
     <h3>Vrsta poročila</h3>
     <div class="fi${!f.type?' active':''}" onclick="archSetFilter('type',null)">
-      📄 Vsa poročila <span class="fc-count">${REPORTS.length}</span>
+      Vsa poročila <span class="fc-count">${REPORTS.length}</span>
     </div>
     ${cats.map(c=>{
       const cnt = REPORTS.filter(r=>r.cat===c).length;
       return `<div class="fi${f.type===c?' active':''}" onclick="archSetFilter('type','${c}')">
-        ${catIcon(c)} ${catLabel(c)} <span class="fc-count">${cnt}</span>
+        ${catLabel(c)} <span class="fc-count">${cnt}</span>
       </div>`;
     }).join('')}
   </div>
@@ -961,10 +1040,10 @@ function buildArchFlat() {
           ${r.subtype?`<span class="badge ba">${r.subtype}</span>`:''}
           ${r.role?`<span class="badge bb">${r.role}</span>`:''}
           ${r.funcType?`<span class="badge bb">${FUNC_TYPES.find(ft=>ft.id===r.funcType)?.name||r.funcType}</span>`:''}
-          <span>· ✍️ ${r.author}</span>
+          <span>Avtor: ${r.author}</span>
         </div>
       </div>
-      <div class="rc-right"><span class="badge bg">✓ Oddano</span><span style="font-size:.72rem;color:var(--text-muted)">${r.year}</span></div>
+      <div class="rc-right"><span class="badge bg">Oddano</span><span style="font-size:.72rem;color:var(--text-muted)">${r.year}</span></div>
     </div>`).join('')}
   </div>`;
 }
@@ -980,7 +1059,7 @@ function buildArchTree() {
     html += `
     <div class="tree-folder${yOpen?' open':''}" onclick="archToggleFolder('${yId}')">
       <span class="tf-arrow">▶</span>
-      <span class="tf-icon">📁</span>
+      <span class="tf-icon"></span>
       <span>${year}</span>
       <span class="tf-count">${yReps.length}</span>
     </div>`;
@@ -995,7 +1074,7 @@ function buildArchTree() {
         <div class="tree-indent-1">
           <div class="tree-folder${dOpen?' open':''}" onclick="archToggleFolder('${dId}')">
             <span class="tf-arrow">▶</span>
-            <span class="tf-icon">🏕️</span>
+            <span class="tf-icon"></span>
             <span>Dejavnosti</span>
             <span class="tf-count">${dReps.length}</span>
           </div>`;
@@ -1011,7 +1090,7 @@ function buildArchTree() {
               const r = stReps[0];
               html += `<div class="tree-indent-2">
                 <div class="tree-report" onclick="navigate('arch-view',{viewReport:${r.id}})">
-                  <span class="tr-icon">📄</span>
+                  <span class="tr-icon"></span>
                   <span class="tr-title">${r.title}</span>
                   <span class="tr-year">${fmtDateShort(r.date)}</span>
                 </div></div>`;
@@ -1019,7 +1098,7 @@ function buildArchTree() {
               html += `
               <div class="tree-indent-2">
                 <div class="tree-folder${stOpen?' open':''}" onclick="archToggleFolder('${stId}')">
-                  <span class="tf-arrow">▶</span><span class="tf-icon">📂</span>
+                  <span class="tf-arrow">▶</span><span class="tf-icon"></span>
                   <span>${st}</span><span class="tf-count">${stReps.length}</span>
                 </div>`;
               if (stOpen) {
@@ -1027,7 +1106,7 @@ function buildArchTree() {
                 for (const r of stReps) {
                   html += `<div class="tree-indent-3">
                     <div class="tree-report" onclick="navigate('arch-view',{viewReport:${r.id}})">
-                      <span class="tr-icon">📄</span>
+                      <span class="tr-icon"></span>
                       <span class="tr-title">${r.title}</span>
                       <span class="tr-year">${fmtDateShort(r.date)}</span>
                     </div></div>`;
@@ -1049,7 +1128,7 @@ function buildArchTree() {
         <div class="tree-indent-1">
           <div class="tree-folder${fOpen?' open':''}" onclick="archToggleFolder('${fId}')">
             <span class="tf-arrow">▶</span>
-            <span class="tf-icon">📋</span>
+            <span class="tf-icon"></span>
             <span>Funkcija</span>
             <span class="tf-count">${fReps.length}</span>
           </div>`;
@@ -1071,7 +1150,7 @@ function buildArchTree() {
                 const ftName = FUNC_TYPES.find(ft=>ft.id===r.funcType)?.name||r.funcType||'';
                 html += `<div class="tree-indent-3">
                   <div class="tree-report" onclick="navigate('arch-view',{viewReport:${r.id}})">
-                    <span class="tr-icon">${FUNC_TYPES.find(ft=>ft.id===r.funcType)?.icon||'📄'}</span>
+                    <span class="tr-icon"></span>
                     <span class="tr-title">${r.title}</span>
                     <span class="tr-year">${fmtDateShort(r.date)}</span>
                   </div></div>`;
@@ -1092,7 +1171,7 @@ function buildArchTree() {
         <div class="tree-indent-1">
           <div class="tree-folder${vOpen?' open':''}" onclick="archToggleFolder('${vId}')">
             <span class="tf-arrow">▶</span>
-            <span class="tf-icon">👥</span>
+            <span class="tf-icon"></span>
             <span>Poročilo voda</span>
             <span class="tf-count">${vReps.length}</span>
           </div>`;
@@ -1100,7 +1179,7 @@ function buildArchTree() {
           for (const r of vReps) {
             html += `<div class="tree-indent-2">
               <div class="tree-report" onclick="navigate('arch-view',{viewReport:${r.id}})">
-                <span class="tr-icon">📄</span>
+                <span class="tr-icon"></span>
                 <span class="tr-title">${r.title}</span>
                 <span class="tr-year">${fmtDateShort(r.date)}</span>
               </div></div>`;
@@ -1131,26 +1210,25 @@ function buildReportDetail() {
   <button class="back-link" onclick="navigate('archive')">← Nazaj na arhiv</button>
   <div class="rdh">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
-      <span style="font-size:1.9rem">${catIcon(r.cat)}</span>
       <h1>${r.title}</h1>
     </div>
     <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px">
       <span class="badge bgr">${catLabel(r.cat)}</span>
       ${r.subtype?`<span class="badge ba">${r.subtype}</span>`:''}
       ${r.role?`<span class="badge bb">${r.role}</span>`:''}
-      ${ftObj?`<span class="badge bb">${ftObj.icon} ${ftObj.name}</span>`:''}
-      <span class="badge bg">✓ Oddano</span>
+      ${ftObj?`<span class="badge bb">${ftObj.name}</span>`:''}
+      <span class="badge bg">Oddano</span>
     </div>
     <div class="rdh-meta">
-      <div class="rdh-meta-item"><label>Avtor</label><span>✍️ ${r.author}</span></div>
-      <div class="rdh-meta-item"><label>Datum oddaje</label><span>📅 ${fmtDate(r.date)}</span></div>
+      <div class="rdh-meta-item"><label>Avtor</label><span>${r.author}</span></div>
+      <div class="rdh-meta-item"><label>Datum oddaje</label><span>${fmtDate(r.date)}</span></div>
       <div class="rdh-meta-item"><label>Leto</label><span>${r.year}</span></div>
       <div class="rdh-meta-item"><label>ID</label><span style="font-family:monospace;font-size:.78rem">#${String(r.id).padStart(4,'0')}</span></div>
     </div>
   </div>
   <div class="report-body">${r.body}</div>
   <div style="display:flex;gap:9px;margin-top:18px">
-    <button class="btn btn-primary" onclick="toast('📥 Prenos v PDF je simuliran.','amb')">↓ Prenesi PDF</button>
+    <button class="btn btn-primary" onclick="toast('Prenos v PDF je simuliran.','amb')">Prenesi PDF</button>
     <button class="btn btn-ghost" onclick="navigate('archive')">← Nazaj</button>
   </div>`;
 }
@@ -1179,27 +1257,26 @@ function buildReportNew() {
   <button class="back-link" onclick="navigate('dashboard')">← Nazaj</button>
   <div class="section-heading"><h1>Novo poročilo</h1><p>Sledite korakom za ustvarjanje in oddajo</p></div>
   <div class="stepper">${stepperHtml}</div>
-  ${body}`;
+  <div id="report-step-body">${body}</div>`;
 }
 
 function buildRStep1() {
   const cats = [
-    { id:'dejavnost', icon:'🏕️', name:'Dejavnost', desc:'Zbori, taborjenje, izleti, prireditve…' },
-    { id:'funkcija',  icon:'📋', name:'Funkcija',  desc:'Letno poročilo, načrt dela ali finančno poročilo po vlogi.' },
-    { id:'vod',       icon:'👥', name:'Poročilo voda', desc:'Pregled napredka in dosežkov voda.' },
+    { id:'dejavnost', name:'Dejavnost', desc:'Zbori, taborjenje, izleti, prireditve…' },
+    { id:'funkcija',  name:'Funkcija',  desc:'Letno poročilo, načrt dela ali finančno poročilo po vlogi.' },
+    { id:'vod',       name:'Poročilo voda', desc:'Pregled napredka in dosežkov voda.' },
   ];
   return `<div class="sub-section">
     <h3>1. Izberite kategorijo</h3>
     <div class="type-grid">
       ${cats.map(c=>`
-      <div class="type-card${S.rCat===c.id?' sel':''}" onclick="rSelectCat('${c.id}')">
-        <span class="tc-icon">${c.icon}</span>
+      <div class="type-card${S.rCat===c.id?' sel':''}" data-r-cat="${c.id}" onclick="rSelectCat('${c.id}')">
         <div class="tc-name">${c.name}</div>
         <div style="font-size:.74rem;color:var(--text-muted);margin-top:4px;font-style:italic">${c.desc}</div>
       </div>`).join('')}
     </div>
     <div style="display:flex;justify-content:flex-end;margin-top:18px">
-      <button class="btn btn-primary btn-lg" ${!S.rCat?'disabled':''}onclick="rGoStep(2)">Naprej →</button>
+      <button id="r-next-category" class="btn btn-primary btn-lg" ${disabledAttr(!S.rCat)}onclick="rGoStep(2)">Naprej →</button>
     </div>
   </div>`;
 }
@@ -1211,23 +1288,23 @@ function buildRStep2() {
     <span class="slbl">Podvrsta dejavnosti</span>
     <div class="chips">
       ${ACTIVITY_SUBTYPES.map(s=>`
-      <div class="chip${S.rSubtype===s?' sel':''}" onclick="rSelectSubtype('${s}')">${s}</div>`).join('')}
+      <div class="chip${S.rSubtype===s?' sel':''}" data-r-subtype="${s}" onclick="rSelectSubtype('${s}')">${s}</div>`).join('')}
     </div>`;
   } else if (S.rCat === 'funkcija') {
     inner = `
     <span class="slbl">Vaša vloga</span>
     <div class="chips" style="margin-bottom:18px">
       ${FUNCTION_ROLES.map(r=>`
-      <div class="chip${S.rRole===r?' sel':''}" onclick="rSelectRole('${r}')">${r}</div>`).join('')}
+      <div class="chip${S.rRole===r?' sel':''}" data-r-role="${r}" onclick="rSelectRole('${r}')">${r}</div>`).join('')}
     </div>
     <span class="slbl">Vrsta poročila</span>
     <div class="chips">
       ${FUNC_TYPES.map(ft=>`
-      <div class="chip${S.rFuncType===ft.id?' sel':''}" onclick="rSelectFuncType('${ft.id}')">${ft.icon} ${ft.name}</div>`).join('')}
+      <div class="chip${S.rFuncType===ft.id?' sel':''}" data-r-func-type="${ft.id}" onclick="rSelectFuncType('${ft.id}')">${ft.name}</div>`).join('')}
     </div>`;
   } else if (S.rCat === 'vod') {
     inner = `<div style="background:var(--green-pale);border:1px solid var(--green-mid);border-radius:var(--r);padding:16px 18px;font-size:.88rem;color:var(--green-dark)">
-      ✅ Predloga za poročilo voda bo samodejno izbrana. Kliknite <b>Naprej</b> za izpolnjevanje.
+      Predloga za poročilo voda bo samodejno izbrana.
     </div>`;
   }
   const canNext = S.rCat==='vod' || (S.rCat==='dejavnost'&&S.rSubtype) || (S.rCat==='funkcija'&&S.rRole&&S.rFuncType);
@@ -1235,11 +1312,12 @@ function buildRStep2() {
   return `<div class="sub-section">
     <h3>2. Specificiranje</h3>
     ${inner}
-    ${tmpl&&canNext?`<div style="margin-top:16px;padding:10px 14px;background:var(--blue-pale);border:1px solid #A8C4E0;border-radius:var(--r);font-size:.82rem;color:var(--blue)">
-      📋 Predloga: <b>${tmpl.name}</b>${!tmpl.general?` <span class="badge bb" style="margin-left:6px">Posamična</span>`:''}</div>`:''}
+    <div id="r-template-preview" style="${tmpl&&canNext?'':'display:none;'}margin-top:16px;padding:10px 14px;background:var(--blue-pale);border:1px solid #A8C4E0;border-radius:var(--r);font-size:.82rem;color:var(--blue)">
+      ${buildTemplatePreview(tmpl, canNext)}
+    </div>
     <div style="display:flex;justify-content:space-between;margin-top:20px">
       <button class="btn btn-ghost" onclick="rGoStep(1)">← Nazaj</button>
-      <button class="btn btn-primary btn-lg" ${!canNext?'disabled':''}onclick="rGoStep(3)">Naprej →</button>
+      <button id="r-next-specific" class="btn btn-primary btn-lg" ${disabledAttr(!canNext)}onclick="rGoStep(3)">Naprej →</button>
     </div>
   </div>`;
 }
@@ -1258,7 +1336,7 @@ function buildRStep3() {
       ${S.rSubtype?`<span class="badge ba">${S.rSubtype}</span>`:''}
       ${S.rRole?`<span class="badge bb">${S.rRole}</span>`:''}
       ${S.rFuncType?`<span class="badge bb">${FUNC_TYPES.find(ft=>ft.id===S.rFuncType)?.name}</span>`:''}
-      <span class="badge bgr">📋 ${tmpl.name}</span>
+      <span class="badge bgr">${tmpl.name}</span>
     </div>
     ${tmpl.fields.map(f=>`
     <div class="fg">
@@ -1275,7 +1353,7 @@ function buildRStep3() {
     <div style="display:flex;justify-content:space-between;margin-top:10px">
       <button class="btn btn-ghost" onclick="rGoStep(2)">← Nazaj</button>
       <div style="display:flex;gap:9px">
-        <button class="btn btn-secondary" onclick="toast('💾 Osnutek shranjen.')">💾 Shrani osnutek</button>
+        <button class="btn btn-secondary" onclick="toast('Osnutek shranjen.')">Shrani osnutek</button>
         <button class="btn btn-primary btn-lg" onclick="rGoStep(4)">Pregled →</button>
       </div>
     </div>
@@ -1297,18 +1375,18 @@ function buildRStep4() {
       <div class="rv">${S.rFields[f.id]||`<em style="color:var(--border)">— ni izpolnjeno —</em>`}</div>
     </div>`).join(''):''}
     <div style="background:var(--amber-pale);border:1px solid #D4C070;border-radius:var(--r);padding:11px 15px;margin-top:14px;font-size:.83rem;color:var(--amber)">
-      ⚠️ Po oddaji poročila ga ne bo mogoče urejati. Preverite vsebino.
+      Po oddaji poročila ga ne bo mogoče urejati. Preverite vsebino.
     </div>
     <div style="display:flex;justify-content:space-between;margin-top:18px">
       <button class="btn btn-ghost" onclick="rGoStep(3)">← Nazaj na urejanje</button>
-      <button class="btn btn-primary btn-lg" onclick="rSubmit()">✓ Oddaj poročilo</button>
+      <button class="btn btn-primary btn-lg" onclick="rSubmit()">Oddaj poročilo</button>
     </div>
   </div>`;
 }
 
 function buildSubmitSuccess() {
   return `<div class="confirm-banner">
-    <span class="cb-ico">🎉</span>
+    <span class="cb-ico"></span>
     <h3>Poročilo uspešno oddano!</h3>
     <p>Vaše poročilo je bilo arhivirano in je vidno v arhivu.</p>
     <div style="display:flex;justify-content:center;gap:10px;margin-top:20px">
@@ -1320,24 +1398,73 @@ function buildSubmitSuccess() {
 
 function rSelectCat(c) { S.rCat=c; S.rSubtype=null; S.rRole=null; S.rFuncType=null;
   if(c==='vod') S.rTmplId='g-vod';
-  setHTML('content',`<div class="page-wrap anim">${buildReportNew()}</div>`);
+  if (S.rStep===1) updateReportSelectionUI(); else refreshReportBuilder();
 }
-function rSelectSubtype(s) { S.rSubtype=s; setHTML('content',`<div class="page-wrap anim">${buildReportNew()}</div>`); }
-function rSelectRole(r) { S.rRole=r; setHTML('content',`<div class="page-wrap anim">${buildReportNew()}</div>`); }
-function rSelectFuncType(t) { S.rFuncType=t; setHTML('content',`<div class="page-wrap anim">${buildReportNew()}</div>`); }
-function rGoStep(n) { S.rStep=n; setHTML('content',`<div class="page-wrap anim">${buildReportNew()}</div>`); }
+function rSelectSubtype(s) { S.rSubtype=s; updateReportSelectionUI(); }
+function rSelectRole(r) { S.rRole=r; updateReportSelectionUI(); }
+function rSelectFuncType(t) { S.rFuncType=t; updateReportSelectionUI(); }
+function rGoStep(n) { S.rStep=n; refreshReportBuilder(); }
 function rSaveField(id,val) { S.rFields[id]=val; }
 function rTriggerAutosave() {
   const el=document.getElementById('save-lbl'); if(el) el.textContent='Shranjuje…';
   clearTimeout(window._as);
   window._as=setTimeout(()=>{ const e=document.getElementById('save-lbl'); if(e) e.textContent='Shranjeno ✓'; },1200);
 }
-function rSubmit() { S.rSubmitted=true; setHTML('content',`<div class="page-wrap anim">${buildReportNew()}</div>`); }
+function archiveCurrentReport() {
+  const tmpl = resolveTmpl(S.rCat, S.rRole, S.rFuncType);
+  if (!tmpl || S.rSubmitted) return;
+  const today = new Date().toISOString().split('T')[0];
+  const title = S.rCat==='dejavnost'
+    ? (S.rFields.f1 || S.rSubtype || tmpl.name)
+    : S.rCat==='funkcija'
+    ? `${FUNC_TYPES.find(ft=>ft.id===S.rFuncType)?.name || tmpl.name} - ${S.rRole || S.user.name}`
+    : `Poročilo voda - ${S.user.group}`;
+  REPORTS.push({
+    id: Math.max(...REPORTS.map(r=>r.id)) + 1,
+    title,
+    cat: S.rCat,
+    subtype: S.rSubtype,
+    role: S.rRole,
+    funcType: S.rFuncType,
+    author: S.user.name,
+    date: today,
+    year: new Date(today).getFullYear(),
+    body: tmpl.fields.map(f=>`<h3>${escHtml(f.name)}</h3><p>${escHtml(S.rFields[f.id] || 'Ni izpolnjeno.')}</p>`).join(''),
+  });
+}
+function rSubmit() {
+  archiveCurrentReport();
+  S.rSubmitted=true;
+  refreshReportBuilder();
+}
 function rReset() { S.rStep=1; S.rCat=null; S.rSubtype=null; S.rRole=null; S.rFuncType=null; S.rTmplId=null; S.rFields={}; S.rSubmitted=false; }
 
 // ═══════════════════════════════════════════════
 // TEMPLATE MANAGER
 // ═══════════════════════════════════════════════
+function buildTemplateCard(t, { locked=false }={}) {
+  const typeLabel = t.funcType ? ` · ${FUNC_TYPES.find(ft=>ft.id===t.funcType)?.name}` : '';
+  const ownerLabel = t.role ? `${t.role} · ` : '';
+  return `
+    <div class="tmpl-card">
+      <div class="tmpl-ico">${t.icon}</div>
+      <div class="tmpl-info">
+        <h3>${t.name}</h3>
+        <p>${t.fields.length} polj · ${ownerLabel}${catLabel(t.cat)}${typeLabel}</p>
+        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:5px">
+          ${t.fields.slice(0,4).map(f=>`<span class="badge bgr">${f.name}</span>`).join('')}
+          ${t.fields.length>4?`<span class="badge bgr">+${t.fields.length-4}</span>`:''}
+        </div>
+      </div>
+      <div class="tmpl-actions">
+        <button class="btn btn-secondary btn-sm" onclick="editTemplate('${t.id}')">Uredi</button>
+        ${locked
+          ? `<span class="badge bgr" style="font-size:.7rem;padding:4px 8px">Splošna</span>`
+          : `<button class="btn btn-danger btn-sm" onclick="deleteTmpl('${t.id}')">Izbriši</button>`}
+      </div>
+    </div>`;
+}
+
 function buildTemplates() {
   return `
   <button class="back-link" onclick="navigate('dashboard')">← Nazaj</button>
@@ -1347,44 +1474,13 @@ function buildTemplates() {
   </div>
   <div class="tmpl-section">
     <span class="tmpl-section-hdr">Splošne predloge (osnova — ni mogoče izbrisati)</span>
-    ${GENERAL_TEMPLATES.map(t=>`
-    <div class="tmpl-card">
-      <div class="tmpl-ico">${t.icon}</div>
-      <div class="tmpl-info">
-        <h3>${t.name}</h3>
-        <p>${t.fields.length} polj · ${catLabel(t.cat)}${t.funcType?` · ${FUNC_TYPES.find(ft=>ft.id===t.funcType)?.name}`:''}</p>
-        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:5px">
-          ${t.fields.slice(0,4).map(f=>`<span class="badge bgr">${f.name}</span>`).join('')}
-          ${t.fields.length>4?`<span class="badge bgr">+${t.fields.length-4}</span>`:''}
-        </div>
-      </div>
-      <div class="tmpl-actions">
-        <button class="btn btn-secondary btn-sm" onclick="navigate('tmpl-edit',{editTmpl:JSON.parse(JSON.stringify(${JSON.stringify(t)}))})">✏️ Uredi</button>
-        <span class="badge bgr" style="font-size:.7rem;padding:4px 8px">Splošna</span>
-      </div>
-    </div>`).join('')}
+    ${GENERAL_TEMPLATES.map(t=>buildTemplateCard(t, { locked:true })).join('')}
   </div>
   <div class="tmpl-section">
     <span class="tmpl-section-hdr">Posamične predloge funkcij (preglasijo splošno za dano vlogo)</span>
-    ${allRoleTemplates.map(t=>`
-    <div class="tmpl-card">
-      <div class="tmpl-ico">${t.icon}</div>
-      <div class="tmpl-info">
-        <h3>${t.name}</h3>
-        <p>${t.fields.length} polj · ${t.role} · ${FUNC_TYPES.find(ft=>ft.id===t.funcType)?.name}</p>
-        <div style="display:flex;gap:5px;flex-wrap:wrap;margin-top:5px">
-          ${t.fields.slice(0,4).map(f=>`<span class="badge bgr">${f.name}</span>`).join('')}
-          ${t.fields.length>4?`<span class="badge bgr">+${t.fields.length-4}</span>`:''}
-        </div>
-      </div>
-      <div class="tmpl-actions">
-        <button class="btn btn-secondary btn-sm" onclick="navigate('tmpl-edit',{editTmpl:JSON.parse(JSON.stringify(${JSON.stringify(t)}))})">✏️ Uredi</button>
-        <button class="btn btn-danger btn-sm" onclick="deleteTmpl('${t.id}')">🗑</button>
-      </div>
-    </div>`).join('')}
-    ${allRoleTemplates.length===0?`<div class="empty"><span class="ei">📋</span><p>Ni posamičnih predlog. Ustvarite prvo spodaj.</p></div>`:''}
+    ${allRoleTemplates.map(t=>buildTemplateCard(t)).join('')}
+    ${allRoleTemplates.length===0?`<div class="empty"><span class="ei"></span><p>Ni posamičnih predlog. Ustvarite prvo spodaj.</p></div>`:''}
     <div class="create-specific">
-      <span style="font-size:1.6rem">➕</span>
       <div style="flex:1">
         <div style="font-weight:600;color:var(--blue);margin-bottom:4px">Ustvari novo posamično predlogo</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
@@ -1404,9 +1500,15 @@ function buildTemplates() {
 function deleteTmpl(id) {
   if(confirm('Res želite izbrisati to predlogo?')) {
     allRoleTemplates = allRoleTemplates.filter(t=>t.id!==id);
-    setHTML('content',`<div class="page-wrap anim">${buildTemplates()}</div>`);
-    toast('🗑️ Predloga izbrisana.');
+    refreshTemplates();
+    toast('Predloga izbrisana.');
   }
+}
+
+function editTemplate(id) {
+  const template = findTemplateById(id);
+  if (!template) { toast('Predloga ni najdena.','err'); return; }
+  navigate('tmpl-edit', { editTmpl: cloneData(template) });
 }
 
 function createRoleTmpl() {
@@ -1420,17 +1522,17 @@ function createRoleTmpl() {
     id: `r-${role.replace(/\s/g,'-').toLowerCase()}-${funcType}-${Date.now()}`,
     name: `${ftObj?.name||funcType} – ${role}`,
     cat:'funkcija', funcType, role,
-    icon: ftObj?.icon||'📋', general:false,
+    icon: ftObj?.icon||'LET', general:false,
     fields: baseTmpl ? baseTmpl.fields.map(f=>({...f})) : [],
   };
   allRoleTemplates.push(newT);
-  navigate('tmpl-edit', { editTmpl: JSON.parse(JSON.stringify(newT)) });
+  navigate('tmpl-edit', { editTmpl: cloneData(newT) });
 }
 
 function buildTmplEditor() {
   const t = S.editTmpl;
   if(!t) return `<button class="back-link" onclick="navigate('templates')">← Nazaj</button><p>Napaka.</p>`;
-  const icons = ['📄','🏕️','📋','📅','👥','💰','🌲','🏆','📊','📎','🎯','📌'];
+  const icons = ['DEJ','LET','NAC','FIN','VOD','TAB','GOZ','NAV','BOL','KUH','GAS','ISK'];
   return `
   <button class="back-link" onclick="navigate('templates')">← Nazaj na predloge</button>
   <div class="section-heading">
@@ -1442,11 +1544,11 @@ function buildTmplEditor() {
       <input class="fc" id="te-name" value="${t.name}" placeholder="Naziv predloge"></div>
     <div class="fg"><label>Ikona</label>
       <div class="icon-picker" id="te-icons">
-        ${icons.map(ic=>`<div class="ip-opt${t.icon===ic?' sel':''}" onclick="tSelIcon('${ic}')">${ic}</div>`).join('')}
+        ${icons.map(ic=>`<div class="ip-opt${t.icon===ic?' sel':''}" onclick="tSelIcon('${ic}', this)">${ic}</div>`).join('')}
       </div>
     </div>
     ${t.role?`<div style="display:flex;gap:7px;margin-bottom:18px">
-      <span class="badge bb">👤 ${t.role}</span>
+      <span class="badge bb">${t.role}</span>
       <span class="badge bb">${FUNC_TYPES.find(ft=>ft.id===t.funcType)?.name||t.funcType}</span>
     </div>`:''}
     <hr class="div">
@@ -1474,26 +1576,26 @@ function buildTmplEditor() {
     </div>
     <div style="display:flex;justify-content:space-between">
       <button class="btn btn-ghost" onclick="navigate('templates')">Prekliči</button>
-      <button class="btn btn-primary btn-lg" onclick="teSave()">💾 Shrani predlogo</button>
+      <button class="btn btn-primary btn-lg" onclick="teSave()">Shrani predlogo</button>
     </div>
   </div>`;
 }
 
-function tSelIcon(ic) {
+function tSelIcon(ic, el) {
   S.editTmpl.icon=ic;
-  document.querySelectorAll('.ip-opt').forEach(el=>el.classList.remove('sel'));
-  event.target.classList.add('sel');
+  document.querySelectorAll('.ip-opt').forEach(opt=>opt.classList.remove('sel'));
+  if (el) el.classList.add('sel');
 }
 function teRemoveField(fid) {
   S.editTmpl.fields = S.editTmpl.fields.filter(f=>f.id!==fid);
-  setHTML('content',`<div class="page-wrap anim">${buildTmplEditor()}</div>`);
+  refreshTemplateEditor();
 }
 function teAddField() {
   const name = document.getElementById('te-fn').value.trim();
   const type = document.getElementById('te-ft').value;
   if(!name) return;
   S.editTmpl.fields.push({id:'f'+Date.now(), name, type});
-  setHTML('content',`<div class="page-wrap anim">${buildTmplEditor()}</div>`);
+  refreshTemplateEditor();
 }
 function teSave() {
   const name = document.getElementById('te-name').value.trim();
@@ -1508,7 +1610,7 @@ function teSave() {
     if(idx>=0) Object.assign(allRoleTemplates[idx], S.editTmpl);
     else allRoleTemplates.push(S.editTmpl);
   }
-  toast('✅ Predloga shranjena.');
+  toast('Predloga shranjena.');
   navigate('templates');
 }
 
@@ -1531,19 +1633,19 @@ function buildGroupPage() {
   <div class="group-stats">
     <div class="stat-card"><div class="sc-num">${MEMBERS.length}</div><div class="sc-lbl">Članov skupaj</div></div>
     <div class="stat-card"><div class="sc-num">${avgAtt}%</div><div class="sc-lbl">Povprečna prisotnost</div></div>
-    <div class="stat-card"><div class="sc-num" style="color:var(--amber)">${bdaySoon}</div><div class="sc-lbl">Bližnji rojstni dnevi 🎂</div></div>
-    <div class="stat-card"><div class="sc-num" style="color:var(--green)">${allPraise}</div><div class="sc-lbl">Pohval skupaj 👍</div></div>
-    <div class="stat-card"><div class="sc-num" style="color:var(--red-light)">${allScold}</div><div class="sc-lbl">Graje skupaj 👎</div></div>
+    <div class="stat-card"><div class="sc-num" style="color:var(--amber)">${bdaySoon}</div><div class="sc-lbl">Bližnji rojstni dnevi</div></div>
+    <div class="stat-card"><div class="sc-num" style="color:var(--green)">${allPraise}</div><div class="sc-lbl">Pohval skupaj</div></div>
+    <div class="stat-card"><div class="sc-num" style="color:var(--red-light)">${allScold}</div><div class="sc-lbl">Graje skupaj</div></div>
     <div class="stat-card"><div class="sc-num">${totalEarned}</div><div class="sc-lbl">Pridobljenih veščin</div></div>
   </div>
   <div style="display:flex;justify-content:flex-end;margin-bottom:16px">
-    <button class="btn btn-secondary" onclick="grpExportReport()">📤 Izvozi v poročilo voda</button>
+    <button class="btn btn-secondary" onclick="grpExportReport()">Izvozi v poročilo voda</button>
   </div>
   <div class="tabs">
-    <div class="tab${S.groupTab==='prisotnost'?' active':''}" onclick="grpTab('prisotnost')">📅 Prisotnost</div>
-    <div class="tab${S.groupTab==='vescine'?' active':''}" onclick="grpTab('vescine')">⭐ Veščine</div>
-    <div class="tab${S.groupTab==='pohvale'?' active':''}" onclick="grpTab('pohvale')">📋 Pohvale in graje</div>
-    <div class="tab${S.groupTab==='upravljanje'?' active':''}" onclick="grpTab('upravljanje')">👤 Upravljanje voda</div>
+    <div class="tab${S.groupTab==='prisotnost'?' active':''}" onclick="grpTab('prisotnost')">Prisotnost</div>
+    <div class="tab${S.groupTab==='vescine'?' active':''}" onclick="grpTab('vescine')">Veščine</div>
+    <div class="tab${S.groupTab==='pohvale'?' active':''}" onclick="grpTab('pohvale')">Pohvale in graje</div>
+    <div class="tab${S.groupTab==='upravljanje'?' active':''}" onclick="grpTab('upravljanje')">Upravljanje voda</div>
   </div>
   <div id="group-tab-content" class="anim">${buildGroupTabContent()}</div>`;
 }
@@ -1570,36 +1672,41 @@ function buildGroupTabContent() {
 
 // ─── TAB: PRISOTNOST ───
 function buildTabPrisotnost() {
+  const months = attendanceMonths();
+  const activeMonth = activeAttendanceMonth();
+  const activeIdx = months.indexOf(activeMonth);
+  const visibleMeetings = visibleAttendanceMeetings();
+  const highlightedInMonth = visibleMeetings.some(m=>m.id===S.highlightMeeting);
   const memberHeader = `<th class="col-member">Tabornik</th>`;
-  const meetingHeaders = MEETINGS.map(m=>`
-    <th title="${fmtDate(m.date)}" style="min-width:52px;max-width:64px">
+  const meetingHeaders = visibleMeetings.map(m=>`
+    <th class="${S.highlightMeeting===m.id?'meeting-new':''}" data-meeting-id="${m.id}" title="${fmtDate(m.date)}" style="min-width:52px;max-width:64px">
       <div style="font-size:.7rem">${fmtDateShort(m.date)}</div>
-      <div style="font-size:.65rem;opacity:.75;font-weight:400">${m.label.length>8?m.label.slice(0,8)+'…':m.label}</div>
+      <div style="font-size:.65rem;opacity:.75;font-weight:400">${escHtml(m.label.length>8?m.label.slice(0,8)+'…':m.label)}</div>
     </th>`).join('');
-  const pctHeader = `<th style="min-width:50px">%</th>`;
+  const pctHeader = `<th style="min-width:62px">Mesec %</th>`;
 
   const rows = MEMBERS.map(m=>{
-    const cells = MEETINGS.map(mt=>{
-      const v = m.att[mt.id];
-      const cls = v===true?'present':v===false?'absent':'unknown';
-      const sym = v===true?'✓':v===false?'✕':'·';
-      return `<td><div class="att-cell ${cls}" id="att-${m.id}-${mt.id}" onclick="grpToggleAtt(${m.id},'${mt.id}')">${sym}</div></td>`;
+    const cells = visibleMeetings.map(mt=>{
+      const present = m.att[mt.id] !== false;
+      const cls = present?'present':'absent';
+      const sym = present?'✓':'×';
+      return `<td class="${S.highlightMeeting===mt.id?'meeting-new':''}"><div class="att-cell ${cls}${S.highlightMeeting===mt.id?' meeting-new':''}" id="att-${m.id}-${mt.id}" onclick="grpToggleAtt(${m.id},'${mt.id}')" title="${present?'Prisoten/na':'Odsoten/na'}">${sym}</div></td>`;
     }).join('');
-    const pct = attPct(m);
-    const color = pct>=80?'var(--green)':pct>=50?'var(--amber-light)':'var(--red-light)';
+    const pct = attPctForMeetings(m, visibleMeetings);
+    const color = pctColor(pct);
     return `<tr>
-      <td class="col-member">${m.name}</td>
+      <td class="col-member">${escHtml(m.name)}</td>
       ${cells}
-      <td><span style="font-size:.78rem;font-weight:700;color:${color}">${pct}%</span></td>
+      <td><span class="att-pct" style="font-size:.78rem;font-weight:700;color:${color}">${pct}%</span></td>
     </tr>`;
   }).join('');
 
   // attendance summary row
   const summaryRow = `<tr style="background:var(--parchment)">
     <td class="col-member" style="font-size:.75rem;color:var(--text-muted);font-style:italic">Prisotnih</td>
-    ${MEETINGS.map(mt=>{
-      const cnt = MEMBERS.filter(m=>m.att[mt.id]===true).length;
-      return `<td style="font-size:.75rem;font-weight:600;color:var(--text-muted)">${cnt}/${MEMBERS.length}</td>`;
+    ${visibleMeetings.map(mt=>{
+      const cnt = MEMBERS.filter(m=>m.att[mt.id]!==false).length;
+      return `<td class="${S.highlightMeeting===mt.id?'meeting-new':''}" style="font-size:.75rem;font-weight:600;color:var(--text-muted)">${cnt}/${MEMBERS.length}</td>`;
     }).join('')}
     <td></td>
   </tr>`;
@@ -1607,15 +1714,26 @@ function buildTabPrisotnost() {
   return `
   <div class="inh">
     <h2>Evidenca prisotnosti</h2>
-    <div style="display:flex;gap:8px">
-      <button class="btn btn-secondary btn-sm" onclick="grpMarkToday()">📅 Označi današnjo prisotnost</button>
+    <div class="att-actions">
+      <button class="btn btn-secondary btn-sm" onclick="grpMarkToday()">Označi današnjo prisotnost</button>
       <button class="btn btn-primary btn-sm" onclick="grpAddMeeting()">+ Dodaj srečanje</button>
     </div>
   </div>
+  ${highlightedInMonth?`<div class="new-meeting-note">Novo srečanje je označeno v tabeli. Vsi člani so za začetek označeni kot prisotni.</div>`:''}
+  <div class="att-toolbar">
+    <div class="month-nav">
+      <button class="btn btn-secondary btn-sm" ${disabledAttr(activeIdx<=0)}onclick="grpShiftAttendanceMonth(-1)">Nazaj</button>
+      <div class="month-title">${monthLabel(activeMonth)}</div>
+      <button class="btn btn-secondary btn-sm" ${disabledAttr(activeIdx>=months.length-1)}onclick="grpShiftAttendanceMonth(1)">Naprej</button>
+      <select class="month-select" onchange="grpSelectAttendanceMonth(this.value)" aria-label="Izberi mesec">
+        ${months.map(m=>`<option value="${m}" ${m===activeMonth?'selected':''}>${monthLabel(m)}</option>`).join('')}
+      </select>
+    </div>
+    <div class="month-count">${visibleMeetings.length} ${visibleMeetings.length===1?'srečanje':'srečanj'}</div>
+  </div>
   <div style="font-size:.78rem;color:var(--text-muted);margin-bottom:12px;display:flex;gap:14px;flex-wrap:wrap">
     <span style="display:flex;align-items:center;gap:5px"><span class="att-cell present" style="width:20px;height:20px;font-size:.72rem">✓</span> Prisoten/na</span>
-    <span style="display:flex;align-items:center;gap:5px"><span class="att-cell absent" style="width:20px;height:20px;font-size:.72rem">✕</span> Odsoten/na</span>
-    <span style="display:flex;align-items:center;gap:5px"><span class="att-cell unknown" style="width:20px;height:20px;font-size:.72rem">·</span> Neznano</span>
+    <span style="display:flex;align-items:center;gap:5px"><span class="att-cell absent" style="width:20px;height:20px;font-size:.72rem">×</span> Odsoten/na</span>
     <span style="margin-left:auto;font-style:italic">Kliknite celico za preklop stanja</span>
   </div>
   <div class="matrix-wrap">
@@ -1626,24 +1744,44 @@ function buildTabPrisotnost() {
   </div>`;
 }
 
+function grpShiftAttendanceMonth(delta) {
+  const months = attendanceMonths();
+  const current = activeAttendanceMonth();
+  const idx = months.indexOf(current);
+  const next = Math.max(0, Math.min(months.length - 1, idx + delta));
+  S.attMonth = months[next];
+  updateGroupTab({animate:false});
+}
+
+function grpSelectAttendanceMonth(key) {
+  if (!attendanceMonths().includes(key)) return;
+  S.attMonth = key;
+  updateGroupTab({animate:false});
+}
+
 function grpToggleAtt(memberId, meetingId) {
   const m = MEMBERS.find(x=>x.id===memberId); if(!m) return;
   const cur = m.att[meetingId];
-  const next = cur===null||cur===undefined ? true : cur===true ? false : null;
+  const next = cur===false ? true : false;
   m.att[meetingId] = next;
   const cell = document.getElementById(`att-${memberId}-${meetingId}`);
   if(cell) {
-    cell.className = 'att-cell '+(next===true?'present':next===false?'absent':'unknown');
-    cell.textContent = next===true?'✓':next===false?'✕':'·';
+    cell.className = 'att-cell '+(next===true?'present':'absent')+(S.highlightMeeting===meetingId?' meeting-new':'');
+    cell.textContent = next===true?'✓':'×';
+    cell.title = next===true?'Prisoten/na':'Odsoten/na';
   }
-  // update pct cell in same row
-  const pct = attPct(m);
-  const color = pct>=80?'var(--green)':pct>=50?'var(--amber-light)':'var(--red-light)';
-  const allCells = document.querySelectorAll(`#att-${memberId}-${meetingId}`);
+  const visibleMeetings = visibleAttendanceMeetings();
+  const pct = attPctForMeetings(m, visibleMeetings);
+  const row = cell ? cell.closest('tr') : null;
+  const pctCell = row ? row.querySelector('.att-pct') : null;
+  if(pctCell) {
+    pctCell.textContent = `${pct}%`;
+    pctCell.style.color = pctColor(pct);
+  }
   // update summary row
   const summaryTds = document.querySelectorAll('.matrix-table tbody tr:last-child td');
-  MEETINGS.forEach((mt,i) => {
-    const cnt = MEMBERS.filter(x=>x.att[mt.id]===true).length;
+  visibleMeetings.forEach((mt,i) => {
+    const cnt = MEMBERS.filter(x=>x.att[mt.id]!==false).length;
     if(summaryTds[i+1]) summaryTds[i+1].textContent = `${cnt}/${MEMBERS.length}`;
   });
 }
@@ -1652,8 +1790,9 @@ function grpMarkToday() {
   const today = new Date().toISOString().split('T')[0];
   const existing = MEETINGS.find(m=>m.date===today);
   if (existing) {
+    S.attMonth = monthKey(existing.date);
     showModal(`
-    <h2>📅 Označi prisotnost</h2>
+    <h2>Označi prisotnost</h2>
     <p style="color:var(--text-muted);font-style:italic;margin-bottom:16px">Srečanje: <b>${existing.label}</b> (${fmtDate(today)})</p>
     <div class="member-mgmt-list" style="max-height:320px;overflow-y:auto">
       ${MEMBERS.map(m=>{
@@ -1661,7 +1800,7 @@ function grpMarkToday() {
         return `<div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--border-light)">
           <div class="mbr-avatar">${initials(m.name)}</div>
           <span style="flex:1;font-size:.9rem;font-weight:600">${m.name}</span>
-          <button class="btn btn-sm ${v===true?'btn-primary':'btn-ghost'}" onclick="grpSetAtt(${m.id},'${existing.id}',true,this)">${v===true?'✓ Prisoten/na':'Prisoten/na'}</button>
+          <button class="btn btn-sm ${v!==false?'btn-primary':'btn-ghost'}" onclick="grpSetAtt(${m.id},'${existing.id}',true,this)">${v!==false?'✓ Prisoten/na':'Prisoten/na'}</button>
           <button class="btn btn-sm ${v===false?'btn-danger':'btn-ghost'}" onclick="grpSetAtt(${m.id},'${existing.id}',false,this)">${v===false?'✕ Odsoten/na':'Odsoten/na'}</button>
         </div>`;
       }).join('')}
@@ -1672,20 +1811,23 @@ function grpMarkToday() {
     if(!label) return;
     const newId = 'm'+Date.now();
     MEETINGS.push({id:newId, date:today, label});
-    MEMBERS.forEach(m=>{ m.att[newId]=null; });
-    toast('✅ Srečanje dodano. Označite prisotnost v tabeli.');
-    updateGroupTab();
+    MEMBERS.forEach(m=>{ m.att[newId]=true; });
+    S.highlightMeeting = newId;
+    S.attMonth = monthKey(today);
+    toast('Srečanje dodano.');
+    updateGroupTab({animate:false});
+    revealMeeting(newId);
   }
 }
 
 function grpSetAtt(memberId, meetingId, val, btn) {
   const m = MEMBERS.find(x=>x.id===memberId); if(!m) return;
-  m.att[meetingId] = m.att[meetingId]===val ? null : val;
+  m.att[meetingId] = val;
 }
 
 function grpAddMeeting() {
   showModal(`
-  <h2>📅 Dodaj srečanje</h2>
+  <h2>Dodaj srečanje</h2>
   <div class="fg"><label>Datum</label><input type="date" class="fc" id="nm-date" value="${new Date().toISOString().split('T')[0]}"></div>
   <div class="fg"><label>Naziv</label><input type="text" class="fc" id="nm-label" placeholder="npr. Srečanje #13, Izlet…"></div>
   <div class="mo-actions">
@@ -1698,8 +1840,20 @@ function grpDoAddMeeting() {
   if(!date||!label){toast('Izpolnite datum in naziv.','err');return;}
   const newId='m'+Date.now();
   MEETINGS.push({id:newId,date,label});
-  MEMBERS.forEach(m=>{m.att[newId]=null;});
-  closeModal(); updateGroupTab(); toast('✅ Srečanje dodano.');
+  MEMBERS.forEach(m=>{m.att[newId]=true;});
+  S.highlightMeeting = newId;
+  S.attMonth = monthKey(date);
+  closeModal();
+  updateGroupTab({animate:false});
+  revealMeeting(newId);
+  toast('Srečanje dodano.');
+}
+
+function revealMeeting(meetingId) {
+  setTimeout(()=>{
+    const head = document.querySelector(`[data-meeting-id="${meetingId}"]`);
+    if (head) head.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  }, 40);
 }
 
 // ─── TAB: VEŠČINE ───
@@ -1789,7 +1943,7 @@ function grpToggleReq(memberId, skillId, reqId) {
       }
     }
   }
-  if(isEarned) toast(`✅ ${m.name} je pridobil/a veščino ${sk.name}!`);
+  if(isEarned) toast(`${m.name} je pridobil/a veščino ${sk.name}.`);
 }
 
 // ─── TAB: POHVALE & GRAJE ───
@@ -1808,20 +1962,20 @@ function buildTabPohvale() {
   <div class="inh">
     <h2>Pohvale in graje</h2>
     <div style="display:flex;gap:8px">
-      <button class="btn btn-secondary btn-sm" onclick="grpAddLog('praise')">👍 Dodaj pohvalo</button>
-      <button class="btn btn-danger btn-sm" onclick="grpAddLog('scold')">👎 Dodaj grajo</button>
+      <button class="btn btn-secondary btn-sm" onclick="grpAddLog('praise')">Dodaj pohvalo</button>
+      <button class="btn btn-danger btn-sm" onclick="grpAddLog('scold')">Dodaj grajo</button>
     </div>
   </div>
   <div class="filter-row">
     <button class="fr-btn${pf==='all'?' active':''}" onclick="grpPraiseFilter('all')">Vse (${MEMBERS.reduce((s,m)=>s+m.praise.length+m.scold.length,0)})</button>
-    <button class="fr-btn${pf==='praise'?' active':''}" onclick="grpPraiseFilter('praise')">👍 Pohvale (${MEMBERS.reduce((s,m)=>s+m.praise.length,0)})</button>
-    <button class="fr-btn${pf==='scold'?' active':''}" onclick="grpPraiseFilter('scold')">👎 Graje (${MEMBERS.reduce((s,m)=>s+m.scold.length,0)})</button>
+    <button class="fr-btn${pf==='praise'?' active':''}" onclick="grpPraiseFilter('praise')">Pohvale (${MEMBERS.reduce((s,m)=>s+m.praise.length,0)})</button>
+    <button class="fr-btn${pf==='scold'?' active':''}" onclick="grpPraiseFilter('scold')">Graje (${MEMBERS.reduce((s,m)=>s+m.scold.length,0)})</button>
   </div>
-  ${entries.length===0?`<div class="empty"><span class="ei">📋</span><p>Ni vnosov za ta filter.</p></div>`:`
+  ${entries.length===0?`<div class="empty"><span class="ei"></span><p>Ni vnosov za ta filter.</p></div>`:`
   <div class="log-list">
     ${entries.map(e=>`
     <div class="log-item ${e.type}">
-      <span style="font-size:1.1rem">${e.type==='praise'?'👍':'👎'}</span>
+      <span class="badge ${e.type==='praise'?'bg':'br'}">${e.type==='praise'?'Pohvala':'Graja'}</span>
       <div style="flex:1">
         <div class="li-who">${e.who}</div>
         <div class="li-text">${e.text}</div>
@@ -1835,7 +1989,7 @@ function grpPraiseFilter(f) { S.praiseFilter=f; updateGroupTab(); }
 
 function grpAddLog(type) {
   showModal(`
-  <h2>${type==='praise'?'👍 Dodaj pohvalo':'👎 Dodaj grajo'}</h2>
+  <h2>${type==='praise'?'Dodaj pohvalo':'Dodaj grajo'}</h2>
   <div class="fg"><label>Tabornik</label>
     <select class="fc" id="al-who">
       ${MEMBERS.map(m=>`<option value="${m.id}">${m.name}</option>`).join('')}
@@ -1856,7 +2010,7 @@ function grpDoAddLog(type) {
   const m=MEMBERS.find(x=>x.id===mid); if(!m) return;
   const entry={text, date:new Date().toISOString().split('T')[0]};
   if(type==='praise') m.praise.push(entry); else m.scold.push(entry);
-  closeModal(); updateGroupTab(); toast(type==='praise'?'👍 Pohvala zabeležena.':'👎 Graja zabeležena.');
+  closeModal(); updateGroupTab(); toast(type==='praise'?'Pohvala zabeležena.':'Graja zabeležena.');
 }
 
 // ─── TAB: UPRAVLJANJE VODA ───
@@ -1869,7 +2023,7 @@ function buildTabUpravljanje() {
     <button class="btn btn-primary btn-sm" onclick="grpAddMember()">+ Dodaj člana</button>
   </div>
   <div style="display:flex;gap:10px;margin-bottom:16px">
-    <input class="fc" style="max-width:260px" type="text" placeholder="🔍 Iskanje…" value="${S.groupSearch||''}"
+    <input class="fc" style="max-width:260px" type="text" placeholder="Iskanje…" value="${S.groupSearch||''}"
       oninput="S.groupSearch=this.value;updateGroupTab()">
   </div>
   <div class="member-mgmt-list">
@@ -1879,7 +2033,7 @@ function buildTabUpravljanje() {
       <div class="mbr-row${bd?' bday':''}">
         <div class="mbr-avatar">${initials(m.name)}</div>
         <div style="flex:1;min-width:0">
-          <div class="mbr-name">${m.name} ${bd?'🎂':''}</div>
+          <div class="mbr-name">${m.name}${bd?' <span class="badge ba">rojstni dan</span>':''}</div>
           <div class="mbr-sub">Roj. ${fmtDate(m.bday)} · ${getAge(m.bday)} let · Prisotnost: ${pct}% · Veščine: ${earned}/${SKILLS.length}</div>
           <div style="margin-top:5px">
             <div class="pbar-wrap"><div class="pbar-fill" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--amber-light)':'var(--red-light)'}"></div></div>
@@ -1887,8 +2041,8 @@ function buildTabUpravljanje() {
           ${m.notes?`<div style="font-size:.74rem;color:var(--text-muted);font-style:italic;margin-top:4px">${m.notes}</div>`:''}
         </div>
         <div class="mbr-actions">
-          <button class="btn btn-ghost btn-sm" onclick="grpEditMember(${m.id})">✏️ Uredi</button>
-          <button class="btn btn-danger btn-sm" onclick="grpDelMember(${m.id})">🗑</button>
+          <button class="btn btn-ghost btn-sm" onclick="grpEditMember(${m.id})">Uredi</button>
+          <button class="btn btn-danger btn-sm" onclick="grpDelMember(${m.id})">Izbriši</button>
         </div>
       </div>`;
     }).join('')}
@@ -1913,14 +2067,14 @@ function grpDoAddMember() {
   if(!name||!bday){toast('Vnesite ime in datum.','err');return;}
   const newId=Math.max(...MEMBERS.map(m=>m.id))+1;
   const attObj={};
-  MEETINGS.forEach(mt=>{attObj[mt.id]=null;});
+  MEETINGS.forEach(mt=>{attObj[mt.id]=true;});
   MEMBERS.push({id:newId,name,bday,notes,att:attObj,skills:{},praise:[],scold:[]});
-  closeModal(); updateGroupTab(); toast(`✅ Član "${name}" dodan.`);
+  closeModal(); updateGroupTab(); toast(`Član "${name}" dodan.`);
 }
 function grpEditMember(id) {
   const m=MEMBERS.find(x=>x.id===id); if(!m) return;
   showModal(`
-  <h2>✏️ Uredi člana</h2>
+  <h2>Uredi člana</h2>
   <div class="fg"><label>Ime in priimek</label><input class="fc" id="em-name" value="${m.name}"></div>
   <div class="fg"><label>Datum rojstva</label><input type="date" class="fc" id="em-bday" value="${m.bday}"></div>
   <div class="fg"><label>Opombe</label><textarea class="fc" rows="2" id="em-notes">${m.notes||''}</textarea></div>
@@ -1935,18 +2089,18 @@ function grpDoEditMember(id) {
   const bday=document.getElementById('em-bday').value;
   if(!name||!bday){toast('Vnesite ime in datum.','err');return;}
   m.name=name; m.bday=bday; m.notes=document.getElementById('em-notes').value.trim();
-  closeModal(); updateGroupTab(); toast('✅ Podatki shranjeni.');
+  closeModal(); updateGroupTab(); toast('Podatki shranjeni.');
 }
 function grpDelMember(id) {
   const m=MEMBERS.find(x=>x.id===id); if(!m) return;
   if(confirm(`Res želite odstraniti "${m.name}" iz voda?`)) {
     MEMBERS=MEMBERS.filter(x=>x.id!==id);
-    updateGroupTab(); toast(`🗑️ Član "${m.name}" odstranjen.`);
+    updateGroupTab(); toast(`Član "${m.name}" odstranjen.`);
   }
 }
 
 function grpExportReport() {
-  toast('📤 Pripravlja se osnutek poročila voda…','amb');
+  toast('Pripravlja se osnutek poročila voda…','amb');
   setTimeout(()=>{
     rReset();
     S.rCat='vod'; S.rStep=3;
@@ -1959,7 +2113,7 @@ function grpExportReport() {
       f6: '',
     };
     navigate('report-new');
-    toast('✅ Podatki uvoženi v osnutek poročila.');
+    toast('Podatki uvoženi v osnutek poročila.');
   },1400);
 }
 
