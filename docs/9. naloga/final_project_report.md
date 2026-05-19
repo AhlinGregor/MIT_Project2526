@@ -3,8 +3,8 @@
 **Course:** IT Management  
 **Project:** Archive System for a Local Scout Group (Rod)  
 **Client:** Local scout group (rod)  
-**Team:** Luka Svensek, Matej Kodermac, Zan Luka Remec, Gregor Ahlin, Lenart Svetek  
-**Prepared by:** Zan Luka Remec  
+**Team:** Luka Svenšek, Matej Kodermac, Žan Luka Remec, Gregor Ahlin, Lenart Svetek  
+**Prepared by:** Žan Luka Remec  
 **Date:** 16.05.2026  
 **Repository:** https://github.com/AhlinGregor/MIT_Project2526/
 
@@ -260,38 +260,22 @@ Main prototype areas:
 
 ### 6.1 Screenshot: Login and Dashboard
 
-Insert the final dashboard screenshot here after the prototype is updated.
-
-**Suggested file:** `screenshots/dashboard.png`  
-**Status:** [needs to be filled out by user]
+![Dashboard](dashboard.png)
 
 ### 6.2 Screenshot: Archive Search and Browsing
-
-Insert a screenshot showing the archive hierarchy, filters, and report list.
-
-**Suggested file:** `screenshots/archive.png`  
-**Status:** [needs to be filled out by user]
+![Archive](arhiv.png)
 
 ### 6.3 Screenshot: Report Creation Flow
-
-Insert a screenshot showing the structured report creation workflow.
-
-**Suggested file:** `screenshots/report_creation.png`  
-**Status:** [needs to be filled out by user]
+![Report creation](novoPorocilo.png)
+![Report creation](novoPorocilo2.png)
+![Report creation](novoPorocilo3.png)
+![Report creation](novoPorocilo4.png)
 
 ### 6.4 Screenshot: Group Management / Attendance
-
-Insert a screenshot showing attendance, skills, member management, or report export.
-
-**Suggested file:** `screenshots/group_management.png`  
-**Status:** [needs to be filled out by user]
+![Attendance](prisotnost.png)
 
 ### 6.5 Screenshot: Final Submitted Report or Archive Detail
-
-Insert a screenshot showing a submitted report or report detail page.
-
-**Suggested file:** `screenshots/report_detail.png`  
-**Status:** [needs to be filled out by user]
+![Submited report](porocilo.png)
 
 ## 7. Usability Testing and Evaluation
 
@@ -331,16 +315,16 @@ The final team consisted of five equivalent members. Lenart Svetek joined one or
 | Group member   | Final role                                      | Work performed                                                                                                                                                                                  | Assessment                                                                                                                                                 |
 | -------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Gregor Ahlin   | Project lead / DevOps                           | Gregor coordinated the general project direction, helped keep the team aligned, supported repository and infrastructure decisions, and contributed to project organization.                     | Gregor contributed to both coordination and technical direction. His work supported the project structure and helped the team keep a consistent direction. |
-| Luka Svensek   | Lead programmer / Developer                     | Luka worked on the technical side of the project, including prototype implementation, development decisions, and the programming-heavy parts of the system concept.                             | Luka made a strong technical contribution and helped turn the project idea into a working prototype direction.                                             |
-| Zan Luka Remec | Scrum Master / Requirements and domain research | Zan Luka helped organize the project work, contributed domain knowledge from scouting, supported requirements definition, and participated in user research and project documentation.          | Zan Luka contributed strongly to understanding the problem domain and connecting user needs with the final product direction.                              |
+| Luka Svenšek   | Lead programmer / Developer                     | Luka worked on the technical side of the project, including prototype implementation, development decisions, and the programming-heavy parts of the system concept.                             | Luka made a strong technical contribution and helped turn the project idea into a working prototype direction.                                             |
+| Žan Luka Remec | Scrum Master / Requirements and domain research | Žan Luka helped organize the project work, contributed domain knowledge from scouting, supported requirements definition, and participated in user research and project documentation.          | Žan Luka contributed strongly to understanding the problem domain and connecting user needs with the final product direction.                              |
 | Matej Kodermac | Designer / Product contributor                  | Matej contributed to the product and interface direction, helped shape the user experience, and supported the team with design and documentation work.                                          | Matej's work helped make the prototype easier to understand and more coherent from the user's point of view.                                               |
 | Lenart Svetek  | Developer                                       | Lenart joined shortly after the project began and became an equivalent member of the team. He contributed to development work and helped move the prototype and project implementation forward. | Lenart's later arrival did not make him a secondary member. He contributed as a full part of the development team after joining.                           |
 
 If a more formal contribution split is required, add it here:
 
 - Gregor Ahlin: [needs to be filled out by user]
-- Luka Svensek: [needs to be filled out by user]
-- Zan Luka Remec: [needs to be filled out by user]
+- Luka Svenšek: [needs to be filled out by user]
+- Žan Luka Remec: [needs to be filled out by user]
 - Matej Kodermac: [needs to be filled out by user]
 - Lenart Svetek: [needs to be filled out by user]
 
