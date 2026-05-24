@@ -120,7 +120,7 @@ Second, the archive is incomplete and scattered. Reports may exist on Google Dri
 
 Third, report writing and submission are not standardized. Some reports are submitted through Google Forms, some are written in Word, some are printed and delivered physically, and some depend on previous examples that are difficult to locate. This is one reason why the same type of report can look different from year to year.
 
-The main users are scout leaders, scoutmasters, treasurers, and administrators. Scout leaders need quick activity reporting and mobile access. Scoutmasters need oversight, reusable plans, and reliable archive search. Treasurers need secure storage for financial documents. Administrators need control over templates, users, and archive structure. These roles are different, but they all need the same basic thing: one dependable place where documentation can be created, submitted, found, and reused.
+The main users are active executive members of the organization. This includes scout leaders, scoutmasters, treasurers, administrators, and other members who help with activities, reports, or organization work. Scout leaders need quick activity reporting and mobile access. Scoutmasters need oversight, reusable plans, and reliable archive search. Treasurers need secure storage for financial documents. Administrators need control over templates, users, and archive structure. These roles are different, but they all need the same basic thing: one dependable place where documentation can be created, submitted, found, and reused.
 
 The final requirements are:
 
@@ -229,7 +229,7 @@ The biggest project risks are:
 | Scope creep                                                         | Too many features may delay the core archive/reporting system.         | Prioritize archive, report creation, search, upload, and security before advanced modules.                                |
 | Incomplete sprint documentation                                     | Some planning evidence is missing from the repository.                 | Add the final sprint backlog and sprint history before submission.                                                        |
 
-## 9. Team
+## 9. Teamwork
 
 The final team consisted of five members. Lenart Svetek joined one or two weeks after the beginning of the project and became a full team member from that point onward. The roles below show the main responsibility areas, although in practice the work was not always separated perfectly and several people helped outside their main role.
 
